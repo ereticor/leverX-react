@@ -16,9 +16,9 @@ const RightBtn = sliderBtns[1]
 
 const pagination = document.querySelectorAll('.pagination__label input')
 
-slide(slider, sliderItems, LeftBtn, RightBtn)
+slide(slider, sliderItems, LeftBtn, RightBtn, pagination)
 
-function slide(slider, items, left, right) {
+function slide(slider, items, left, right, pagination) {
   
   const sliderLength = items.length
   
