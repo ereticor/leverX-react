@@ -11,14 +11,12 @@ const slider = document.querySelector('.slider__list')
 const sliderItems = document.getElementsByClassName('slider__item')
 
 const sliderBtns = document.querySelectorAll('.slider__btn')
-const LeftBtn = sliderBtns[0]
-const RightBtn = sliderBtns[1]
 
 const pagination = document.querySelectorAll('.pagination__label input')
 
-slide(slider, sliderItems, LeftBtn, RightBtn, pagination)
+slide(slider, sliderItems, sliderBtns, pagination)
 
-function slide(slider, items, left, right, pagination) {
+function slide(slider, items, btns, pagination, index = 1) {
   
   const sliderLength = items.length
   
@@ -28,15 +26,25 @@ function slide(slider, items, left, right, pagination) {
   slider.append(firstClone)
   slider.prepend(lastClone)
   
-  let index = 1
   let transition = false
+  let interacted = false
 
-  left.addEventListener('click', () => transformSlide(-1))
-  right.addEventListener('click', () => transformSlide(1))
+  const left = btns[0]
+  const right = btns[1]
+
+  left.addEventListener('click', (e) => transformSlide(-1, e))
+  right.addEventListener('click', (e) => transformSlide(1, e))
 
   slider.addEventListener('transitionend', checkSLide)
 
-  function transformSlide(dir) {
+  function transformSlide(dir, e) {
+
+    if (e) {
+      interacted = true
+
+      setTimeout(() => interacted = false, 3000)
+    }
+
     slider.classList.add('slider__list_transition')
 
     if (!transition) {
@@ -67,7 +75,28 @@ function slide(slider, items, left, right, pagination) {
 
     transition = false
   }
+
+  function autoSlide() {
+    if (!interacted) {
+      transformSlide(1)
+    }
+    setTimeout(autoSlide, 3000)
+  }
+
+  autoSlide()
 }
+
+// function autoSlide() {
+//   let i = 1
+
+//   slider.classList.add('slider__list_transition')
+
+//   slider.style.transform = `translateX(-${++i}00%)`
+
+//   setTimeout(autoSlide, 3000)
+// }
+
+// autoSlide()
 
 // sliderBtns.forEach(btn => {
 //   btn.addEventListener('click', changeSlide)
