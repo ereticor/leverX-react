@@ -93,6 +93,11 @@ li {
 .slider__list {
   display: flex;
   height: 100%;
+  transform: translateX(-100%);
+}
+
+.slider__list_transition {
+  transition: all 0.3s ease-in-out;
 }
 
 .slider__item {
