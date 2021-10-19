@@ -22,10 +22,21 @@ body {
 button {
   border-radius: 24px;
   cursor: pointer;
+  font-weight: 700;
+  font-size: 1em;
+  text-transform: capitalize;
 }
 
 a {
   text-decoration: none;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
 }
 
 .wrapper {
@@ -61,18 +72,56 @@ a {
   height: 48px;
   border: 1px solid #FFFFFF;
   background: none;
-  font-weight: 700;
-  font-size: 1em;
-  text-transform: capitalize;
   color: #FFF;
 }
 
 .main__intro__wrapper {
+  padding: 0;
   background: #000000;
 }
 
-.main__intro {
-  height: 576px;
+.main__intro__slider {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slider__list {
+  display: flex;
+  height: 100%;
+}
+
+.slider__item {
+  flex: 0 0 100%;
+  height: 100%;
+  padding: 80px 80px 132px;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+h4.slider__item__head {
+  font-size: 34px;
+  line-height: 44px;
+}
+
+h2.slider__item__head {
+  font-size: 60px;
+  letter-spacing: 0.03em;
+  color: #F2C94C;
+  text-transform: uppercase;
+}
+
+.slider__item__text {
+  max-width: 510px;
+  margin: 24px 0 52px;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.slider__item__btn {
+  width: 145px;
+  height: 48px;
+  background: #F2C94C;
 }
 
 .main__articles__wrapper {
@@ -183,7 +232,6 @@ a {
 .foot__nav__list {
   display: flex;
   gap: 20px;
-  padding: 0;
 }
 
 .foot__nav__item {
