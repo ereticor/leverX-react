@@ -80,6 +80,10 @@ li {
   background: #000000;
 }
 
+.main__intro {
+  position: relative;
+}
+
 .main__intro__slider {
   position: relative;
   height: 100%;
@@ -122,6 +126,61 @@ h2.slider__item__head {
   width: 145px;
   height: 48px;
   background: #F2C94C;
+  color: #333333;
+}
+
+.slider__btn {
+  position: absolute;
+  top: 0;
+  width: 80px;
+  height: 100%;
+  background: none;
+  border: none;
+  border-radius: unset;
+  color: #FFFFFF;
+  font-size: 30px;
+}
+
+.slider__btn:hover {
+  background: rgba(116, 116, 116, 0.3);
+}
+
+.slider__left {
+  left: 0px;
+}
+
+.slider__right {
+  right: 0px;
+}
+
+.slider__pagination {
+  position: absolute;
+  top: calc(100% + 20px);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 6px;
+}
+
+.pagination__label {
+  width: 10px;
+  height: 10px;
+}
+
+.pagination__label input {
+  display: none;
+}
+
+.pagination__label span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #000000;
+  border-radius: 50%;
+}
+
+.pagination__label input:checked+span {
+  background: #000000;
 }
 
 .main__articles__wrapper {
