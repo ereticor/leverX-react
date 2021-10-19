@@ -190,6 +190,11 @@ h2.slider__item__head {
   border-radius: unset;
   color: #FFFFFF;
   font-size: 30px;
+  opacity: 0;
+}
+
+.main__intro:hover .slider__btn {
+  opacity: 1;
 }
 
 .slider__btn:hover {
@@ -217,9 +222,9 @@ h2.slider__item__head {
   position: absolute;
   top: calc(100% + 20px);
   display: flex;
-  justify-content: center;
-  width: 100%;
   gap: 6px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .pagination__label {
