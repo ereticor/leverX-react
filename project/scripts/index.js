@@ -35,6 +35,15 @@ function slide(slider, items, btns, pagination, index = 1) {
   left.addEventListener('click', (e) => transformSlide(-1, e))
   right.addEventListener('click', (e) => transformSlide(1, e))
 
+  for (let i = 0; i < pagination.length; i++) {
+    pagination[i].addEventListener('click', (e) => {
+
+      if (i + 1 == index) return
+
+      transformSlide(i, e)
+    })
+  }
+
   slider.addEventListener('transitionend', checkSLide)
 
   function transformSlide(dir, e) {
