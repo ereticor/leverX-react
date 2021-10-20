@@ -95,27 +95,56 @@ function slide(slider, items, btns, pagination, index = 1) {
   autoSlide()
 }
 
-// function autoSlide() {
-//   let i = 1
+const articleList = document.querySelector('.articles__list')
+const loadBtn = document.querySelector('.articles__load')
 
-//   slider.classList.add('slider__list_transition')
+loadArticles(articles, articleList, loadBtn)
 
-//   slider.style.transform = `translateX(-${++i}00%)`
+loadBtn.addEventListener('click', () => {
+  loadArticles(articles, articleList, loadBtn)
+})
 
-//   setTimeout(autoSlide, 3000)
-// }
+function loadArticles(list, pageList, loadBtn) {
 
-// autoSlide()
+  let count = pageList.children.length
 
-// sliderBtns.forEach(btn => {
-//   btn.addEventListener('click', changeSlide)
-// })
+  for (let i = count; i < count + 8 && i < list.length; i++) {
+    pageList.append(createArticle(list[i]))
+  }
 
-// let i = 1
-// function changeSlide(e) {
-//   if (e.target === sliderBtns[0]) {
-//     slider.style.transform = `translateX(-${--i}00%)`
-//   } else {
-//     slider.style.transform = `translateX(-${++i}00%)`
-//   }
-// }
+  if (pageList.children.length === list.length) {
+    loadBtn.classList.add('btn_hidden')
+  }
+}
+
+function createArticle(articleObj) {
+  let article = document.createElement('li')
+
+  article.setAttribute('data-keywords', articleObj.keywords.join(', '))
+  article.classList.add('articles__item')
+
+  let figure = document.createElement('figure')
+  figure.classList.add('item__figure')
+
+  let img = document.createElement('img')
+  img.src = articleObj.src
+
+  let cap = document.createElement('figcaption')
+  cap.classList.add('item__cap')
+
+  let capHead = document.createElement('h6')
+  capHead.classList.add('cap__head')
+  capHead.innerHTML = articleObj.title
+
+  let capText = document.createElement('p')
+  capText.classList.add('cap__text')
+  capText.innerHTML = articleObj.summary
+
+  cap.append(capHead, capText)
+
+  figure.append(img, cap)
+
+  article.append(figure)
+
+  return article
+}

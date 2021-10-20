@@ -358,8 +358,7 @@ h2.slider__item__head {
 .articles__list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 48px 24px;
+  gap: 48px 40px;
   width: calc(100% - 80px);
   margin-bottom: 26px;
 }
@@ -414,6 +413,10 @@ h2.slider__item__head {
   left: -32px;
   margin: 44px auto 0;
   text-transform: none;
+}
+
+.btn_hidden {
+  display: none;
 }
 
 .articles__load:hover {
