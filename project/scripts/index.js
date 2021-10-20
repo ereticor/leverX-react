@@ -90,6 +90,8 @@ function slide(slider, items, btns, pagination, index = 1) {
 const articleList = document.querySelector('.articles__list')
 const loadBtn = document.querySelector('.articles__load')
 
+articles.sort(() => Math.random() - 0.5)
+
 loadArticles(articles, articleList, loadBtn)
 
 loadBtn.addEventListener('click', () => {
