@@ -160,11 +160,13 @@ h2.slider__item__head {
 }
 
 .btn {
+  display: block;
   width: 145px;
   height: 48px;
   background: #F2C94C;
   border: none;
   color: #333333;
+  transition-duration: 0.1s;
 }
 
 .slider__item__btn:hover {
@@ -339,6 +341,70 @@ h2.slider__item__head {
 
 .checkbar__label_checked .checkbar__input::before {
   color: #FFFFFF;
+}
+
+.articles__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 25px 24px;
+  margin-bottom: 26px;
+}
+
+.articles__item {
+  overflow: hidden;
+  cursor: pointer;
+  width: 270px;
+  height: 352px;
+  border-radius: 15px;
+  background: #FFFFFF;
+  box-shadow: 0px 6px 8px rgba(234, 237, 242, 0.5);
+}
+
+.articles__item:hover {
+  box-shadow: 0px 12px 24px rgba(188, 201, 220, 0.4);
+}
+
+.articles__item:active {
+  box-shadow: 0px 12px 24px rgba(227, 232, 240, 0.5);
+}
+
+.item__figure img {
+  height: 196px;
+}
+
+.item__cap {
+  padding: 16px 16px 24px;
+  height: 100%;
+}
+
+.cap__head {
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0.0075em;
+  color: #333333;
+}
+
+.cap__text {
+  font-size: 14px;
+  line-height: 142%;
+  letter-spacing: 0.0168em;
+  color: #4F4F4F;
+}
+
+.articles__load {
+  margin: 44px auto 0;
+}
+
+.articles__load:hover {
+  width: 155px;
+}
+
+.articles__load:active {
+  width: 145px;
+  transform: scale(0.9);
 }
 
 .foot__wrapper {
