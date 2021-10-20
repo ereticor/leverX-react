@@ -363,6 +363,7 @@ h2.slider__item__head {
   margin-bottom: 26px;
 }
 
+
 .articles__item {
   overflow: hidden;
   cursor: pointer;
@@ -371,6 +372,10 @@ h2.slider__item__head {
   border-radius: 15px;
   background: #FFFFFF;
   box-shadow: 0px 6px 8px rgba(234, 237, 242, 0.5);
+}
+
+.articles__item.hidden {
+  display: none;
 }
 
 .articles__item:hover {
