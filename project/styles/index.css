@@ -3,7 +3,7 @@
   src: url(../assets/fonts/Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf);
 }
 @font-face {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Lato';
   src: url(../assets/fonts/Lato/Lato-Regular.ttf),
     url(../assets/fonts/Lato/Lato-Bold.ttf);
 }
@@ -20,7 +20,7 @@ body {
 
 * {
   margin: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Lato';
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
 }
@@ -142,7 +142,8 @@ li {
 
 h4.slider__item__head {
   font-size: 34px;
-  line-height: 44px;
+  line-height: 46px;
+  font-weight: 400;
 }
 
 h2.slider__item__head {
@@ -154,9 +155,10 @@ h2.slider__item__head {
 
 .slider__item__text {
   max-width: 510px;
-  margin: 24px 0 52px;
+  margin: 27px 0 55px;
   font-size: 18px;
   line-height: 24px;
+  font-weight: 400;
 }
 
 .btn {
@@ -167,6 +169,10 @@ h2.slider__item__head {
   border: none;
   color: #333333;
   transition-duration: 0.1s;
+}
+
+.slider__item__btn {
+  margin-left: 8px;
 }
 
 .slider__item__btn:hover {
@@ -253,7 +259,7 @@ h2.slider__item__head {
 
 .main__articles__wrapper {
   background: #F2F2F2;
-  padding: 70px 80px 54px;
+  padding: 70px 80px 52px;
 }
 
 .main__articles__head {
@@ -309,13 +315,17 @@ h2.slider__item__head {
 }
 
 .checkbar__label {
-  padding: 8px 24px;
+  height: 37px;
+  padding: 8px 22.5px;
   background: #FFFFFF;
-  box-shadow: 0px 6px 8px rgba(234, 237, 242, 0.5);
+  box-shadow: 0px 6px 8px rgb(234 237 242 / 50%);
   border-radius: 40px;
-  font-size: 14px;
   cursor: pointer;
   transition-duration: 0.1s;
+  font-size: 14px;
+  line-height: 142%;
+  letter-spacing: 0.0168em;
+  font-feature-settings: 'tnum' on, 'lnum' on;
 }
 
 .checkbar__label:hover {
@@ -333,6 +343,8 @@ h2.slider__item__head {
 
 .checkbar__input:checked {
   width: 15px;
+  transform: rotate(15deg);
+  margin: 0 6px;
 }
 
 .checkbar__input:checked::before {
@@ -347,7 +359,8 @@ h2.slider__item__head {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 25px 24px;
+  gap: 48px 24px;
+  width: calc(100% - 80px);
   margin-bottom: 26px;
 }
 
@@ -370,11 +383,13 @@ h2.slider__item__head {
 }
 
 .item__figure img {
-  height: 196px;
+  height: 194px;
+  width: 100%;
+  object-fit: cover;
 }
 
 .item__cap {
-  padding: 16px 16px 24px;
+  padding: 12px 16px 24px;
   height: 100%;
 }
 
@@ -395,7 +410,10 @@ h2.slider__item__head {
 }
 
 .articles__load {
+  position: relative;
+  left: -32px;
   margin: 44px auto 0;
+  text-transform: none;
 }
 
 .articles__load:hover {
