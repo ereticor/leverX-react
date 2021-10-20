@@ -146,7 +146,6 @@ function createArticle(articleObj) {
 
 const searchBar = document.querySelector('.search__input')
 const checkBoxes = document.querySelectorAll('.checkbar__input')
-const articleTitles = articleList.querySelectorAll('.cap__head')
 
 checkBoxes.forEach(el => {
   el.addEventListener('click', () => {
@@ -157,10 +156,12 @@ checkBoxes.forEach(el => {
 searchBar.addEventListener('input', searchInput)
 
 function searchInput() {
-  search(searchBar, articleTitles, articleList)
+  search(searchBar, '.cap__head', articleList)
 }
 
-function search(input, searchList, articleList) {
+function search(input, searchClass , articleList) {
+
+  const searchList = articleList.querySelectorAll(searchClass)
 
   let inputValue = input.value.trim().toLowerCase()
 
