@@ -96,7 +96,7 @@ loadArticles(articles, articleList, loadBtn)
 
 loadBtn.addEventListener('click', () => {
   loadArticles(articles, articleList, loadBtn)
-  search(searchBar, 'cap__head', articleList, 'checkbar__label')
+  search(searchBar, articles, articleList, 'checkbar__label', loadBtn)
 })
 
 function loadArticles(list, pageList, loadBtn) {
@@ -107,11 +107,14 @@ function loadArticles(list, pageList, loadBtn) {
     setTimeout(() => {
       pageList.append(createArticle(list[i + count]))
       
+      pageList.setAttribute('data-article-count', pageList.children.length)
+      
       if (i + count === list.length - 1) {
         loadBtn.classList.add('hidden')
       }
     }, i * 100)
   }
+
   
 }
 
@@ -155,19 +158,23 @@ const checkBoxes = document.querySelectorAll('.checkbar__input')
 checkBoxes.forEach(el => {
   el.addEventListener('click', () => {
     el.parentNode.classList.toggle('checkbar__label_checked')
-    search(searchBar, 'cap__head', articleList, 'checkbar__label')
+    search(searchBar, articles, articleList, 'checkbar__label', loadBtn)
   })
 })
 
 searchBar.addEventListener('input', searchInput)
 
 function searchInput() {
-  search(searchBar, 'cap__head', articleList, 'checkbar__label')
+  search(searchBar, articles, articleList, 'checkbar__label', loadBtn)
 }
 
-function search(input, searchClass , articleList, checkClass) {
+function search(input, articleObj , articleList, checkClass, btn) {
 
-  const searchList = document.querySelectorAll('.' + searchClass)
+  let count = +articleList.getAttribute('data-article-count')
+
+  articleList.innerHTML = ''
+
+  // const searchList = document.querySelectorAll('.' + searchClass)
   const checkboxes = document.querySelectorAll('.' + checkClass)
 
   let params = ''
@@ -184,18 +191,20 @@ function search(input, searchClass , articleList, checkClass) {
 
   let inputValue = input.value.trim().toLowerCase()
 
-  console.log(params)
+  for (let j = 0; j < count; j++) {
 
-  for (let j = 0; j < searchList.length; j++) {
-
-    let title = searchList[j].innerText.toLowerCase()
-    let keywords = articleList.children[j].getAttribute('data-keywords').split(', ').join('|')
+    let title = articleObj[j].title.toLowerCase()
+    let keywords = articleObj[j].keywords.join('|')
     let keywordsReg = new RegExp(keywords)
 
     if (title.indexOf(inputValue) !== -1 && (params === '' || keywordsReg.test(params))) {
-      articleList.children[j].classList.remove('hidden')
-      continue
+      articleList.append(createArticle(articleObj[j]))
     }
-    articleList.children[j].classList.add('hidden')
+
+    if (articleList.children.length === 0 && count < articleObj.length) {
+      btn.classList.add('hidden')
+    } else {
+      btn.classList.remove('hidden')
+    }
   }
 }
