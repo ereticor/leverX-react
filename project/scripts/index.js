@@ -87,6 +87,7 @@ function slide(slider, items, btns, pagination, index = 1) {
   autoSlide()
 }
 
+const articleSection = document.querySelector('.main__articles')
 const articleList = document.querySelector('.articles__list')
 articleList.setAttribute('data-article-count', 0)
 const loadBtn = document.querySelector('.articles__load')
@@ -110,7 +111,7 @@ function loadArticles(list, pageList, loadBtn) {
     pageList.setAttribute('data-article-count', i + count + 1)
     
     if (i + count === list.length - 1) {
-      loadBtn.classList.add('hidden')
+      loadBtn.remove()
     }
   }
 
@@ -204,13 +205,18 @@ function search(input, articleObj , articleList, checkClass, btn) {
   let rest = articleObj.slice(count)
 
   let restInput = rest.filter(el => el.title.toLowerCase().indexOf(inputValue) !== -1)
-  let restTags = rest.filter(el => new RegExp(el.keywords.join('|')).test(params))
+  let restTags = params === '' 
+    ? rest
+    : rest.filter(el => new RegExp(el.keywords.join('|')).test(params))
 
   let restMap = restTags.filter(el => restInput.includes(el))
 
   if (restMap.length !== 0) {
-    btn.classList.remove('hidden')
+    if (!articleSection.contains(btn)) {
+      articleSection.append(btn)
+    }
   } else {
-    btn.classList.add('hidden')
+    console.log(restMap.length)
+    btn.remove()
   }
 }

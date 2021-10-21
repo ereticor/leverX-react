@@ -392,10 +392,6 @@ h2.slider__item__head {
   animation: appear 0.5s ease-in;
 }
 
-.articles__item.hidden {
-  animation: disappear 0.5s normal forwards;
-}
-
 .item__figure {
   overflow: hidden;
   cursor: pointer;
@@ -449,10 +445,6 @@ h2.slider__item__head {
   left: -32px;
   margin: 44px auto 0;
   text-transform: none;
-}
-
-.articles__load.hidden {
-  animation: disappear 1s normal forwards;
 }
 
 .articles__load:hover {
