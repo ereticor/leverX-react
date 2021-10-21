@@ -96,6 +96,7 @@ loadArticles(articles, articleList, loadBtn)
 
 loadBtn.addEventListener('click', () => {
   loadArticles(articles, articleList, loadBtn)
+  search(searchBar, 'cap__head', articleList, 'checkbar__label')
 })
 
 function loadArticles(list, pageList, loadBtn) {
@@ -150,29 +151,47 @@ const checkBoxes = document.querySelectorAll('.checkbar__input')
 checkBoxes.forEach(el => {
   el.addEventListener('click', () => {
     el.parentNode.classList.toggle('checkbar__label_checked')
+    search(searchBar, 'cap__head', articleList, 'checkbar__label')
   })
 })
 
 searchBar.addEventListener('input', searchInput)
 
 function searchInput() {
-  search(searchBar, '.cap__head', articleList)
+  search(searchBar, 'cap__head', articleList, 'checkbar__label')
 }
 
-function search(input, searchClass , articleList) {
+function search(input, searchClass , articleList, checkClass) {
 
-  const searchList = articleList.querySelectorAll(searchClass)
+  const searchList = document.querySelectorAll('.' + searchClass)
+  const checkboxes = document.querySelectorAll('.' + checkClass)
+
+  let params = ''
+
+  for (let i = 0; i < checkboxes.length; i++) {
+      let keyword = checkboxes[i].innerText.trim().toLowerCase()
+
+      if (checkboxes[i].classList.contains(`${checkClass}_checked`)) {
+        params += `${keyword}, `
+      } else {
+        params = params.replaceAll(`${keyword}, `, '')
+      }
+  }
 
   let inputValue = input.value.trim().toLowerCase()
 
-  for (let i = 0; i < searchList.length; i++) {
+  console.log(params)
 
-    let title = searchList[i].innerText.toLowerCase()
+  for (let j = 0; j < searchList.length; j++) {
 
-    if (title.indexOf(inputValue) !== -1) {
-      articleList.children[i].classList.remove('hidden')
+    let title = searchList[j].innerText.toLowerCase()
+    let keywords = articleList.children[j].getAttribute('data-keywords').split(', ').join('|')
+    let keywordsReg = new RegExp(keywords)
+
+    if (title.indexOf(inputValue) !== -1 && (params === '' || keywordsReg.test(params))) {
+      articleList.children[j].classList.remove('hidden')
       continue
     }
-    articleList.children[i].classList.add('hidden')
+    articleList.children[j].classList.add('hidden')
   }
 }
