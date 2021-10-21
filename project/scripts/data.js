@@ -4,7 +4,7 @@ const articles = [
     summary: `Straightforward APIs with 
     consistent cross platform behaviour..`,
     src: `./assets/images/articles/1.png`,
-    keywords: [`angular`, 'frontend'],
+    keywords: [`angular`, `frontend`],
   },
   {
     title: `How to RxJS in Angular`,
@@ -12,21 +12,21 @@ const articles = [
       inputs change over time, you may want to do 
       something with that data inside your component.`,
     src: `./assets/images/articles/2.png`,
-    keywords: [`angular`, 'frontend'],
+    keywords: [`angular`, `frontend`],
   },
   {
     title: `Top 15 Features of Angular`,
     summary: `It has added the information for the dependency 
       and also regarding the ng-content selections for the data.`,
     src: `./assets/images/articles/3.png`,
-    keywords: [`angular`, 'frontend'],
+    keywords: [`angular`, `frontend`],
   },
   {
     title: `Angular team streamlines feature requests`,
     summary: `Feature requests will be reviewed for 
       alignment with existing projects on the Angular roadmap.`,
     src: `./assets/images/articles/4.png`,
-    keywords: [`angular`, 'devops'],
+    keywords: [`angular`, `devops`],
   },
   {
     title: `Impact of SAP ABAP in today's Business world`,
@@ -41,7 +41,7 @@ const articles = [
       the SAP ERP and SAP S/4HANA business solutions have the opportunity 
       to customize those systems to better meet their needs.`,
     src: `./assets/images/articles/6.png`,
-    keywords: [`sap abap`, 'programmer'],
+    keywords: [`sap abap`, `programmer`],
   },
   {
     title: `Must-read books to learn Java programming`,
@@ -49,7 +49,7 @@ const articles = [
       to be introduced to some of the most awesome books to 
       learn and master Java Programming in this article.`,
     src: `./assets/images/articles/7.png`,
-    keywords: [`java`, 'programmer'],
+    keywords: [`java`, `programmer`],
   },
   {
     title: `Spring vs. Java EE`,
@@ -58,14 +58,14 @@ const articles = [
       take place, and new versions of Java itself 
       and related specifications come out.`,
     src: `./assets/images/articles/8.png`,
-    keywords: [`java`, 'devops'],
+    keywords: [`java`, `devops`],
   },
   {
     title: `Rational Numbers With Python Fractions`,
     summary: `The fractions module in Python is arguably one of 
       the most underused elements of the standard library.`,
     src: `./assets/images/articles/9.png`,
-    keywords: [`python`, 'design'],
+    keywords: [`python`, `design`],
   },
   {
     title: `9 Amazing Articles on Python Programming`,
@@ -73,7 +73,7 @@ const articles = [
       we gathered some of our favorite pieces. We hope they 
       help you with your Python programming journey!`,
     src: `./assets/images/articles/10.png`,
-    keywords: [`python`, 'programmer'],
+    keywords: [`python`, `programmer`],
   },
   {
     title: `The Danger of Dark Patterns`,
@@ -82,7 +82,7 @@ const articles = [
       they’ve become so prevalent that many have been adopted 
       as design conventions.`,
     src: `./assets/images/articles/11.png`,
-    keywords: [`design`, 'devops'],
+    keywords: [`design`, `devops`],
   },
   {
     title: `30 Beautiful Google Fonts for Your Website`,
@@ -91,7 +91,7 @@ const articles = [
       Finding the ones you want to use, and 
       pairing them up is a time-consuming process.`,
     src: `./assets/images/articles/12.png`,
-    keywords: [`design`, 'frontend'],
+    keywords: [`design`, `frontend`],
   },
   {
     title: `Is devops becoming a cloud-only sport?`,
@@ -99,7 +99,7 @@ const articles = [
       deployments are more successful. A new report reveals 
       the practices that differentiate elite performers. `,
     src: `./assets/images/articles/13.png`,
-    keywords: [`devops`, 'programmer'],
+    keywords: [`devops`, `programmer`],
   },
   {
     title: `IBM continues to look to the hybrid cloud`,
@@ -108,7 +108,7 @@ const articles = [
       strategy – and if there are two key areas to 
       concentrate on especially, it is open and hybrid.`,
     src: `./assets/images/articles/14.png`,
-    keywords: [`devops`, 'angular'],
+    keywords: [`devops`, `angular`],
   },
   {
     title: `6 hidden risks of IT automation`,
@@ -116,7 +116,7 @@ const articles = [
       IT strategy for competitive advantage, but pitfalls 
       await those who fail to heed precautions.`,
     src: `./assets/images/articles/15.png`,
-    keywords: [`programmer`, 'python'],
+    keywords: [`programmer`, `python`],
   },
   {
     title: `The 10 Most Popular Programming Languages to Learn in 2021`,
@@ -124,7 +124,7 @@ const articles = [
       is a hot career right now. Not all programming 
       jobs are the same, however.`,
     src: `./assets/images/articles/16.png`,
-    keywords: [`programmer`, 'react'],
+    keywords: [`programmer`, `react`],
   },
   {
     title: `What is SAP TM module?`,
@@ -132,7 +132,7 @@ const articles = [
     industry, you will be wholly reliant on efficient 
     transportation logistics.`,
     src: `./assets/images/articles/17.png`,
-    keywords: [`sap tm consultant`, 'java'],
+    keywords: [`sap tm consultant`, `java`],
   },
   {
     title: `5 Epic React Tips To Use Today`,
@@ -140,7 +140,7 @@ const articles = [
       cleaner and more reliable, but also aim to make 
       your development experience easier and overall more enjoyable.`,
     src: `./assets/images/articles/18.png`,
-    keywords: [`react`, 'frontend'],
+    keywords: [`react`, `frontend`],
   },
   {
     title: `React Tips & Patterns`,
@@ -149,7 +149,7 @@ const articles = [
       project or just mess things up as it scales or 
       gets ready for a refactor or re-write.`,
     src: `./assets/images/articles/19.png`,
-    keywords: [`react`, 'design'],
+    keywords: [`react`, `design`],
   },
   {
     title: `10 React JS Articles Every Web Developer Should Read`,
@@ -157,7 +157,7 @@ const articles = [
       from Facebook which lets you create HTML based GUI. It makes 
       the task easier by providing a component-based architecture`,
     src: `./assets/images/articles/20.png`,
-    keywords: [`react`, 'frontend'],
+    keywords: [`react`, `frontend`],
   },
   {
     title: `How to write highly readable React code`,
@@ -166,7 +166,7 @@ const articles = [
       Instead, we have to quickly ponder the different situations 
       where that code might fail.`,
     src: `./assets/images/articles/21.png`,
-    keywords: [`react`, 'devops'],
+    keywords: [`react`, `devops`],
   },
   {
     title: `Redirecting URL`,
@@ -175,7 +175,7 @@ const articles = [
       clicking on a link. The redirected page can be on the 
       same server or on a different server.`,
     src: `./assets/images/articles/22.png`,
-    keywords: [`frontend`, 'programmer'],
+    keywords: [`frontend`, `programmer`],
   },
   {
     title: `Inspecting and debugging CSS Grid`,
@@ -183,6 +183,6 @@ const articles = [
       the Elements Panel. This is helpful for debugging 
       CSS issues, and learning more about CSS Grid.`,
     src: `./assets/images/articles/23.png`,
-    keywords: [`frontend`, 'design'],
+    keywords: [`frontend`, `design`],
   },
 ]
