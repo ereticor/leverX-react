@@ -397,7 +397,6 @@ h2.slider__item__head {
 }
 
 .item__figure {
-  position: absolute;
   overflow: hidden;
   cursor: pointer;
   width: 100%;
@@ -409,7 +408,6 @@ h2.slider__item__head {
 
 .item__figure:hover {
   box-shadow: 0px 12px 24px rgba(188, 201, 220, 0.4);
-  height: 390px;
 }
 
 .item__figure:active {
@@ -444,10 +442,6 @@ h2.slider__item__head {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
-}
-
-.articles__item:hover .cap__text {
-  display: inline;
 }
 
 .articles__load {

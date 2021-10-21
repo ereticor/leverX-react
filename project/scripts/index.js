@@ -136,6 +136,7 @@ function createArticle(articleObj) {
   
   let capText = document.createElement('p')
   capText.classList.add('cap__text')
+  capText.title = articleObj.summary
   capText.innerHTML = articleObj.summary
   
   cap.append(capHead, capText)
