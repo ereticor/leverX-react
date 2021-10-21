@@ -88,6 +88,7 @@ function slide(slider, items, btns, pagination, index = 1) {
 }
 
 const articleList = document.querySelector('.articles__list')
+articleList.setAttribute('data-article-count', 0)
 const loadBtn = document.querySelector('.articles__load')
 
 articles.sort(() => Math.random() - 0.5)
@@ -101,18 +102,16 @@ loadBtn.addEventListener('click', () => {
 
 function loadArticles(list, pageList, loadBtn) {
   
-  let count = pageList.children.length
+  let count = +pageList.getAttribute('data-article-count')
   
   for (let i = 0; i < 8 && i + count < list.length; i++) {
-    setTimeout(() => {
-      pageList.append(createArticle(list[i + count]))
-      
-      pageList.setAttribute('data-article-count', pageList.children.length)
-      
-      if (i + count === list.length - 1) {
-        loadBtn.classList.add('hidden')
-      }
-    }, i * 100)
+    pageList.append(createArticle(list[i + count]))
+    
+    pageList.setAttribute('data-article-count', i + count + 1)
+    
+    if (i + count === list.length - 1) {
+      loadBtn.classList.add('hidden')
+    }
   }
 
   
@@ -174,7 +173,6 @@ function search(input, articleObj , articleList, checkClass, btn) {
 
   articleList.innerHTML = ''
 
-  // const searchList = document.querySelectorAll('.' + searchClass)
   const checkboxes = document.querySelectorAll('.' + checkClass)
 
   let params = ''
@@ -201,10 +199,18 @@ function search(input, articleObj , articleList, checkClass, btn) {
       articleList.append(createArticle(articleObj[j]))
     }
 
-    if (articleList.children.length === 0 && count < articleObj.length) {
-      btn.classList.add('hidden')
-    } else {
-      btn.classList.remove('hidden')
-    }
+  }
+
+  let rest = articleObj.slice(count)
+
+  let restInput = rest.filter(el => el.title.toLowerCase().indexOf(inputValue) !== -1)
+  let restTags = rest.filter(el => new RegExp(el.keywords.join('|')).test(params))
+
+  let restMap = restTags.filter(el => restInput.includes(el))
+
+  if (restMap.length !== 0) {
+    btn.classList.remove('hidden')
+  } else {
+    btn.classList.add('hidden')
   }
 }
