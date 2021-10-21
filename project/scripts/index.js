@@ -103,13 +103,16 @@ function loadArticles(list, pageList, loadBtn) {
   
   let count = pageList.children.length
   
-  for (let i = count; i < count + 8 && i < list.length; i++) {
-    pageList.append(createArticle(list[i]))
+  for (let i = 0; i < 8 && i + count < list.length; i++) {
+    setTimeout(() => {
+      pageList.append(createArticle(list[i + count]))
+      
+      if (i + count === list.length - 1) {
+        loadBtn.classList.add('hidden')
+      }
+    }, i * 100)
   }
   
-  if (pageList.children.length === list.length) {
-    loadBtn.classList.add('btn_hidden')
-  }
 }
 
 function createArticle(articleObj) {

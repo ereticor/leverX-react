@@ -363,10 +363,20 @@ h2.slider__item__head {
   margin-bottom: 26px;
 }
 
+@keyframes appear {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
 .articles__item {
   position: relative;
   width: 270px;
   height: 352px;
+  transition-duration: 0.5s;
+  animation: appear 0.5s ease-in;
 }
 
 .articles__item.hidden {
