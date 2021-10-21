@@ -371,6 +371,19 @@ h2.slider__item__head {
     transform: scale(1);
   }
 }
+
+@keyframes disappear {
+  90% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0);
+    position: absolute;
+    z-index: -1;
+  }
+}
+
 .articles__item {
   position: relative;
   width: 270px;
@@ -380,7 +393,7 @@ h2.slider__item__head {
 }
 
 .articles__item.hidden {
-  display: none;
+  animation: disappear 0.5s normal forwards;
 }
 
 .item__figure {
@@ -444,8 +457,8 @@ h2.slider__item__head {
   text-transform: none;
 }
 
-.btn_hidden {
-  display: none;
+.articles__load.hidden {
+  animation: disappear 1s normal forwards;
 }
 
 .articles__load:hover {
