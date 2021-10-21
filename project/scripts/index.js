@@ -91,6 +91,7 @@ const articleSection = document.querySelector('.main__articles')
 const articleList = document.querySelector('.articles__list')
 articleList.setAttribute('data-article-count', 0)
 const loadBtn = document.querySelector('.articles__load')
+let articleDefaultSize = 8;
 
 articles.sort(() => Math.random() - 0.5)
 
@@ -158,6 +159,7 @@ const checkBoxes = document.querySelectorAll('.checkbar__input')
 checkBoxes.forEach(el => {
   el.addEventListener('click', () => {
     el.parentNode.classList.toggle('checkbar__label_checked')
+    articleList.setAttribute('data-article-count', articleDefaultSize)
     search(searchBar, articles, articleList, 'checkbar__label', loadBtn)
   })
 })
@@ -165,6 +167,7 @@ checkBoxes.forEach(el => {
 searchBar.addEventListener('input', searchInput)
 
 function searchInput() {
+  articleList.setAttribute('data-article-count', articleDefaultSize)
   search(searchBar, articles, articleList, 'checkbar__label', loadBtn)
 }
 
@@ -179,7 +182,7 @@ function search(input, articleObj , articleList, checkClass, btn) {
   let params = ''
 
   for (let i = 0; i < checkboxes.length; i++) {
-      let keyword = checkboxes[i].innerText.trim().toLowerCase()
+      const keyword = checkboxes[i].innerText.trim().toLowerCase()
 
       if (checkboxes[i].classList.contains(`${checkClass}_checked`)) {
         params += `${keyword}, `
@@ -192,9 +195,9 @@ function search(input, articleObj , articleList, checkClass, btn) {
 
   for (let j = 0; j < count; j++) {
 
-    let title = articleObj[j].title.toLowerCase()
-    let keywords = articleObj[j].keywords.join('|')
-    let keywordsReg = new RegExp(keywords)
+    const title = articleObj[j].title.toLowerCase()
+    const keywords = articleObj[j].keywords.join('|')
+    const keywordsReg = new RegExp(keywords)
 
     if (title.indexOf(inputValue) !== -1 && (params === '' || keywordsReg.test(params))) {
       articleList.append(createArticle(articleObj[j]))
@@ -202,21 +205,20 @@ function search(input, articleObj , articleList, checkClass, btn) {
 
   }
 
-  let rest = articleObj.slice(count)
+  const rest = articleObj.slice(count)
 
-  let restInput = rest.filter(el => el.title.toLowerCase().indexOf(inputValue) !== -1)
-  let restTags = params === '' 
+  const restInput = rest.filter(el => el.title.toLowerCase().indexOf(inputValue) !== -1)
+  const restTags = params === '' 
     ? rest
     : rest.filter(el => new RegExp(el.keywords.join('|')).test(params))
 
-  let restMap = restTags.filter(el => restInput.includes(el))
+  const restMap = restTags.filter(el => restInput.includes(el))
 
   if (restMap.length !== 0) {
     if (!articleSection.contains(btn)) {
       articleSection.append(btn)
     }
   } else {
-    console.log(restMap.length)
     btn.remove()
   }
 }
