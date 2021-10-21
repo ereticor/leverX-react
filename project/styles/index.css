@@ -484,6 +484,7 @@ h2.slider__item__head {
 
 .foot__credits {
   color: #FFFFFF;
+  letter-spacing: 0.02em;
 }
 
 .foot__nav {
@@ -524,7 +525,8 @@ h2.slider__item__head {
   transform: scale(1.2);
 }
 
-.foot__nav__item:active .foot__nav__link {
+.foot__nav__item:active .foot__nav__link,
+.foot__nav__support:active {
   transform: scale(0.9);
 }
 
@@ -532,4 +534,9 @@ h2.slider__item__head {
   font-weight: 600;
   color: #F2C94C;
   letter-spacing: 0.005em;
+  margin-right: 8px;
+}
+
+.foot__nav__support:hover {
+  color: #aa830e;
 }
