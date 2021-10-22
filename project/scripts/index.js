@@ -95,6 +95,33 @@ let articleDefaultSize = 8;
 
 articles.sort(() => Math.random() - 0.5)
 
+const searchTags = document.querySelector('.main__articles__checkbar')
+
+createMultiTags(articles, searchTags)
+
+function createMultiTags(articleObj, parent) {
+
+  // let tags = new Set(articleObj.reduce((acc, next) => acc.concat(next.keywords), []))
+  let tags = new Set(articleObj.map(el => el.keywords).flat())
+
+  tags.forEach(tag => createTag(tag, parent))
+  
+}
+
+function createTag(text, parent) {
+  let tag = document.createElement('label')
+  tag.classList.add('checkbar__label')
+  tag.innerText = text
+
+  let input = document.createElement('input')
+  input.classList.add('checkbar__input')
+  input.type = 'checkbox'
+
+  tag.prepend(input)
+
+  parent.append(tag)
+}
+
 loadArticles(articles, articleList, loadBtn)
 
 loadBtn.addEventListener('click', () => {
@@ -118,6 +145,7 @@ function loadArticles(list, pageList, loadBtn) {
 
   
 }
+
 
 function createArticle(articleObj) {
   let article = document.createElement('li')
@@ -196,7 +224,7 @@ function search(input, articleObj , articleList, checkClass, btn) {
   for (let j = 0; j < count; j++) {
 
     const title = articleObj[j].title.toLowerCase()
-    const keywords = articleObj[j].keywords.join('|')
+    const keywords = articleObj[j].keywords.join('|').toLowerCase()
     const keywordsReg = new RegExp(keywords)
 
     if (title.indexOf(inputValue) !== -1 && (params === '' || keywordsReg.test(params))) {
@@ -210,7 +238,7 @@ function search(input, articleObj , articleList, checkClass, btn) {
   const restInput = rest.filter(el => el.title.toLowerCase().indexOf(inputValue) !== -1)
   const restTags = params === '' 
     ? rest
-    : rest.filter(el => new RegExp(el.keywords.join('|')).test(params))
+    : rest.filter(el => new RegExp(el.keywords.join('|').toLowerCase()).test(params))
 
   const restMap = restTags.filter(el => restInput.includes(el))
 
