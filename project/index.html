@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/index.css">
+  <title>task</title>
+</head>
+<body>
+  <div class="head__wrapper wrapper">
+    <header class="head">
+      <a href="https://leverx.ru/" target="_blank" class="head__link">
+        <h1 class="head__logo">leverX</h1>
+      </a>
+      <button class="head__sign">sign in</button>
+    </header>
+  </div>
+  <main class="main">
+    <div class="main__intro__wrapper wrapper">
+      <section class="main__intro">
+        <div class="main__intro__slider">
+          <ul class="slider__list">
+            <li class="slider__item" style="--back: #000000">
+              <div class="slider__item__info">
+                <h4 class="slider__item__head">Free courses from</h4>
+                <h2 class="slider__item__head">leverx group</h2>
+                <p class="slider__item__text">
+                  The profession of a programmer is one of the most 
+                  demanded in the IT field today. Programming training <br> 
+                  at LeverX Group is an excellent opportunity to gain <br>
+                  practical knowledge in the most relevant areas in this <br>
+                  area and build a successful  career in our company.
+                </p>
+                <button class="slider__item__btn btn">start now</button>
+              </div>
+              <div class="slider__item__img" style="--img: url('../assets/images/slider/1.png')"></div>
+            </li>
+            <li class="slider__item" style="--back: url('../assets/images/slider/2back.png')">
+              <div class="slider__item__info">
+                <h4 class="slider__item__head">Free courses from</h4>
+                <h2 class="slider__item__head">leverx group</h2>
+                <p class="slider__item__text">
+                  The profession of a programmer is one of the most 
+                  demanded in the IT field today. Programming training <br> 
+                  at LeverX Group is an excellent opportunity to gain <br>
+                  practical knowledge in the most relevant areas in this <br>
+                  area and build a successful  career in our company.
+                </p>
+                <button class="slider__item__btn btn">start now</button>
+              </div>
+              <div class="slider__item__img" style="--img: url('../assets/images/slider/2.png')"></div>
+            </li>
+          </ul>
+        </div>
+        <button class="slider__left slider__btn"><</button>
+        <button class="slider__right slider__btn">></button>
+        <div class="slider__pagination">
+          <label class="pagination__label">
+            <input type="radio" name="sliderPagination" checked>
+            <span></span>
+          </label>
+            <label class="pagination__label">
+              <input type="radio" name="sliderPagination">
+              <span></span>
+            </label>
+        </div>
+      </section>
+    </div>
+    <div class="main__articles__wrapper wrapper">
+      <section class="main__articles">
+        <h3 class="main__articles__head">Interesting articles by LeverX Group</h3>
+        <div class="main__articles__search">
+          <input type="search" name="" id="" class="search__input" placeholder="Search for article">
+        </div>
+        <div class="main__articles__checkbar">
+          <label class="checkbar__label">
+            <input type="checkbox" autocomplete="off" name="angular" class="checkbar__input">
+            Angular
+          </label>
+          <label class="checkbar__label">
+            <input type="checkbox" autocomplete="off" name="" class="checkbar__input">
+            SAP ABAP
+          </label>
+          <label class="checkbar__label">
+            <input type="checkbox" autocomplete="off" name="" class="checkbar__input">
+            Java
+          </label>
+          <label class="checkbar__label">
+            <input type="checkbox" autocomplete="off" name="" class="checkbar__input">
+            Design
+          </label>
+          <label class="checkbar__label">
+            <input type="checkbox" autocomplete="off" name="" class="checkbar__input">
+            SAP TM Consultant
+          </label>
+          <label class="checkbar__label">
+            <input type="checkbox" autocomplete="off" name="" class="checkbar__input">
+            Frontend
+          </label>
+          <label class="checkbar__label">
+            <input type="checkbox" autocomplete="off" name="" class="checkbar__input">
+            Programmer
+          </label>
+          <label class="checkbar__label">
+            <input type="checkbox" autocomplete="off" name="" class="checkbar__input">
+            Python
+          </label>
+          <label class="checkbar__label">
+            <input type="checkbox" autocomplete="off" name="" class="checkbar__input">
+            DevOps
+          </label>
+          <label class="checkbar__label">
+            <input type="checkbox" autocomplete="off" name="" class="checkbar__input">
+            React
+          </label>
+        </div>
+        <ul class="articles__list">
+        </ul>
+        <button class="articles__load btn">Load more</button>
+      </section>
+    </div>
+  </main>
+  <div class="foot__wrapper wrapper">
+    <footer class="foot">
+      <p class="foot__credits">2021 © LeverX, Int. All Rights Reserved.</p>
+      <nav class="foot__nav">
+        <ul class="foot__nav__list">
+          <li class="foot__nav__item">
+            <a href="https://www.facebook.com/leverxgroup.cis" target="_blank" class="foot__nav__link"></a>
+          </li>
+          <li class="foot__nav__item">
+            <a href="https://www.instagram.com/" target="_blank" class="foot__nav__link"></a>
+          </li>
+          <li class="foot__nav__item">
+            <a href="https://web.telegram.org/" target="_blank" class="foot__nav__link"></a>
+          </li>
+        </ul>
+        <a href="about:blank" target="_blank" class="foot__nav__support">Support</a>
+      </nav>
+    </footer>
+  </div>
+  <script src="./scripts/data.js"></script>
+  <script src="./scripts/index.js"></script>
+</body>
+</html>
