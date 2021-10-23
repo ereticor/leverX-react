@@ -88,25 +88,31 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
   capHead.classList.add('cap__head')
   capHead.innerHTML = articleObj.title
   
-  let capText = document.createElement('p')
-  capText.classList.add('cap__text')
-  capText.title = articleObj.summary
-  capText.innerHTML = articleObj.summary
-
+  let capText = document.createElement(fullPage ? 'div' : 'p')
+  // capText.classList.add('cap__text')
+  // capText.title = articleObj.content
+  // capText.innerHTML = articleObj.content
   
   cap.append(capHead, capText)
   
   figure.append(img, cap)
   
   article.append(figure)
-
+  
   if (!fullPage) {
+    capText.classList.add('cap__text')
+    capText.title = articleObj.content[0].text
+    capText.innerHTML = articleObj.content[0].text
+
     article.addEventListener('click', () => {
       openFullPageArticle(articleObj)
     })
   }
 
   if (fullPage) {
+    capText.classList.add('cap__content')
+    createContent(articleObj, capText)
+
     let capCred = document.createElement('div')
     capCred.classList.add('cap__credits')
 
@@ -116,7 +122,7 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
 
     let date = document.createElement('time')
     date.classList.add('credits__date')
-    date.innerText = articleObj.date
+    date.innerText = dateToHuman(articleObj.date)
 
     capCred.append(author, date)
 
@@ -134,6 +140,29 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
   
   return article
 
+
+  function createContent(articleObj, parent) {
+    let contentArr = articleObj.content
+    for (let i = 0; i < contentArr.length; i++) {
+      let head = document.createElement('h6')
+      head.innerText = contentArr[i].head
+      head.classList.add('content__head')
+      parent.append(head)
+
+      contentArr[i].text.forEach(el => {
+        let text = document.createElement('p')
+        text.classList.add('content__text')
+        text.innerText = el
+
+        parent.append(text)
+      })
+      
+    }
+  }
+
+  function dateToHuman(stamp) {
+    return stamp
+  }
 }
 
 
