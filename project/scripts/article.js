@@ -58,7 +58,7 @@ function loadArticles(list, pageList, btn) {
   
 }
 
-function createArticle(articleObj, type = 'li') {
+function createArticle(articleObj, type = 'li', fullPage = false) {
   let article = document.createElement(type)
   
   article.setAttribute('data-keywords', articleObj.keywords.join(', '))
@@ -81,14 +81,42 @@ function createArticle(articleObj, type = 'li') {
   capText.classList.add('cap__text')
   capText.title = articleObj.summary
   capText.innerHTML = articleObj.summary
+
   
   cap.append(capHead, capText)
   
   figure.append(img, cap)
   
   article.append(figure)
+
+  if (fullPage) {
+    let capCred = document.createElement('div')
+    capCred.classList.add('cap__credits')
+
+    let author = document.createElement('p')
+    author.classList.add('credits__author')
+    author.innerText = articleObj.author
+
+    let date = document.createElement('time')
+    date.clasList.add('credits__date')
+    date.innerText = articleObj.date
+
+    capCred.append(author, date)
+
+    cap.append(capCred)
+
+    let tags = document.createElement('div')
+    tags.classList.add('item__tags')
+
+    articleObj.keywords.forEach(key => {
+      createTag(key, tags)
+    })
+
+    figure.append(tags)
+  }
   
   return article
+
 }
 
 
