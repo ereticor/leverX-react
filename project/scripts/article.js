@@ -102,6 +102,12 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
   
   article.append(figure)
 
+  if (!fullPage) {
+    article.addEventListener('click', () => {
+      openFullPageArticle(articleObj)
+    })
+  }
+
   if (fullPage) {
     let capCred = document.createElement('div')
     capCred.classList.add('cap__credits')
@@ -111,7 +117,7 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
     author.innerText = articleObj.author
 
     let date = document.createElement('time')
-    date.clasList.add('credits__date')
+    date.classList.add('credits__date')
     date.innerText = articleObj.date
 
     capCred.append(author, date)
@@ -184,4 +190,49 @@ function search(input, articleObj, checkClass) {
 
   return filtered
 
+}
+
+const main = document.querySelector('.main')
+
+function createFullPageArticle(articleObj) {
+  
+  let wrapper = document.createElement('div')
+  wrapper.classList.add('main__paper__wrapper', 'wrapper')
+  
+  let section = document.createElement('section')
+  section.classList.add('main__paper')
+  
+  let pagination = document.createElement('div')
+  pagination.classList.add('paper__pagination')
+  
+  let homeBtn = document.createElement('span')
+  homeBtn.classList.add('pagination__link')
+  homeBtn.innerText = 'Home Page'
+  
+  pagination.append(homeBtn, '> Article')
+  
+  let article = createArticle(articleObj, 'article', true)
+  
+  section.append(pagination, article)
+
+  wrapper.append(section)
+  
+  return wrapper
+}
+
+function openFullPageArticle(articleObj) {
+  const mainContent = Array.from(document.querySelectorAll('.main > *'))
+  
+  let article = createFullPageArticle(articleObj)
+
+  let link = article.querySelector('.pagination__link')
+
+  link.addEventListener('click', () => {
+    article.remove()
+    main.append(...mainContent)
+  })
+
+  main.innerHTML = ''
+
+  main.append(article)
 }
