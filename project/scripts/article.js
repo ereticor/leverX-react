@@ -9,24 +9,25 @@ createMultiTags(articles, tagsList)
 function createMultiTags(articleObj, parent) {
 
   // let tags = new Set(articleObj.reduce((acc, next) => acc.concat(next.keywords), []))
-  let tags = new Set(articleObj.map(el => el.keywords).flat())
+  let tags = articleObj.keywords 
+    ? articleObj.keywords
+    : new Set(articleObj.map(el => el.keywords).flat())
 
-  tags.forEach(tag => createTag(tag, parent))
+  let tagsHTML = [...tags].reduce( (acc, tag) => acc + createTag(tag), '')
+
+  console.log(tagsHTML)
+
+  parent.innerHTML = tagsHTML
   
 }
 
-function createTag(text, parent) {
-  let tag = document.createElement('label')
-  tag.classList.add('checkbar__label')
-  tag.innerText = text
+function createTag(text) {
 
-  let input = document.createElement('input')
-  input.classList.add('checkbar__input')
-  input.type = 'checkbox'
+  let tag = `<label class="checkbar__label">
+               <input class="checkbar__input" type="checkbox">${text}
+             </label> `
 
-  tag.prepend(input)
-
-  parent.append(tag)
+  return tag
 }
 
 function createLoadBtn() {
@@ -131,9 +132,7 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
     let tags = document.createElement('div')
     tags.classList.add('item__tags')
 
-    articleObj.keywords.forEach(key => {
-      createTag(key, tags)
-    })
+    createMultiTags(articleObj, tags)
 
     figure.append(tags)
   }
