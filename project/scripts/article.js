@@ -15,8 +15,6 @@ function createMultiTags(articleObj, parent) {
 
   let tagsHTML = [...tags].reduce( (acc, tag) => acc + createTag(tag), '')
 
-  console.log(tagsHTML)
-
   parent.innerHTML = tagsHTML
   
 }
@@ -160,7 +158,14 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
   }
 
   function dateToHuman(stamp) {
-    return stamp
+
+    const formatter = new Intl.DateTimeFormat('en', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+
+    return formatter.format(stamp)
   }
 }
 
