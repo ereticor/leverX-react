@@ -575,6 +575,7 @@ h2.slider__item__head {
   padding: 12px 0 52px;
 }
 
+
 .main__paper .cap__head {
   margin: 52px 0 44px;
   font-size: 42px;
@@ -582,19 +583,21 @@ h2.slider__item__head {
   letter-spacing: -0.005em;
 }
 
-.main__paper .cap__text {
+.main__paper .cap__content {
+  color: #4F4F4F;
+}
+
+.main__paper .content__head {
+  font-size: 24px;
+}
+
+.main__paper .content__text {
   margin: 24px 0;
   font-size: 16px;
 }
 
-.main__paper .cap__text:last-of-type {
+.main__paper .content__text:last-of-type {
   margin-bottom: 44px;
-}
-
-.main__paper .item__tags {
-  display: flex;
-  gap: 16px;
-  padding: 3px;
 }
 
 .main__paper .cap__credits {
@@ -602,4 +605,12 @@ h2.slider__item__head {
   justify-content: space-between;
   padding-top: 23px;
   border-top: 1px solid #BDBDBD;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+
+.main__paper .item__tags {
+  display: flex;
+  gap: 16px;
+  padding: 3px;
 }
