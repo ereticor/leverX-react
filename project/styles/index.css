@@ -548,10 +548,19 @@ h2.slider__item__head {
 
 .paper__pagination {
   margin-bottom: 52px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0.0075em;
 }
 
 .pagination__link {
   cursor: pointer;
+  color: #828282;
+}
+
+.pagination__link + span {
+  word-spacing: 20px;
 }
 
 .main__paper .articles__item {
@@ -591,6 +600,10 @@ h2.slider__item__head {
   font-size: 24px;
 }
 
+.main__paper .content__head::first-letter {
+  text-transform: uppercase;
+}
+
 .main__paper .content__text {
   margin: 24px 0;
   font-size: 16px;
@@ -607,6 +620,10 @@ h2.slider__item__head {
   border-top: 1px solid #BDBDBD;
   font-weight: 600;
   letter-spacing: 0.005em;
+}
+
+.credits__author {
+  text-transform: capitalize;
 }
 
 .main__paper .item__tags {

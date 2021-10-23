@@ -238,9 +238,12 @@ function createFullPageArticle(articleObj) {
   
   let homeBtn = document.createElement('span')
   homeBtn.classList.add('pagination__link')
-  homeBtn.innerText = 'Home Page'
+  homeBtn.innerText = 'Home page'
+
+  let pageInfo = document.createElement('span')
+  pageInfo.innerText = ' > Article'
   
-  pagination.append(homeBtn, '> Article')
+  pagination.append(homeBtn, pageInfo)
   
   let article = createArticle(articleObj, 'article', true)
   
