@@ -78,7 +78,7 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
   figure.classList.add('item__figure')
   
   let img = document.createElement('img')
-  img.src = articleObj.src
+  img.src = articleObj.picture
   
   let cap = document.createElement('figcaption')
   cap.classList.add('item__cap')
