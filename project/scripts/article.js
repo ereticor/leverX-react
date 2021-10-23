@@ -31,29 +31,44 @@ function createTag(text, parent) {
   parent.append(tag)
 }
 
-loadArticles(articles, articleList, loadBtn)
+function createLoadBtn() {
+  let btn = document.createElement('button')
+  btn.classList.add('articles__load', 'btn')
+  btn.innerText = "Load more"
 
-loadBtn.addEventListener('click', () => {
-  let filtered = search(searchBar, articles, 'checkbar__label')
-  loadArticles(filtered, articleList, loadBtn)
-})
+  return btn;
+}
 
-function loadArticles(list, pageList, btn) {
+loadArticles(articles, articleList)
 
-  let length = pageList.children.length
+function loadArticles(list, pageList) {
+  const oldBtn = pageList.parentNode.querySelector('.articles__load')
+  if (oldBtn) oldBtn.remove()
+  const newBtn = createLoadBtn()
 
-  articleList.innerHTML = ''
-  
-  for (let i = 0; i < length + 8 && i < list.length; i++) {
-    pageList.append(createArticle(list[i]))
+  pageList.innerHTML = ''
+
+  const articlesPerPage = 8
+  let page = 0;
+
+  function loadOnPage() {
+      const articlesToAppend = list.slice(page * articlesPerPage, (page + 1) * articlesPerPage);
+      page++;
+
+      articlesToAppend.forEach(article => {
+          pageList.append(createArticle(article))
+      })
+
+
+      if (pageList.children.length >= list.length) {
+        newBtn.remove()
+      } else if (!pageList.contains(newBtn)) {
+        pageList.parentNode.append(newBtn)
+      }
   }
+  loadOnPage()
 
-  if (pageList.children.length >= list.length) {
-    btn.remove()
-  } else if (!pageList.contains(btn)) {
-    pageList.parentNode.append(btn)
-  }
-  
+  newBtn.addEventListener('click', loadOnPage)
 }
 
 function createArticle(articleObj, type = 'li', fullPage = false) {
@@ -124,8 +139,7 @@ const checkBoxes = document.querySelectorAll('.checkbar__input')
 checkBoxes.forEach(el => {
   el.addEventListener('click', () => {
     el.parentNode.classList.toggle('checkbar__label_checked')
-    let filtered = search(searchBar, articles, 'checkbar__label')
-    loadArticles(filtered, articleList, loadBtn)
+    searchInput()
   })
 })
 
@@ -133,7 +147,7 @@ searchBar.addEventListener('input', searchInput)
 
 function searchInput() {
   let filtered = search(searchBar, articles, 'checkbar__label')
-  loadArticles(filtered, articleList, loadBtn)
+  loadArticles(filtered, articleList)
 }
 
 function search(input, articleObj, checkClass) {
