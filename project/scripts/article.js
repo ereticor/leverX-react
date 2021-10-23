@@ -48,12 +48,10 @@ function loadArticles(list, pageList, btn) {
     pageList.append(createArticle(list[i]))
   }
 
-  if (pageList.children.length < list.length) {
-    if (!pageList.contains(btn)) {
-      pageList.parentNode.append(btn)
-    }
-  } else {
+  if (pageList.children.length >= list.length) {
     btn.remove()
+  } else if (!pageList.contains(btn)) {
+    pageList.parentNode.append(btn)
   }
   
 }
