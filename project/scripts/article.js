@@ -34,7 +34,7 @@ function createTag(text, parent) {
 loadArticles(articles, articleList, loadBtn)
 
 loadBtn.addEventListener('click', () => {
-  let filtered = search(searchBar, articles, articleList, 'checkbar__label', loadBtn)
+  let filtered = search(searchBar, articles, 'checkbar__label')
   loadArticles(filtered, articleList, loadBtn)
 })
 
@@ -124,7 +124,7 @@ const checkBoxes = document.querySelectorAll('.checkbar__input')
 checkBoxes.forEach(el => {
   el.addEventListener('click', () => {
     el.parentNode.classList.toggle('checkbar__label_checked')
-    let filtered = search(searchBar, articles, articleList, 'checkbar__label', loadBtn)
+    let filtered = search(searchBar, articles, 'checkbar__label')
     loadArticles(filtered, articleList, loadBtn)
   })
 })
@@ -132,11 +132,11 @@ checkBoxes.forEach(el => {
 searchBar.addEventListener('input', searchInput)
 
 function searchInput() {
-  let filtered = search(searchBar, articles, articleList, 'checkbar__label', loadBtn)
+  let filtered = search(searchBar, articles, 'checkbar__label')
   loadArticles(filtered, articleList, loadBtn)
 }
 
-function search(input, articleObj , articleList, checkClass, btn) {
+function search(input, articleObj, checkClass) {
 
   let filtered = articleObj
 
