@@ -134,7 +134,8 @@ checkBoxes.forEach(el => {
 searchBar.addEventListener('input', searchInput)
 
 function searchInput() {
-  search(searchBar, articles, articleList, 'checkbar__label', loadBtn)
+  let filtered = search(searchBar, articles, articleList, 'checkbar__label', loadBtn)
+  loadArticles(filtered, articleList, loadBtn)
 }
 
 function search(input, articleObj , articleList, checkClass, btn) {
