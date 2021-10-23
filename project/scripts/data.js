@@ -5,6 +5,7 @@ const articles = [
     consistent cross platform behaviour..`,
     src: `./assets/images/articles/1.png`,
     keywords: [`Angular`, `Frontend`],
+    author: `Some Body`,
   },
   {
     title: `How to RxJS in Angular`,
@@ -13,6 +14,7 @@ const articles = [
       something with that data inside your component.`,
     src: `./assets/images/articles/2.png`,
     keywords: [`Angular`, `Frontend`],
+    author: `Once Told`,
   },
   {
     title: `Top 15 Features of Angular`,
@@ -20,6 +22,7 @@ const articles = [
       and also regarding the ng-content selections for the data.`,
     src: `./assets/images/articles/3.png`,
     keywords: [`Angular`, `Frontend`],
+    author: `The World`,
   },
   {
     title: `Angular team streamlines feature requests`,
@@ -27,6 +30,7 @@ const articles = [
       alignment with existing projects on the Angular roadmap.`,
     src: `./assets/images/articles/4.png`,
     keywords: [`Angular`, `DevOps`],
+    author: `Gonna Roll`,
   },
   {
     title: `Impact of SAP ABAP in today's Business world`,
@@ -34,6 +38,7 @@ const articles = [
       the popular ERP for its extensive capabilities.`,
     src: `./assets/images/articles/5.png`,
     keywords: [`SAP ABAP`, `SAP TM Consultant`],
+    author: `Sharpest Tool`,
   },
   {
     title: `ABAP Programming for SAP`,
@@ -42,6 +47,7 @@ const articles = [
       to customize those systems to better meet their needs.`,
     src: `./assets/images/articles/6.png`,
     keywords: [`SAP ABAP`, `Programmer`],
+    author: `The Shed`,
   },
   {
     title: `Must-read books to learn Java programming`,
@@ -50,6 +56,7 @@ const articles = [
       learn and master Java Programming in this article.`,
     src: `./assets/images/articles/7.png`,
     keywords: [`Java`, `Programmer`],
+    author: `She Was`,
   },
   {
     title: `Spring vs. Java EE`,
@@ -59,6 +66,7 @@ const articles = [
       and related specifications come out.`,
     src: `./assets/images/articles/8.png`,
     keywords: [`Java`, `DevOps`],
+    author: `Looking Kind`,
   },
   {
     title: `Rational Numbers With Python Fractions`,
@@ -66,6 +74,7 @@ const articles = [
       the most underused elements of the standard library.`,
     src: `./assets/images/articles/9.png`,
     keywords: [`Python`, `Design`],
+    author: `Of Dumb`,
   },
   {
     title: `9 Amazing Articles on Python Programming`,
@@ -74,6 +83,7 @@ const articles = [
       help you with your Python programming journey!`,
     src: `./assets/images/articles/10.png`,
     keywords: [`Python`, `Programmer`],
+    author: `Her Finger`,
   },
   {
     title: `The Danger of Dark Patterns`,
@@ -83,6 +93,7 @@ const articles = [
       as design conventions.`,
     src: `./assets/images/articles/11.png`,
     keywords: [`Design`, `DevOps`],
+    author: `Her Thumb`,
   },
   {
     title: `30 Beautiful Google Fonts for Your Website`,
@@ -92,6 +103,7 @@ const articles = [
       pairing them up is a time-consuming process.`,
     src: `./assets/images/articles/12.png`,
     keywords: [`Design`, `Frontend`],
+    author: `Shape of L`,
   },
   {
     title: `Is devops becoming a cloud-only sport?`,
@@ -100,6 +112,7 @@ const articles = [
       the practices that differentiate elite performers. `,
     src: `./assets/images/articles/13.png`,
     keywords: [`DevOps`, `Programmer`],
+    author: `Her Forehead`,
   },
   {
     title: `IBM continues to look to the hybrid cloud`,
@@ -109,6 +122,7 @@ const articles = [
       concentrate on especially, it is open and hybrid.`,
     src: `./assets/images/articles/14.png`,
     keywords: [`DevOps`, `Angular`],
+    author: `Well The`,
   },
   {
     title: `6 hidden risks of IT automation`,
@@ -117,6 +131,7 @@ const articles = [
       await those who fail to heed precautions.`,
     src: `./assets/images/articles/15.png`,
     keywords: [`Programmer`, `Python`],
+    author: `Years Start`,
   },
   {
     title: `The 10 Most Popular Programming Languages to Learn in 2021`,
@@ -125,6 +140,7 @@ const articles = [
       jobs are the same, however.`,
     src: `./assets/images/articles/16.png`,
     keywords: [`Programmer`, `React`],
+    author: `They Dont`,
   },
   {
     title: `What is SAP TM module?`,
@@ -133,6 +149,7 @@ const articles = [
     transportation logistics.`,
     src: `./assets/images/articles/17.png`,
     keywords: [`SAP TM Consultant`, `Java`],
+    author: `Stop Coming`,
   },
   {
     title: `5 Epic React Tips To Use Today`,
@@ -141,6 +158,7 @@ const articles = [
       your development experience easier and overall more enjoyable.`,
     src: `./assets/images/articles/18.png`,
     keywords: [`React`, `Frontend`],
+    author: `Fed Rules`,
   },
   {
     title: `React Tips & Patterns`,
@@ -150,6 +168,7 @@ const articles = [
       gets ready for a refactor or re-write.`,
     src: `./assets/images/articles/19.png`,
     keywords: [`React`, `Design`],
+    author: `Ground Running`,
   },
   {
     title: `10 React JS Articles Every Web Developer Should Read`,
@@ -158,6 +177,7 @@ const articles = [
       the task easier by providing a component-based architecture`,
     src: `./assets/images/articles/20.png`,
     keywords: [`React`, `Frontend`],
+    author: `Make Sense`,
   },
   {
     title: `How to write highly readable React code`,
@@ -167,6 +187,7 @@ const articles = [
       where that code might fail.`,
     src: `./assets/images/articles/21.png`,
     keywords: [`React`, `DevOps`],
+    author: `Your Brain`,
   },
   {
     title: `Redirecting URL`,
@@ -176,6 +197,7 @@ const articles = [
       same server or on a different server.`,
     src: `./assets/images/articles/22.png`,
     keywords: [`Frontend`, `Programmer`],
+    author: `Gets Smart`,
   },
   {
     title: `Inspecting and debugging CSS Grid`,
@@ -184,5 +206,12 @@ const articles = [
       CSS issues, and learning more about CSS Grid.`,
     src: `./assets/images/articles/23.png`,
     keywords: [`Frontend`, `Design`],
+    author: `Your Head`,
   },
 ]
+
+const randomDate = () => Math.floor(Math.random() * Date.now())
+
+articles.forEach(el => el.date = randomDate())
+
+articles.sort(() => Math.random() - 0.5)
