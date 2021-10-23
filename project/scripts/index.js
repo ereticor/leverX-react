@@ -89,15 +89,13 @@ function slide(slider, items, btns, pagination, index = 1) {
 
 const articleSection = document.querySelector('.main__articles')
 const articleList = document.querySelector('.articles__list')
-articleList.setAttribute('data-article-count', 0)
 const loadBtn = document.querySelector('.articles__load')
-let articleDefaultSize = 8;
 
 articles.sort(() => Math.random() - 0.5)
 
-const searchTags = document.querySelector('.main__articles__checkbar')
+const tagsList = document.querySelector('.main__articles__checkbar')
 
-createMultiTags(articles, searchTags)
+createMultiTags(articles, tagsList)
 
 function createMultiTags(articleObj, parent) {
 
@@ -125,27 +123,29 @@ function createTag(text, parent) {
 loadArticles(articles, articleList, loadBtn)
 
 loadBtn.addEventListener('click', () => {
-  loadArticles(articles, articleList, loadBtn)
-  search(searchBar, articles, articleList, 'checkbar__label', loadBtn)
+  let filtered = search(searchBar, articles, articleList, 'checkbar__label', loadBtn)
+  loadArticles(filtered, articleList, loadBtn)
 })
 
-function loadArticles(list, pageList, loadBtn) {
+function loadArticles(list, pageList, btn) {
+
+  let length = pageList.children.length
+
+  articleList.innerHTML = ''
   
-  let count = +pageList.getAttribute('data-article-count')
-  
-  for (let i = 0; i < 8 && i + count < list.length; i++) {
-    pageList.append(createArticle(list[i + count]))
-    
-    pageList.setAttribute('data-article-count', i + count + 1)
-    
-    if (i + count === list.length - 1) {
-      loadBtn.remove()
-    }
+  for (let i = 0; i < length + 8 && i < list.length; i++) {
+    pageList.append(createArticle(list[i]))
   }
 
+  if (pageList.children.length < list.length) {
+    if (!pageList.contains(btn)) {
+      pageList.parentNode.append(btn)
+    }
+  } else {
+    btn.remove()
+  }
   
 }
-
 
 function createArticle(articleObj) {
   let article = document.createElement('li')
@@ -187,66 +187,49 @@ const checkBoxes = document.querySelectorAll('.checkbar__input')
 checkBoxes.forEach(el => {
   el.addEventListener('click', () => {
     el.parentNode.classList.toggle('checkbar__label_checked')
-    articleList.setAttribute('data-article-count', articleDefaultSize)
-    search(searchBar, articles, articleList, 'checkbar__label', loadBtn)
+    let filtered = search(searchBar, articles, articleList, 'checkbar__label', loadBtn)
+    loadArticles(filtered, articleList, loadBtn)
   })
 })
 
 searchBar.addEventListener('input', searchInput)
 
 function searchInput() {
-  articleList.setAttribute('data-article-count', articleDefaultSize)
   search(searchBar, articles, articleList, 'checkbar__label', loadBtn)
 }
 
 function search(input, articleObj , articleList, checkClass, btn) {
 
-  let count = +articleList.getAttribute('data-article-count')
+  let filtered = articleObj
 
-  articleList.innerHTML = ''
+  if (input.value.trim()) {
 
-  const checkboxes = document.querySelectorAll('.' + checkClass)
+    let inputValue = input.value.trim().toLowerCase()
 
-  let params = ''
-
-  for (let i = 0; i < checkboxes.length; i++) {
-      const keyword = checkboxes[i].innerText.trim().toLowerCase()
-
-      if (checkboxes[i].classList.contains(`${checkClass}_checked`)) {
-        params += `${keyword}, `
-      } else {
-        params = params.replaceAll(`${keyword}, `, '')
-      }
+    filtered = filtered.filter(el => el.title.toLowerCase().indexOf(inputValue) !== -1)
   }
 
-  let inputValue = input.value.trim().toLowerCase()
+  const checkboxes = Array.from(document.querySelectorAll('.' + checkClass))
 
-  for (let j = 0; j < count; j++) {
+  if (checkboxes.some(el => el.classList.contains(`${checkClass}_checked`))) {
 
-    const title = articleObj[j].title.toLowerCase()
-    const keywords = articleObj[j].keywords.join('|').toLowerCase()
-    const keywordsReg = new RegExp(keywords)
+    let params = ''
 
-    if (title.indexOf(inputValue) !== -1 && (params === '' || keywordsReg.test(params))) {
-      articleList.append(createArticle(articleObj[j]))
+    for (let i = 0; i < checkboxes.length; i++) {
+        const keyword = checkboxes[i].innerText.trim().toLowerCase()
+  
+        if (checkboxes[i].classList.contains(`${checkClass}_checked`)) {
+          params += `${keyword}, `
+        } else {
+          params = params.replaceAll(`${keyword}, `, '')
+        }
     }
 
+    filtered = params === '' 
+    ? filtered
+    : filtered.filter(el => new RegExp(el.keywords.join('|').toLowerCase()).test(params))
   }
 
-  const rest = articleObj.slice(count)
+  return filtered
 
-  const restInput = rest.filter(el => el.title.toLowerCase().indexOf(inputValue) !== -1)
-  const restTags = params === '' 
-    ? rest
-    : rest.filter(el => new RegExp(el.keywords.join('|').toLowerCase()).test(params))
-
-  const restMap = restTags.filter(el => restInput.includes(el))
-
-  if (restMap.length !== 0) {
-    if (!articleSection.contains(btn)) {
-      articleSection.append(btn)
-    }
-  } else {
-    btn.remove()
-  }
 }
