@@ -292,5 +292,7 @@ function locationResolver(loc) {
       console.log(tag)
       createFullPageSearch(tag)
       break
+    default:
+      createFullPageSearch('')
   }
 }
