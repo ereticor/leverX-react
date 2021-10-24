@@ -78,9 +78,6 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
   capHead.innerHTML = articleObj.title
   
   let capText = document.createElement(fullPage ? 'div' : 'p')
-  // capText.classList.add('cap__text')
-  // capText.title = articleObj.content
-  // capText.innerHTML = articleObj.content
 
   let link
   
@@ -95,10 +92,6 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
     link.append(figure)
 
     article.append(link)
-
-    // article.addEventListener('click', () => {
-    //   window.location = `article.html#article?id=${articleObj.index}`
-    // })
   }
 
   cap.append(capHead, capText)
