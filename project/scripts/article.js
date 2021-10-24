@@ -134,7 +134,7 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
         window.location = `article.html#search?tag=${articleObj.keywords[i]}`
       })
     }
-    
+
     figure.append(tags)
 
     article.append(figure)
@@ -257,7 +257,7 @@ function createFullPageSearch(tag) {
   let template = `
     <div class="main__articles__wrapper wrapper main__search__wrapper">
       <section class="main__articles">
-        <h3 class="main__articles__head">Searching by tag: ${tag}</h3>
+        <h3 class="main__articles__head">Searching by tag : ${tag || 'all'}</h3>
         <div class="main__articles__search">
           <input type="search" name="" id="" class="search__input" placeholder="Search for article">
         </div>

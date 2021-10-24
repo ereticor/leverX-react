@@ -632,3 +632,19 @@ h2.slider__item__head {
   gap: 16px;
   padding: 3px;
 }
+
+.main__search__wrapper {
+  padding: 19px 144px 80px;
+}
+
+.main__search__wrapper .main__articles__head {
+  margin-bottom: 14px;
+  font-size: 34px;
+  line-height: 44px;
+}
+
+.main__search__wrapper .articles__list {
+  width: 100%;
+  margin: 28px 0 0;
+  gap: 25px 24px;
+}
