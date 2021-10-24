@@ -55,7 +55,7 @@ const articles = [
     "title": "Top 15 Features of Angular",
     "content": [
       {
-        "head": "ea ex elit non minim",
+        "head": "Addition of Dependency Injection",
         "text": [
           "It has added the information for the dependency and also regarding the ng-content selections for the data. It helps in wrapping the ng content selections and can help in checking files by creating scripts and using various interfaces. This would help us provide additional data that can be used in tools like Angular language services, which offers the functionality to offer suggestions and hints for the components or methods pre-defined in built-in libraries.",
         ],

@@ -224,17 +224,19 @@ function createFullPageArticle(articleObj) {
   
   let pagination = document.createElement('div')
   pagination.classList.add('paper__pagination')
-  
-  let homeLink = document.createElement('a')
-  homeLink.href = 'index.html'
-  homeLink.classList.add('pagination__link')
-  homeLink.innerText = 'Home page'
 
-  let pageInfo = document.createElement('span')
-  pageInfo.innerText = ' > Article'
-  
-  pagination.append(homeLink, pageInfo)
-  
+  let paginationContent = `
+    <div class="paper__pagination">
+      <a href="index.html" class="pagination__link">
+        Home page
+      </a>
+      <span>
+        <span>&gt;</span>Article
+      </span>
+    </div>`
+
+  pagination.innerHTML = paginationContent
+    
   let article = createArticle(articleObj, 'article', true)
   
   section.append(pagination, article)
@@ -257,7 +259,7 @@ function createFullPageSearch(tag) {
   let template = `
     <div class="main__articles__wrapper wrapper main__search__wrapper">
       <section class="main__articles">
-        <h3 class="main__articles__head">Searching by tag : ${tag || 'all'}</h3>
+        <h3 class="main__articles__head">Searching by tag : ${tag || 'All'}</h3>
         <div class="main__articles__search">
           <input type="search" name="" id="" class="search__input" placeholder="Search for article">
         </div>
