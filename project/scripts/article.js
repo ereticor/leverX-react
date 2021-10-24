@@ -236,14 +236,15 @@ function createFullPageArticle(articleObj) {
   let pagination = document.createElement('div')
   pagination.classList.add('paper__pagination')
   
-  let homeBtn = document.createElement('span')
-  homeBtn.classList.add('pagination__link')
-  homeBtn.innerText = 'Home page'
+  let homeLink = document.createElement('a')
+  homeLink.href = ''
+  homeLink.classList.add('pagination__link')
+  homeLink.innerText = 'Home page'
 
   let pageInfo = document.createElement('span')
   pageInfo.innerText = ' > Article'
   
-  pagination.append(homeBtn, pageInfo)
+  pagination.append(homeLink, pageInfo)
   
   let article = createArticle(articleObj, 'article', true)
   
@@ -255,19 +256,8 @@ function createFullPageArticle(articleObj) {
 }
 
 function openFullPageArticle(id) {
-  const mainContent = Array.from(document.querySelectorAll('.main > *'))
 
-  console.log(articles.find(el => el.index === id))
-  
   let articleWrapper = createFullPageArticle(articles.find(el => el.index === id))
-
-  let link = articleWrapper.querySelector('.pagination__link')
-
-  link.addEventListener('click', () => {
-    window.location.hash = ''
-    articleWrapper.remove()
-    main.append(...mainContent)
-  })
 
   main.innerHTML = ''
 
@@ -284,20 +274,20 @@ function locationResolver(loc) {
       break
     case 'search':
       let tag = loc.match(/\w+/)[1]
-      console.log(tag)
       break
   }
-  console.log(loc)
 }
 
 ['load', 'hashchange'].forEach(el => {
-  window.addEventListener(el, () => {
-  const location = window.location.hash
 
-  console.log(location)
+  window.addEventListener(el, () => {
+
+  const location = window.location.hash
 
   if (location) {
     locationResolver(location)
   }
+
   })
+
 })
