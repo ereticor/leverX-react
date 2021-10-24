@@ -94,17 +94,17 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
   
   cap.append(capHead, capText)
   
-  figure.append(img, cap)
+  figure.append(img, cap)  
   
   article.append(figure)
-  
+
   if (!fullPage) {
     capText.classList.add('cap__text')
     capText.title = articleObj.content[0].text
     capText.innerHTML = articleObj.content[0].text
 
     article.addEventListener('click', () => {
-      openFullPageArticle(articleObj)
+      window.location.hash = (`#article?id=${articleObj.index}`)
     })
   }
 
@@ -254,19 +254,50 @@ function createFullPageArticle(articleObj) {
   return wrapper
 }
 
-function openFullPageArticle(articleObj) {
+function openFullPageArticle(id) {
   const mainContent = Array.from(document.querySelectorAll('.main > *'))
-  
-  let article = createFullPageArticle(articleObj)
 
-  let link = article.querySelector('.pagination__link')
+  console.log(articles.find(el => el.index === id))
+  
+  let articleWrapper = createFullPageArticle(articles.find(el => el.index === id))
+
+  let link = articleWrapper.querySelector('.pagination__link')
 
   link.addEventListener('click', () => {
-    article.remove()
+    window.location.hash = ''
+    articleWrapper.remove()
     main.append(...mainContent)
   })
 
   main.innerHTML = ''
 
-  main.append(article)
+  main.append(articleWrapper)
 }
+
+function locationResolver(loc) {
+
+  let locType = loc.match(/\w+/)[0]
+  switch (locType) {
+    case 'article':
+      let id = loc.match(/\d+/)[0]
+      openFullPageArticle(+id)
+      break
+    case 'search':
+      let tag = loc.match(/\w+/)[1]
+      console.log(tag)
+      break
+  }
+  console.log(loc)
+}
+
+['load', 'hashchange'].forEach(el => {
+  window.addEventListener(el, () => {
+  const location = window.location.hash
+
+  console.log(location)
+
+  if (location) {
+    locationResolver(location)
+  }
+  })
+})
