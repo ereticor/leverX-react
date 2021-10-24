@@ -1,13 +1,17 @@
-const main = document.querySelector('.main')
+const main = document.querySelector('.main');
 
-window.addEventListener('load', () => {
+['load', 'hashchange'].forEach(el => {
+
+  window.addEventListener(el, () => {
 
   const location = window.location.hash
 
   if (location) {
     locationResolver(location)
   } else {
-    openFullPageArticle(1)
+    createFullPageSearch('')
   }
+
+  })
 
 })

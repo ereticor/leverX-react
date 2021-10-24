@@ -4,6 +4,11 @@ const loadBtn = document.querySelector('.articles__load')
 
 const tagsList = document.querySelector('.main__articles__checkbar')
 
+function searchInput() {
+  let filtered = search(searchBar, articles, 'checkbar__label')
+  loadArticles(filtered, articleList)
+}
+
 createMultiTags(articles, tagsList)
 
 loadArticles(articles, articleList)

@@ -96,9 +96,9 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
 
     article.append(link)
 
-    article.addEventListener('click', () => {
-      window.location = `article.html#article?id=${articleObj.index}`
-    })
+    // article.addEventListener('click', () => {
+    //   window.location = `article.html#article?id=${articleObj.index}`
+    // })
   }
 
   cap.append(capHead, capText)
@@ -129,6 +129,12 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
 
     createMultiTags(articleObj, tags)
 
+    for (let i = 0; i < tags.children.length; i++) {
+      tags.children[i].addEventListener('click', () => {
+        window.location = `article.html#search?tag=${articleObj.keywords[i]}`
+      })
+    }
+    
     figure.append(tags)
 
     article.append(figure)
@@ -168,12 +174,7 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
   }
 }
 
-function searchInput() {
-  let filtered = search(searchBar, articles, 'checkbar__label')
-  loadArticles(filtered, articleList)
-}
-
-function search(input, articleObj, checkClass) {
+function search(input, articleObj, checkClass, singleTag = false) {
 
   let filtered = articleObj
 
@@ -184,25 +185,29 @@ function search(input, articleObj, checkClass) {
     filtered = filtered.filter(el => el.title.toLowerCase().indexOf(inputValue) !== -1)
   }
 
-  const checkboxes = Array.from(document.querySelectorAll('.' + checkClass))
-
-  if (checkboxes.some(el => el.classList.contains(`${checkClass}_checked`))) {
-
-    let params = ''
-
-    for (let i = 0; i < checkboxes.length; i++) {
-        const keyword = checkboxes[i].innerText.trim().toLowerCase()
+  if (checkClass) {
+    const checkboxes = Array.from(document.querySelectorAll('.' + checkClass))
   
-        if (checkboxes[i].classList.contains(`${checkClass}_checked`)) {
-          params += `${keyword}, `
-        } else {
-          params = params.replaceAll(`${keyword}, `, '')
-        }
+    if (checkboxes.some(el => el.classList.contains(`${checkClass}_checked`))) {
+  
+      let params = ''
+  
+      for (let i = 0; i < checkboxes.length; i++) {
+          const keyword = checkboxes[i].innerText.trim().toLowerCase()
+    
+          if (checkboxes[i].classList.contains(`${checkClass}_checked`)) {
+            params += `${keyword}, `
+          } else {
+            params = params.replaceAll(`${keyword}, `, '')
+          }
+      }
+  
+      filtered = params === '' 
+      ? filtered
+      : filtered.filter(el => new RegExp(el.keywords.join('|').toLowerCase()).test(params))
     }
-
-    filtered = params === '' 
-    ? filtered
-    : filtered.filter(el => new RegExp(el.keywords.join('|').toLowerCase()).test(params))
+  } else if (singleTag) {
+    filtered = filtered.filter(el => new RegExp(el.keywords.join('|').toLowerCase()).test(singleTag.toLowerCase()))
   }
 
   return filtered
@@ -248,17 +253,49 @@ function openFullPageArticle(id) {
   main.append(articleWrapper)
 }
 
+function createFullPageSearch(tag) {
+  let template = `
+    <div class="main__articles__wrapper wrapper main__search__wrapper">
+      <section class="main__articles">
+        <h3 class="main__articles__head">Searching by tag: ${tag}</h3>
+        <div class="main__articles__search">
+          <input type="search" name="" id="" class="search__input" placeholder="Search for article">
+        </div>
+        <ul class="articles__list">
+        </ul>
+        <button class="articles__load btn">Load more</button>
+      </section>
+    </div>`
+
+  main.innerHTML = template
+
+  let searchBar = main.querySelector('.search__input')
+
+  let pageList = main.querySelector('.articles__list')
+
+  searchBar.addEventListener('input', searchSingleTag)
+
+  function searchSingleTag() {
+    let filtered = search(searchBar, articles, null, tag)
+    loadArticles(filtered, pageList)
+  }
+
+  searchSingleTag()
+
+}
+
 function locationResolver(loc) {
 
   let locType = loc.match(/\w+/)[0]
   switch (locType) {
     case 'article':
-      let id = loc.match(/\d+/)[0]
+      let id = loc.match(/\d+/)
       openFullPageArticle(+id)
       break
     case 'search':
-      let tag = loc.match(/\w+/)[1]
+      let tag = loc.match(/\w+$/)[0]
       console.log(tag)
+      createFullPageSearch(tag)
       break
   }
 }
