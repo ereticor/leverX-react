@@ -293,12 +293,11 @@ function locationResolver(loc) {
   let locType = loc.match(/\w+/)[0]
   switch (locType) {
     case 'article':
-      let id = loc.match(/\d+/)
+      let id = loc.match(/\d+/) || 1
       openFullPageArticle(+id)
       break
     case 'search':
-      let tag = loc.match(/\w+$/)[0]
-      console.log(tag)
+      let tag = (loc.match(/\w+$/) || '')[0]
       createFullPageSearch(tag)
       break
     default:
