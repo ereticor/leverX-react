@@ -1,11 +1,3 @@
-const articleSection = document.querySelector('.main__articles')
-const articleList = document.querySelector('.articles__list')
-const loadBtn = document.querySelector('.articles__load')
-
-const tagsList = document.querySelector('.main__articles__checkbar')
-
-createMultiTags(articles, tagsList)
-
 function createMultiTags(articleObj, parent) {
 
   // let tags = new Set(articleObj.reduce((acc, next) => acc.concat(next.keywords), []))
@@ -35,8 +27,6 @@ function createLoadBtn() {
 
   return btn;
 }
-
-loadArticles(articles, articleList)
 
 function loadArticles(list, pageList) {
   const oldBtn = pageList.parentNode.querySelector('.articles__load')
@@ -91,22 +81,29 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
   // capText.classList.add('cap__text')
   // capText.title = articleObj.content
   // capText.innerHTML = articleObj.content
-  
-  cap.append(capHead, capText)
-  
-  figure.append(img, cap)  
-  
-  article.append(figure)
 
+  let link
+  
   if (!fullPage) {
     capText.classList.add('cap__text')
     capText.title = articleObj.content[0].text
     capText.innerHTML = articleObj.content[0].text
 
+    link = document.createElement('a')
+    link.href = `article.html#article?id=${articleObj.index}`
+
+    link.append(figure)
+
+    article.append(link)
+
     article.addEventListener('click', () => {
-      window.location.hash = (`#article?id=${articleObj.index}`)
+      window.location = `article.html#article?id=${articleObj.index}`
     })
   }
+
+  cap.append(capHead, capText)
+  
+  figure.append(img, cap)  
 
   if (fullPage) {
     capText.classList.add('cap__content')
@@ -133,6 +130,8 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
     createMultiTags(articleObj, tags)
 
     figure.append(tags)
+
+    article.append(figure)
   }
   
   return article
@@ -168,19 +167,6 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
     return formatter.format(stamp)
   }
 }
-
-
-const searchBar = document.querySelector('.search__input')
-const checkBoxes = document.querySelectorAll('.checkbar__input')
-
-checkBoxes.forEach(el => {
-  el.addEventListener('click', () => {
-    el.parentNode.classList.toggle('checkbar__label_checked')
-    searchInput()
-  })
-})
-
-searchBar.addEventListener('input', searchInput)
 
 function searchInput() {
   let filtered = search(searchBar, articles, 'checkbar__label')
@@ -223,8 +209,6 @@ function search(input, articleObj, checkClass) {
 
 }
 
-const main = document.querySelector('.main')
-
 function createFullPageArticle(articleObj) {
   
   let wrapper = document.createElement('div')
@@ -237,7 +221,7 @@ function createFullPageArticle(articleObj) {
   pagination.classList.add('paper__pagination')
   
   let homeLink = document.createElement('a')
-  homeLink.href = ''
+  homeLink.href = 'index.html'
   homeLink.classList.add('pagination__link')
   homeLink.innerText = 'Home page'
 
@@ -274,20 +258,7 @@ function locationResolver(loc) {
       break
     case 'search':
       let tag = loc.match(/\w+/)[1]
+      console.log(tag)
       break
   }
 }
-
-['load', 'hashchange'].forEach(el => {
-
-  window.addEventListener(el, () => {
-
-  const location = window.location.hash
-
-  if (location) {
-    locationResolver(location)
-  }
-
-  })
-
-})

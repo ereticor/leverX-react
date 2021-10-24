@@ -394,6 +394,7 @@ h2.slider__item__head {
   height: 352px;
   transition-duration: 0.5s;
   animation: appear 0.5s ease-in;
+  user-select: text;
 }
 
 .item__figure {
