@@ -267,7 +267,6 @@ function createFullPageSearch(tag) {
         </div>
         <ul class="articles__list">
         </ul>
-        <button class="articles__load btn">Load more</button>
       </section>
     </div>`
 
