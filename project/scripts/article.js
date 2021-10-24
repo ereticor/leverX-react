@@ -28,9 +28,18 @@ function createLoadBtn() {
   return btn;
 }
 
-function loadArticles(list, pageList) {
+function loadArticles(list, pageList, fullLoad = false) {
   const oldBtn = pageList.parentNode.querySelector('.articles__load')
   if (oldBtn) oldBtn.remove()
+
+  if (fullLoad) {
+    list.forEach(article => {
+      pageList.append(createArticle(article))
+    })
+
+    return
+  }
+
   const newBtn = createLoadBtn()
 
   pageList.innerHTML = ''
@@ -272,7 +281,7 @@ function createFullPageSearch(tag) {
 
   function searchSingleTag() {
     let filtered = search(searchBar, articles, null, tag)
-    loadArticles(filtered, pageList)
+    loadArticles(filtered, pageList, true)
   }
 
   searchSingleTag()
