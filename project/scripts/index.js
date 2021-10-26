@@ -42,7 +42,7 @@ function cringe(data, e) {
   return data ? console.log(JSON.parse(data)) : console.log(e)
 }
 
-getURL('http://localhost:3228/getArticles?index=2&zhopa=8', cringe)
+getURL('http://localhost:3228/getArticles?index=2', cringe)
 
 getURL('http://localhost:3228/sign?name=Pachan&password=123456', cringe)
 
