@@ -5,8 +5,6 @@ import {requestTime, logger} from './func.js'
 
 import router from './routes/router.js'
 
-import articleList from './public/articleList.js'
-
 const app = express()
 const port = 3228
 

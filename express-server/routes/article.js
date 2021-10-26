@@ -1,7 +1,9 @@
 // window.location = `article.html#search?tag=${articleObj.keywords[i]}`
 // link.href = `article.html#article?id=${articleObj.index}`
 
-import articleList from '../public/articleList.js'
+import fs from 'fs'
+
+const articleList = JSON.parse(fs.readFileSync('./public/articleList.json'))
 
 export default function articleSearch(req, res, next) {
   // console.log(req.query)

@@ -1,4 +1,6 @@
-import usersList from '../public/usersList.js'
+import fs from 'fs'
+
+const usersList = JSON.parse(fs.readFileSync('./public/usersList.json'))
 
 export default function sign(req, res, next) {
   console.log(req.query)
