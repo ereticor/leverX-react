@@ -51,8 +51,9 @@ searchBar.addEventListener('input', searchInput)
 
 async function getURL(url, callback) {
   try {
-    const responce = await fetch(url)
-    const data = await responce.json()
+    const response = await fetch(url)
+    // console.log(response.headers.contentType)
+    const data = await response.json()
     callback(data)
   } catch (error) {
     callback(null, error)
@@ -69,4 +70,19 @@ function log(data, error) {
 
 getURL('http://localhost:3228/getArticles?index=2', log)
 
-getURL('http://localhost:3228/sign?name=Pachan&password=123456', log)
+getURL('http://localhost:3228/sign?email=nicholswyatt@medicroix.com&password=DONJS5X6SXXF6H1BNWUMO4TVHND52784nlYHe', saveUser)
+
+
+function saveUser(user) {
+  localStorage.setItem('logged', JSON.stringify(user))
+}
+
+function checkLogged() {
+  if(!!localStorage.getItem('logged')) {
+    console.log('Logged in')
+    // createLoggedHead()
+  }
+}
+
+checkLogged()
+//get 8 cards by getUrl
