@@ -3,11 +3,15 @@ const __dirname = path.resolve()
 import express from 'express'
 import {requestTime, logger} from './func.js'
 
+import router from './routes/router.js'
+
+import articleList from './public/articleList.js'
+
 const app = express()
 const port = 3228
 
 
-app.use(express.static(path.join(__dirname, 'public')))
+// app.use(express.static(path.join(__dirname, 'public')))
 app.use(requestTime)
 app.use(logger)
 
@@ -18,10 +22,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
-  console.log(req.url)
-  res.send( "228" )
-})
+app.use('/', router)
 
 app.listen(port, (err) => {
   if (err) {
