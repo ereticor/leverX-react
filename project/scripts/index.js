@@ -25,25 +25,48 @@ checkBoxes.forEach(el => {
 
 searchBar.addEventListener('input', searchInput)
 
-function getURL(url, callback) {
-  const xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function() {
-     if (this.status < 400)
-        callback(this.responseText);
-     else
-        callback(null, new Error("Request failed: " +
-                              this.statusText));
-  };  
-  xhr.open("GET", url, true);
-  xhr.send(null);
+// function getURL(url, callback) {
+//   console.log(0)
+//   const xhr = new XMLHttpRequest();
+//   xhr.onreadystatechange = function() {
+//      if (this.status < 400) {
+//        console.log(1)
+//        callback(this.responseText);
+//      }
+//      else {
+//        callback(null, new Error("Request failed: " +
+//                              this.statusText));
+//      }
+//   };  
+//   xhr.open("GET", url, true);
+//   xhr.send(null);
+// }
+
+// function cringe(data, e) {
+//   data ? console.log(JSON.parse(data)) : console.log(e)
+// }
+
+
+
+
+async function getURL(url, callback) {
+  try {
+    const responce = await fetch(url)
+    const data = await responce.json()
+    callback(data)
+  } catch (error) {
+    callback(null, error)
+  }
 }
 
-function cringe(data, e) {
-  return data ? console.log(JSON.parse(data)) : console.log(e)
+function log(data, error) {
+  if (error) {
+    console.error(error)
+  } else {
+    console.log(data)
+  }
 }
 
-getURL('http://localhost:3228/getArticles?index=2', cringe)
+getURL('http://localhost:3228/getArticles?index=2', log)
 
-getURL('http://localhost:3228/sign?name=Pachan&password=123456', cringe)
-
-// async function getURL(url, callback) {}
+getURL('http://localhost:3228/sign?name=Pachan&password=123456', log)
