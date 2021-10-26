@@ -303,3 +303,43 @@ function locationResolver(loc) {
       createFullPageSearch('')
   }
 }
+
+function createPostPage() {
+  let postTemplate = `
+  <div class="main__create__wrapper">
+    <section class="main__create">
+      <input type="file" name="" id="" class="create__cover">
+      <h6 class="create__head">Enter the title of your article</h6>
+      <input type="text" name="" id="" class="create__title create__text">
+      <div class="create__sub__wrapper">
+      </div>
+      <h6 class="create__head">Add tag information</h6>
+      <div class="create__tags"></div>
+    </section>
+  </div>
+  `
+
+  main.innerHTML = postTemplate
+
+  let subWrapper = main.querySelector('.create__sub__wrapper')
+
+  subWrapper
+
+  let subTemplate = `
+    <h6 class="create__head">Enter the subtitle of your article</h6>
+    <input type="text" name="" id="" class="create__sub create__text">
+    <h6 class="create__head">Tell your story...</h6>
+    <input type="text" name="" id="" class="create__text">
+    <button class="create__btn btn">Add new block</button>
+  `
+
+
+}
+
+// async function loadFromServer() {
+//   let response = await fetch('localhost:3228/')
+
+//   result = JSON.parse() // {}
+
+//   renderCard({})
+// }

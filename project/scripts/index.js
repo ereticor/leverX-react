@@ -24,3 +24,24 @@ checkBoxes.forEach(el => {
 })
 
 searchBar.addEventListener('input', searchInput)
+
+function getURL(url, callback) {
+  const xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+     if (this.status < 400)
+        callback(this.responseText);
+     else
+        callback(null, new Error("Request failed: " +
+                              this.statusText));
+  };  
+  xhr.open("GET", url, true);
+  xhr.send(null);
+}
+
+function cringe(data, e) {
+  data ? console.log(data) : console.log(e)
+}
+
+getURL('http://localhost:3228/getData', cringe)
+
+// async function getURL(url, callback) {}
