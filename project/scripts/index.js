@@ -23,25 +23,18 @@ checkBoxes.forEach(el => {
   })
 })
 
-searchBar.addEventListener('input', searchInput)
+searchBar.addEventListener('input', searchInput);
 
-// function getURL(url, callback) {
-//   console.log(0)
-//   const xhr = new XMLHttpRequest();
-//   xhr.onreadystatechange = function() {
-//      if (this.status < 400) {
-//        console.log(1)
-//        callback(this.responseText);
-//      }
-//      else {
-//        callback(null, new Error("Request failed: " +
-//                              this.statusText));
-//      }
-//   };  
-//   xhr.open("GET", url, true);
-//   xhr.send(null);
-// }
+['load', 'hashchange'].forEach(el => {
 
-// function cringe(data, e) {
-//   data ? console.log(JSON.parse(data)) : console.log(e)
-// }
+  window.addEventListener(el, () => {
+
+  const location = window.location.hash
+
+  if (location) {
+    locationResolver(location)
+  }
+
+  })
+
+})
