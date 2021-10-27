@@ -12,6 +12,8 @@ export default function articleSearch(req, res, next) {
   // console.log(articleList)
   
   let params = req.query
+
+  console.log(params)
   
   let filtered = articleList
   
@@ -27,14 +29,14 @@ export default function articleSearch(req, res, next) {
     filtered = filtered.filter(el => el.title.toLowerCase().indexOf(title) !== -1)
   }
 
-  if (params.singleTag) {
-    filtered = filtered.filter(el => new RegExp(el.keywords.join('|').toLowerCase()).test(params.singleTag.toLowerCase()))
-    res.send(JSON.stringify(filtered))
-    return
-  }
+  // if (params.singleTag) {
+  //   filtered = filtered.filter(el => new RegExp(el.keywords.join('|').toLowerCase()).test(params.singleTag.toLowerCase()))
+  //   res.send(JSON.stringify(filtered))
+  //   return
+  // }
 
   if (params.tags) {
-    const tags = params.tags.replaceAll('+', ', ')
+    const tags = params.tags.replaceAll('_', ' ').replaceAll('+', ', ').toLowerCase()
 
     filtered = tags === ''
     ? filtered

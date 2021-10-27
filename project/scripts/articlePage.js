@@ -2,12 +2,10 @@
 
   window.addEventListener(el, () => {
 
-  const location = window.location.hash
+  const location = window.location
 
   if (location) {
     locationResolver(location)
-  } else {
-    createFullPageSearch('')
   }
 
   })

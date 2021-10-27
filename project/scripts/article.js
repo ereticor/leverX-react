@@ -38,7 +38,11 @@ function loadArticles(list, pageList, fullLoad = false) {
   newBtn.addEventListener('click', loadOnPage)
 }
 
+let COUNTER = 0
+
 function search(input, articleObj, checkClass, singleTag = false) {
+
+  console.log(++COUNTER)
 
   let filtered = articleObj
 
@@ -78,35 +82,49 @@ function search(input, articleObj, checkClass, singleTag = false) {
 
 }
 
-function openFullPageArticle(id) {
+function openFullPageArticle(articleObj) {
   const main = document.querySelector('.main')
 
-  let articleWrapper = createFullPageArticle(articles.find(el => el.index === id))
-
   main.innerHTML = ''
+
+  let articleWrapper = createFullPageArticle(articleObj)
 
   main.append(articleWrapper)
 }
 
 function locationResolver(loc) {
 
-  let locType = loc.match(/\w+/)[0]
+  console.log(loc)
+
+  let path = loc.pathname
+
+  let hash = loc.hash
+
+  let locType = hash.match(/\w+/)[0]
   switch (locType) {
     case 'getArticle':
-      let id = loc.match(/\d+/) || 1
-      openFullPageArticle(+id)
+      if (path === '/article.html') {
+        let id = hash.match(/\d+/) || 1
+        getURL(`http://localhost:3228/getArticles?index=${id}`, openFullPageArticle) //* done
+      } else {
+
+      }
       break
     case 'search':
-      let tag = (loc.match(/\w+$/) || '')[0]
-      createFullPageSearch(tag)
+      if (path === '/article.html') {
+        let tag = (hash.match(/\w+$/) || '')[0]
+        getURL(`http://localhost:3228/getArticles?tags=${tag}`, createFullPageSearch) //? done
+      } else {
+        
+      }
       break
     case 'createPost':
-      createPostPage()
+      createPostPage() //! will do
       break
     case 'login':
-      createLoginPage()
+      createLoginPage()//* done
       break
     default:
-      createFullPageSearch('')
+      getURL(`http://localhost:3228/getArticles?tags=`, createFullPageSearch) //? done
   }
 }

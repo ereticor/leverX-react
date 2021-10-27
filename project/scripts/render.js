@@ -124,7 +124,7 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
 
     for (let i = 0; i < tags.children.length; i++) {
       tags.children[i].addEventListener('click', () => {
-        window.location = `article.html#search?tag=${articleObj.keywords[i]}`
+        window.location = `article.html#search?tags=${articleObj.keywords[i].replaceAll(' ', '_')}`
       })
     }
 
@@ -199,8 +199,10 @@ function createFullPageArticle(articleObj) {
 }
 
 /*____________________________FULL PAGE____________________________*/
-function createFullPageSearch(tag) {
+function createFullPageSearch(articleObj) {
   const main = document.querySelector('.main')
+
+  let tag = (window.location.hash.match(/\w+$/) || '')[0].replaceAll('_', ' ')
 
   let template = `
     <div class="main__articles__wrapper wrapper main__search__wrapper">
@@ -220,11 +222,12 @@ function createFullPageSearch(tag) {
 
   let pageList = main.querySelector('.articles__list')
 
-  searchBar.addEventListener('input', searchSingleTag)
+  searchBar.addEventListener('change', searchSingleTag)
 
-  function searchSingleTag() {
-    let filtered = search(searchBar, articles, null, tag)
-    loadArticles(filtered, pageList, true)
+  function searchSingleTag(e) {
+    // window.location.hash = `title=f`
+    console.log(window.location.hash)
+    loadArticles(articleObj, pageList, true)
   }
 
   searchSingleTag()
