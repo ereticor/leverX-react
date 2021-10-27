@@ -654,3 +654,74 @@ h2.slider__item__head {
   margin: 28px 0 0;
   gap: 25px 24px;
 }
+
+
+/* login */
+.head__login {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.login__create {
+  width: 190px;
+}
+
+.login__user {
+  border-radius: 50%;
+  border: 1px solid #FFFFFF;
+}
+
+.main__login {
+  margin: 280px 0;
+  display: grid;
+  place-items: center;
+  gap: 64px;
+}
+
+.main__login__head {
+  font-size: 60px;
+  letter-spacing: -0.01em;
+}
+
+.main__login__form {
+  display: grid;
+  gap: 20px;
+  max-width: 350px;
+  width: 100%;
+}
+
+.form__input {
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.form__input.invalid {
+  border-color: tomato;
+  box-shadow: 2px 2px tomato;
+}
+
+.form__show {
+  padding-left: 20px;
+}
+
+.form__submit {
+  place-self: center;
+  width: 100px;
+  height: 40px;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+}
+
+.form__submit:hover {
+  background: #2F80ED;
+  color: #FFFFFF;
+}
+
+.form__submit:active {
+  transform: scale(0.9);
+}
