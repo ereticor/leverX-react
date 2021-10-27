@@ -96,7 +96,7 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
     capText.innerHTML = articleObj.content[0].text
 
     link = document.createElement('a')
-    link.href = `article.html#article?id=${articleObj.index}`
+    link.href = `article.html#getArticle?id=${articleObj.index}`
 
     link.append(figure)
 
@@ -291,13 +291,16 @@ function locationResolver(loc) {
 
   let locType = loc.match(/\w+/)[0]
   switch (locType) {
-    case 'article':
+    case 'getArticle':
       let id = loc.match(/\d+/) || 1
       openFullPageArticle(+id)
       break
     case 'search':
       let tag = (loc.match(/\w+$/) || '')[0]
       createFullPageSearch(tag)
+      break
+    case 'login':
+      createLoginPage()
       break
     default:
       createFullPageSearch('')
@@ -323,8 +326,6 @@ function createPostPage() {
 
   let subWrapper = main.querySelector('.create__sub__wrapper')
 
-  subWrapper
-
   let subTemplate = `
     <h6 class="create__head">Enter the subtitle of your article</h6>
     <input type="text" name="" id="" class="create__sub create__text">
@@ -332,8 +333,15 @@ function createPostPage() {
     <input type="text" name="" id="" class="create__text">
     <button class="create__btn btn">Add new block</button>
   `
+  
+  subWrapper
 
+}
 
+function createLogin() {
+  let template = `
+    
+  `
 }
 
 // async function loadFromServer() {
