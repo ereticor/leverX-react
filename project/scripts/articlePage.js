@@ -1,5 +1,3 @@
-const main = document.querySelector('.main');
-
 ['load', 'hashchange'].forEach(el => {
 
   window.addEventListener(el, () => {

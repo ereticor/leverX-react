@@ -78,6 +78,7 @@ function search(input, articleObj, checkClass, singleTag = false) {
 }
 
 function openFullPageArticle(id) {
+  const main = document.querySelector('.main')
 
   let articleWrapper = createFullPageArticle(articles.find(el => el.index === id))
 

@@ -60,7 +60,6 @@ function logIn(mail, pass) {
 }
 
 let sign = document.querySelector('.head__sign')
-sign.addEventListener('click', () => {
+sign?.addEventListener('click', () => {
   window.location = 'index.html#login'
-  createLoginPage()
 })

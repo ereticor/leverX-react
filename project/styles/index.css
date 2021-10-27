@@ -82,7 +82,7 @@ li {
   font-size: 0px;
 }
 
-.head__sign {
+.head__btn {
   width: 133px;
   height: 48px;
   border: 1px solid #FFFFFF;
@@ -90,12 +90,12 @@ li {
   color: #FFFFFF;
 }
 
-.head__sign:hover {
+.head__btn:hover {
   background: #FFFFFF;
   color: #000000;
 }
 
-.head__sign:active {
+.head__btn:active {
   transform: scale(0.9);
 }
 

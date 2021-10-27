@@ -36,7 +36,7 @@ function createLoginHeader() {
 
   let head = document.querySelector('.head')
 
-  let headBtn = head.querySelector('.head__sign')
+  let headBtn = head.querySelector('.head__btn')
 
   headBtn?.remove()
 
@@ -44,7 +44,7 @@ function createLoginHeader() {
   logInWrapper.classList.add('head__login')
 
   logInWrapper.innerHTML = `
-    <button class="head__sign login__create">Create a Post</button>
+    <button class="head__btn login__create">Create a Post</button>
     <img class="login__user" src="${userImg}">
   `
 
@@ -194,6 +194,8 @@ function createFullPageArticle(articleObj) {
 
 /*____________________________FULL PAGE____________________________*/
 function createFullPageSearch(tag) {
+  const main = document.querySelector('.main')
+
   let template = `
     <div class="main__articles__wrapper wrapper main__search__wrapper">
       <section class="main__articles">
@@ -224,6 +226,8 @@ function createFullPageSearch(tag) {
 }
 
 function createPostPage() {
+  const main = document.querySelector('.main')
+
   let postTemplate = `
   <div class="main__create__wrapper">
     <section class="main__create">
@@ -255,7 +259,7 @@ function createPostPage() {
 }
 
 function createLoginPage() {
-  let main = document.querySelector('.main')
+  const main = document.querySelector('.main')
 
   let headBtn = document.querySelector('.head__sign')
 
