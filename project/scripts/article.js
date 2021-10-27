@@ -2,6 +2,8 @@ function loadArticles(list, pageList, fullLoad = false) {
   const oldBtn = pageList.parentNode.querySelector('.articles__load')
   if (oldBtn) oldBtn.remove()
 
+  pageList.innerHTML = ''
+  
   if (fullLoad) {
     list.forEach(article => {
       pageList.append(createArticle(article))
@@ -12,7 +14,6 @@ function loadArticles(list, pageList, fullLoad = false) {
 
   const newBtn = createLoadBtn()
 
-  pageList.innerHTML = ''
 
   const articlesPerPage = 8
   let page = 0;

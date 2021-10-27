@@ -207,7 +207,7 @@ function createFullPageSearch(tag) {
       <section class="main__articles">
         <h3 class="main__articles__head">Searching by tag : ${tag || 'All'}</h3>
         <div class="main__articles__search">
-          <input type="search" name="" id="" class="search__input" placeholder="Search for article">
+          <input type="search" class="search__input" placeholder="Search for article">
         </div>
         <ul class="articles__list">
         </ul>
