@@ -99,6 +99,9 @@ function locationResolver(loc) {
       let tag = (loc.match(/\w+$/) || '')[0]
       createFullPageSearch(tag)
       break
+    case 'createPost':
+      createPostPage()
+      break
     case 'login':
       createLoginPage()
       break

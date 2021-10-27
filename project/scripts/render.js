@@ -48,6 +48,12 @@ function createLoginHeader() {
     <img class="login__user" src="${userImg}">
   `
 
+  let postBtn = logInWrapper.querySelector('.login__create')
+
+  postBtn.addEventListener('click', () => {
+    window.location = 'article.html#createPost'
+  })
+
   head.append(logInWrapper)
 }
 
@@ -229,16 +235,19 @@ function createPostPage() {
   const main = document.querySelector('.main')
 
   let postTemplate = `
-  <div class="main__create__wrapper">
-    <section class="main__create">
-      <input type="file" name="" id="" class="create__cover">
+  <div class="main__create__wrapper wrapper">
+    <form class="main__create">
+      <label class="create__cover__wrapper">
+        <input type="file" class="create__cover" required>
+        <span>+</span> Add Cover
+      </label>
       <h6 class="create__head">Enter the title of your article</h6>
-      <input type="text" name="" id="" class="create__title create__text">
+      <input type="text" class="create__title create__text" placeholder="Enter Title" required>
       <div class="create__sub__wrapper">
       </div>
       <h6 class="create__head">Add tag information</h6>
       <div class="create__tags"></div>
-    </section>
+    </form>
   </div>
   `
 
@@ -246,15 +255,73 @@ function createPostPage() {
 
   let subWrapper = main.querySelector('.create__sub__wrapper')
 
-  let subTemplate = `
-    <h6 class="create__head">Enter the subtitle of your article</h6>
-    <input type="text" name="" id="" class="create__sub create__text">
-    <h6 class="create__head">Tell your story...</h6>
-    <input type="text" name="" id="" class="create__text">
-    <button class="create__btn btn">Add new block</button>
-  `
+  createStory()
+
+  function createStory() {
+    let subStory = document.createElement('div')
+    subStory.classList.add('create__sub__story')
   
-  subWrapper
+    let subTemplate = `
+      <h6 class="create__head">Enter the subtitle of your article</h6>
+      <input type="text" class="create__sub create__text" placeholder="Enter Subtitle" required>
+      <h6 class="create__head">Tell your story...</h6>
+      <textarea class="create__area" rows="25" required></textarea>
+      <button class="create__btn btn">Add new block</button>
+    `
+
+    subStory.innerHTML = subTemplate
+
+    subWrapper.append(subStory)
+
+    let addBtn = subStory.querySelector('.create__btn')
+
+    addBtn.addEventListener('click', changeStatus)
+
+    function changeStatus() {
+
+      if (!subStory.nextElementSibling) {
+        createStory()
+        addBtn.classList.add('remove__story')
+        addBtn.innerText = 'Remove next block'
+      } else {
+        console.log('x')
+        if (subWrapper.lastElementChild === subStory.nextElementSibling) {
+          addBtn.classList.remove('remove__story')
+          addBtn.innerText = 'Add new block'
+        }
+        subStory.nextElementSibling?.remove()
+      }
+
+    }
+
+  }
+
+  let tagsWrapper = main.querySelector('.create__tags')
+
+  createMultiTags(articles, tagsWrapper)
+
+  let tags = tagsWrapper.querySelectorAll('.checkbar__input')
+
+  tags.forEach(el => {
+    el.addEventListener('click', () => {
+      el.parentNode.classList.toggle('checkbar__label_checked')
+    })
+  })
+
+  const foot = document.querySelector('.foot__wrapper')
+  foot.remove()
+
+  const form = main.querySelector('.main__create')
+
+  let formFoot = document.createElement('div')
+  formFoot.classList.add('form__foot')
+
+  formFoot.innerHTML = `
+    <button class="btn btn_cancel">Cancel</button>
+    <button class="btn btn_submit">Publish</button>
+  `
+
+  form.append(formFoot)
 
 }
 
