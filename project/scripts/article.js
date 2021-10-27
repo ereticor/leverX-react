@@ -337,17 +337,3 @@ function createPostPage() {
   subWrapper
 
 }
-
-function createLogin() {
-  let template = `
-    
-  `
-}
-
-// async function loadFromServer() {
-//   let response = await fetch('localhost:3228/')
-
-//   result = JSON.parse() // {}
-
-//   renderCard({})
-// }
