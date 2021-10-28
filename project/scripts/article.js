@@ -58,6 +58,10 @@ function locationResolver(loc) {
       getURL(`${server}/getTags`, createPostPage)
       break
     case 'login':
+      if (checkLogged()) {
+        window.location = 'index.html'
+        break
+      }
       createLoginPage()//* done
       break
     default:
