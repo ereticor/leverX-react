@@ -512,12 +512,13 @@ function createLoginPage() {
 
   form.method = 'GET'
   form.addEventListener('submit', (e) => {
+
+    e.preventDefault()
+    
     let check = (el) => el.parentElement.classList.contains('form_success')
 
     if (check(mailInput) && check(passInput)) {
       logIn(mailInput.value, passInput.value)
-    } else {
-      e.preventDefault()
     }
   })
 

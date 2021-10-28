@@ -90,8 +90,9 @@ function logIn(mail, pass) {
   if (authorized) {
     if (window.location.hash == '#login') {
       window.location= 'index.html'
+    } else {
+      createLoginHeader()
     }
-    createLoginHeader()
   } else if (mail && pass) {
     getURLthrottle(`http://localhost:3228/sign?email=${mail}&password=${pass}`, saveUser)
   }
