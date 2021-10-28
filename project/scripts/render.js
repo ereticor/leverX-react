@@ -4,7 +4,7 @@ function createMultiTags(articleObj, parent, tagServe = false) {
   // let tags = new Set(articleObj.reduce((acc, next) => acc.concat(next.keywords), []))
   let tags
 
-  console.log(articleObj)
+  // console.log(articleObj)
 
   if (tagServe) {
     tags = articleObj
@@ -333,7 +333,7 @@ function createPostPage(tags) {
         addBtn.classList.add('remove__story')
         addBtn.innerText = 'Remove next block'
       } else {
-        console.log('x')
+        // console.log('x')
         if (subWrapper.lastElementChild === subStory.nextElementSibling) {
           addBtn.classList.remove('remove__story')
           addBtn.innerText = 'Add new block'
@@ -368,15 +368,54 @@ function createPostPage(tags) {
     window.location = 'index.html'
   })
 
-  let submitBtn = formFoot.querySelector('.btn_submit')
+  // let submitBtn = formFoot.querySelector('.btn_submit')
 
-  submitBtn.addEventListener('click', (e) => {
-    // e.preventDefault()
+  form.method = 'POST'
+
+  form.addEventListener('submit', (e) => {
+    console.log(createPOST(form))
+    e.preventDefault()
     console.log('submit')
   })
 
   form.append(formFoot)
 
+  function createPOST(form) {
+    let obj = {
+
+      title: form.querySelector('.create__title').value.trim(),
+  
+      content: [],
+  
+      picture: filePreview.src,
+  
+      author: 'some guy',
+  
+      date: Date.now(),
+  
+      keywords: []
+
+    }
+
+    let subTitles = form.querySelectorAll('.create__sub')
+    let subTexts = form.querySelectorAll('.create__area')
+
+    for (let i = 0; i < subTitles.length; i++) {
+      obj.content.push(
+        {
+          head: subTitles[i].value.trim(),
+          text: subTexts[i].value.trim()
+        }
+      )
+    }
+
+    let tags = form.querySelectorAll('.checkbar__label_checked')
+  
+    tags.forEach(tag => obj.keywords.push(tag.innerText.replaceAll(' ', '_')))
+
+    return obj
+
+  }
 }
 
 function createLoginPage() {
@@ -432,7 +471,7 @@ function createLoginPage() {
   form.addEventListener('submit', (e) => {
     let check = (el) => el.parentElement.classList.contains('form_success')
 
-    console.log(1)
+    // console.log(1)
 
     if (check(mailInput) && check(passInput)) {
       logIn(mailInput.value, passInput.value)
