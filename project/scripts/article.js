@@ -55,6 +55,10 @@ function locationResolver(loc) {
         getURLthrottle(`${server}/getArticles?tags=${tag}`, createFullPageSearch)
       break
     case 'createPost':
+      if (!checkLogged()) {
+        window.location = 'index.html'
+        break
+      }
       getURL(`${server}/getTags`, createPostPage)
       break
     case 'login':
