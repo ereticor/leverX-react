@@ -247,7 +247,7 @@ function createFullPageSearch(articleObj) {
   searchBar.addEventListener('input', searchSingleTag)
 
   function searchSingleTag() {
-    getURL(`http://localhost:3228/getArticles?tags=${tag}&title=${searchBar.value.trim() || ''}`, searchInput)
+    getURLthrottle(`http://localhost:3228/getArticles?tags=${tag}&title=${searchBar.value.trim() || ''}`, searchInput)
 
     function searchInput(articleObj) {
       loadArticles(articleObj, pageList, true)
@@ -435,5 +435,5 @@ function createLoginPage() {
     }
   
   }
-  // form.action = getURL('http://localhost:3228/sign?email=nicholswyatt@medicroix.com&password=DONJS5X6SXXF6H1BNWUMO4TVHND52784nlYHe', saveUser)
+  // form.action = getURLthrottle('http://localhost:3228/sign?email=nicholswyatt@medicroix.com&password=DONJS5X6SXXF6H1BNWUMO4TVHND52784nlYHe', saveUser)
 }

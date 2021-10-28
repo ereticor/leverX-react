@@ -19,7 +19,30 @@ function log(data, error) {
   }
 }
 
-// getURL('http://localhost:3228/getArticles?index=2', log)
+const throttle = (func, ms) => {
+  let lastFunc
+  let lastTime
+  return function() {
+    const context = this
+    const args = arguments
+    if (!lastTime) {
+      func.apply(context, args)
+      lastTime = Date.now()
+    } else {
+      clearTimeout(lastFunc)
+      lastFunc = setTimeout(function() {
+          if ((Date.now() - lastTime) >= ms) {
+            func.apply(context, args)
+            lastTime = Date.now()
+          }
+       }, ms - (Date.now() - lastTime))
+    }
+  }
+}
+
+const getURLthrottle = throttle(getURL, 1000)
+
+// getURLthrottle('http://localhost:3228/getArticles?index=2', log)
 
 logIn()
 
@@ -55,7 +78,7 @@ function logIn(mail, pass) {
     }
     createLoginHeader()
   } else if (mail && pass) {
-    getURL(`http://localhost:3228/sign?email=${mail}&password=${pass}`, saveUser)
+    getURLthrottle(`http://localhost:3228/sign?email=${mail}&password=${pass}`, saveUser)
   }
 }
 
