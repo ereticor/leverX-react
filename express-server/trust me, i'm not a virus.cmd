@@ -1,6 +1,6 @@
 @ECHO OFF
 ECHO Lol, i will start installing dependencies
 PAUSE
-START /WAIT npm install
+call npm install
 ECHO well... now we can run our server
-START /WAIT npm run serve
+call npm run serve
