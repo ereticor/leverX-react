@@ -265,7 +265,8 @@ function createPostPage(tags) {
   <div class="main__create__wrapper wrapper">
     <form class="main__create">
       <label class="create__cover__wrapper">
-        <input type="file" class="create__cover" required>
+        <input type="file" class="create__cover" accept="image/*" required>
+        <img src="#" alt="uploaded" class="create__preview">
         <span>+</span> Add Cover
       </label>
       <h6 class="create__head">Enter the title of your article</h6>
@@ -279,6 +280,27 @@ function createPostPage(tags) {
   `
 
   main.innerHTML = postTemplate
+
+  let fileInput = main.querySelector('.create__cover')
+
+  let filePreview = main.querySelector('.create__preview')
+
+  fileInput.addEventListener('change', function() {
+    preview(this)
+  })
+
+  function preview(input) {
+    let reader = new FileReader()
+
+    reader.readAsDataURL(input.files[0])
+
+    reader.addEventListener('load', () => {
+      filePreview.src = reader.result
+      filePreview.classList.add('show')
+
+      filePreview.parentElement.classList.add('show')
+    })
+  }
 
   let subWrapper = main.querySelector('.create__sub__wrapper')
 
