@@ -80,6 +80,15 @@ function createLoginHeader() {
 }
 
 /*____________________________ARTICLES____________________________*/
+/**
+ * return article node with it's data
+ * @param   {array} articleObj  Object from which the node is created
+ * @param   {string} type       type of article container for usage in list or section for full-page article
+ * @param   {string} fullPage   adds additional information for article if rendered in full-page mode
+ * @event                       link to full-page article if rendered in list
+ * @event                       link on tag click to search page with predefined tag
+ * @return  {nodeElement}       created article node
+*/
 function createArticle(articleObj, type = 'li', fullPage = false) {
   let article = document.createElement(type)
   
@@ -260,6 +269,15 @@ function createFullPageSearch(articleObj) {
 
 }
 
+/**
+ * renders post page with form for new article creation on server
+ * @param   {array} tags        array for creation of tags wrapper
+ * @event                       input file checker for images preview
+ * @event                       add story button for creating new subTitle
+ * @event                       cancel & submit buttons for form sending
+ * @override                    replaces footer with it's own for form
+ * @return  {nodeElement}       created article node
+*/
 function createPostPage(tags) {
   const main = document.querySelector('.main')
 
@@ -436,6 +454,13 @@ function createPostPage(tags) {
 
 }
 
+/**
+ * renders log in page with form
+ * @param                       no parameters required
+ * @event  inputs checker for email & password
+ * @event  checkbox for showing/hiding password
+ * @override                    replaces main content in index.html with it's own
+*/
 function createLoginPage() {
   const main = document.querySelector('.main')
 
