@@ -27,10 +27,8 @@ function getArticles() {
   let tags = [...checkBoxes].map(el => el.innerText.replaceAll(' ', '_')).join('+')
   console.log(tags)
 
-  getURLthrottle(`http://localhost:3228/getArticles?tags=${tags}&title=${searchBar.value.trim() || ''}`, searchInput)
+  getURLthrottle(`http://localhost:3228/getArticles?tags=${tags}&title=${searchBar.value?.trim() || ''}`, searchInput)
 }
-
-searchBar.addEventListener('input', searchInput);
 
 ['load', 'hashchange'].forEach(el => {
 
