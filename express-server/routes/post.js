@@ -23,7 +23,7 @@ export default function addPost(req, res, next) {
     let str = ''
     
     for(let code of generateSequence()) {
-      str += String.fromCharCode(code);
+      str += String.fromCharCode(code)
     }
     
     return str.split('').sort(el => Math.random() - 0.5).join('')

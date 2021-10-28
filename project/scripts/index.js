@@ -1,4 +1,4 @@
-let page = 0;
+let page = 0
 
 const articleSection = document.querySelector('.main__articles')
 const articleList = document.querySelector('.articles__list')
@@ -11,14 +11,11 @@ function getTags({ tags }) {
 }
 
 function searchInput(articlesData) {
-  // articleList.innerHTML = ''
   loadArticles(articlesData, articleList)
 }
 
-
 const searchBar = document.querySelector('.search__input')
-const checkBar = document.querySelector('.main__articles__checkbar');
-
+const checkBar = document.querySelector('.main__articles__checkbar')
 
 searchBar.addEventListener('input', getArticles)
 

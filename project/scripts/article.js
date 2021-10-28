@@ -80,14 +80,14 @@ function locationResolver(loc) {
         window.location = 'index.html'
         break
       }
-      createLoginPage()//* done
+      createLoginPage()
       break
     default:
       if (path === '/project/article.html') {
         getURLthrottle(`${server}/getArticles?tags=`, createFullPageSearch)
       } else {
         getURL(`${server}/getTags`, getTags)
-        getURLthrottle(`${server}/getArticles?page=${page}&tags=`, searchInput) //! look at this
+        getURLthrottle(`${server}/getArticles?page=${page}&tags=`, searchInput)
       }
   }
 }

@@ -30,7 +30,7 @@ function createLoadBtn() {
   btn.classList.add('articles__load', 'btn')
   btn.innerText = "Load more"
 
-  return btn;
+  return btn
 }
 
 function createLoginHeader() {
@@ -422,7 +422,6 @@ function createPostPage({ tags }) {
       keywords: []
       
     }
-    console.log(localStorage.getItem('logged'))
 
     let subTitles = form.querySelectorAll('.create__sub')
     let subTexts = form.querySelectorAll('.create__area')
@@ -533,11 +532,11 @@ function createLoginPage() {
       formControl.classList.add('form_light')
       setTimeout(() => {
         formControl.classList.remove('form_light')
-      }, 1000);
+      }, 1000)
     }
     
     function setSuccessFor(input) {
-      const formControl = input.parentElement;
+      const formControl = input.parentElement
       formControl.classList.add('form_success')
       formControl.classList.remove('form_error')
     }
