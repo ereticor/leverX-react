@@ -60,7 +60,7 @@ function locationResolver(loc) {
     case 'getArticle':
       if (path === '/project/article.html') {
         let id = hash.match(/(?<=id=)(.*?)(?=&|$)/)[0] || 1
-        getURLthrottle(`${server}/getArticles?index=${id}`, openFullPageArticle) //* done
+        getURLthrottle(`${server}/getArticles?index=${id}`, openFullPageArticle)
       } else {
 
       }
@@ -68,24 +68,22 @@ function locationResolver(loc) {
     case 'search':
       if (path === '/project/article.html') {
         let tag = (hash.match(/(?<=tags=)(.*?)(?=&|$)/) || '')[0]
-        // let title = (hash.match(/(?<=title=)(.*?)(?=&|$)/) || '')[0]
-        getURLthrottle(`${server}/getArticles?tags=${tag}`, createFullPageSearch) //* done
+        getURLthrottle(`${server}/getArticles?tags=${tag}`, createFullPageSearch)
       } else {
         getURLthrottle(`${server}/getArticles?tags=`, searchInput)
       }
       break
     case 'createPost':
       getURLthrottle(`${server}/getTags`, createPostPage)
-      // createPostPage() //! will do
       break
     case 'login':
       createLoginPage()//* done
       break
     default:
       if (path === '/project/article.html') {
-        getURLthrottle(`${server}/getArticles?tags=`, createFullPageSearch) //* done
+        getURLthrottle(`${server}/getArticles?tags=`, createFullPageSearch)
       } else {
-        getURLthrottle(`${server}/getArticles?tags=`, firstSearch) //? done
+        getURLthrottle(`${server}/getArticles?tags=`, firstSearch)
       }
   }
 }

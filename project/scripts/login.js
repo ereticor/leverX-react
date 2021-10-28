@@ -42,8 +42,6 @@ const throttle = (func, ms) => {
 
 const getURLthrottle = throttle(getURL, 1000)
 
-// getURLthrottle('http://localhost:3228/getArticles?index=2', log)
-
 logIn()
 
 function saveUser(user, error) {

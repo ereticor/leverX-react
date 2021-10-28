@@ -1,7 +1,6 @@
 /*____________________________TAGS____________________________*/
 function createMultiTags(articleObj, parent, tagServe = false) {
 
-  // let tags = new Set(articleObj.reduce((acc, next) => acc.concat(next.keywords), []))
   let tags
 
   if (tagServe) {
@@ -244,10 +243,6 @@ function createFullPageSearch(articleObj) {
   main.innerHTML = template
 
   let searchBar = main.querySelector('.search__input')
-
-  // searchBar.value = window.location.hash.match(/(?<=title=)(.*?)(?=&|$)/) || ''
-
-  // (?<=tags=)(.*?)(?=&|$)
 
   let pageList = main.querySelector('.articles__list')
 
@@ -530,5 +525,4 @@ function createLoginPage() {
     }
   
   }
-  // form.action = getURLthrottle('http://localhost:3228/sign?email=nicholswyatt@medicroix.com&password=DONJS5X6SXXF6H1BNWUMO4TVHND52784nlYHe', saveUser)
 }
