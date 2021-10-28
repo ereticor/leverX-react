@@ -35,17 +35,3 @@ function getArticles(isUpdateList = true) {
 
   getURLthrottle(`http://localhost:3228/getArticles?tags=${tags}&title=${searchBar.value?.trim() || ''}&page=${page}`, searchInput)
 }
-
-['load', 'hashchange'].forEach(el => {
-
-  window.addEventListener(el, () => {
-
-  const location = window.location
-
-  if (location) {
-    locationResolver(location)
-  }
-
-  })
-
-})

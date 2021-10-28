@@ -36,6 +36,20 @@ function openFullPageArticle({ articles }) {
   main.append(articleWrapper)
 }
 
+['load', 'hashchange'].forEach(el => {
+
+  window.addEventListener(el, () => {
+
+  const location = window.location
+
+  if (location) {
+    locationResolver(location)
+  }
+
+  })
+
+})
+
 function locationResolver(loc) {
 
   let path = loc.pathname
