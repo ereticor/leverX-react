@@ -1,10 +1,18 @@
 /*____________________________TAGS____________________________*/
-function createMultiTags(articleObj, parent) {
+function createMultiTags(articleObj, parent, tagServe = false) {
 
   // let tags = new Set(articleObj.reduce((acc, next) => acc.concat(next.keywords), []))
-  let tags = articleObj.keywords 
-    ? articleObj.keywords
-    : new Set(articleObj.map(el => el.keywords).flat())
+  let tags
+
+  console.log(articleObj)
+
+  if (tagServe) {
+    tags = articleObj
+  } else {
+    tags = articleObj.keywords 
+      ? articleObj.keywords
+      : new Set(articleObj.map(el => el.keywords).flat())
+  }
 
   let tagsHTML = [...tags].reduce( (acc, tag) => acc + createTag(tag), '')
 
@@ -250,7 +258,7 @@ function createFullPageSearch(articleObj) {
 
 }
 
-function createPostPage(articleObj) {
+function createPostPage(tags) {
   const main = document.querySelector('.main')
 
   let postTemplate = `
@@ -317,7 +325,7 @@ function createPostPage(articleObj) {
 
   let tagsWrapper = main.querySelector('.create__tags')
 
-  createMultiTags(articleObj, tagsWrapper)
+  createMultiTags(tags, tagsWrapper, true)
 
   const foot = document.querySelector('.foot__wrapper')
   foot.remove()

@@ -70,15 +70,15 @@ function locationResolver(loc) {
     case 'search':
       if (path === '/project/article.html') {
         let tag = (hash.match(/(?<=tags=)(.*?)(?=&|$)/) || '')[0]
-        let title = (hash.match(/(?<=title=)(.*?)(?=&|$)/) || '')[0]
-        console.log(title)
-        getURL(`${server}/getArticles?tags=${tag}&title=${title}`, createFullPageSearch) //? done
+        // let title = (hash.match(/(?<=title=)(.*?)(?=&|$)/) || '')[0]
+        // console.log(title)
+        getURL(`${server}/getArticles?tags=${tag}`, createFullPageSearch) //* done
       } else {
         getURL(`${server}/getArticles?tags=`, searchInput)
       }
       break
     case 'createPost':
-      getURL(`${server}/getArticles?tags=`, createPostPage)
+      getURL(`${server}/getTags`, createPostPage)
       // createPostPage() //! will do
       break
     case 'login':
@@ -86,9 +86,9 @@ function locationResolver(loc) {
       break
     default:
       if (path === '/project/article.html') {
-        getURL(`${server}/getArticles?tags=`, createFullPageSearch) //? done
+        getURL(`${server}/getArticles?tags=`, createFullPageSearch) //* done
       } else {
-        getURL(`${server}/getArticles?tags=`, firstSearch) 
+        getURL(`${server}/getArticles?tags=`, firstSearch) //? done
       }
   }
 }
