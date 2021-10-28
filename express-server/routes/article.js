@@ -36,7 +36,9 @@ export default function articleSearch(req, res, next) {
   // }
 
   if (params.tags) {
-    const tags = params.tags.replaceAll('_', ' ').replaceAll('+', ', ').toLowerCase()
+    const tags = params.tags.replaceAll('_', ' ').toLowerCase()
+
+    console.log(tags)
 
     filtered = tags === ''
     ? filtered

@@ -17,16 +17,17 @@ function searchInput(articleObj) {
 const searchBar = document.querySelector('.search__input')
 const checkBar = document.querySelector('.main__articles__checkbar');
 
-[searchBar, checkBar].forEach(el => {
-  el.addEventListener('click', getArticles)
-})
+searchBar.addEventListener('input', getArticles)
+
+checkBar.addEventListener('click', getArticles)
 
 function getArticles() {
+  console.log(searchBar.value)
   const checkBoxes = document.querySelectorAll('.checkbar__label_checked')
   let tags = [...checkBoxes].map(el => el.innerText.replaceAll(' ', '_')).join('+')
   console.log(tags)
 
-  getURL(`http://localhost:3228/getArticles?tags=${tags}&title=${searchBar.value}`, searchInput)
+  getURL(`http://localhost:3228/getArticles?tags=${tags}&title=${searchBar.value.trim() || ''}`, searchInput)
 }
 
 searchBar.addEventListener('input', searchInput);

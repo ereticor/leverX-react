@@ -210,7 +210,9 @@ function createFullPageArticle(articleObj) {
 function createFullPageSearch(articleObj) {
   const main = document.querySelector('.main')
 
-  let tag = (window.location.hash.match(/(?<=tags=)(.*?)(?=&|$)/) || '')[0].replaceAll('_', ' ')
+  let hashTag = (window.location.hash.match(/(?<=tags=)(.*?)(?=&|$)/) || '')[0]
+
+  let tag = hashTag.replaceAll('_', ' ')
 
   let template = `
     <div class="main__articles__wrapper wrapper main__search__wrapper">
@@ -234,19 +236,14 @@ function createFullPageSearch(articleObj) {
 
   let pageList = main.querySelector('.articles__list')
 
-  searchBar.addEventListener('change', searchSingleTag)
+  searchBar.addEventListener('input', searchSingleTag)
 
   function searchSingleTag() {
+    getURL(`http://localhost:3228/getArticles?tags=${tag}&title=${searchBar.value.trim() || ''}`, searchInput)
 
-    console.log(searchBar.value)
-
-      if (window.location.hash.includes('title')) {
-        window.location.hash = window.location.hash.replace(/(?<=title=)(.*?)(?=&|$)/, searchBar.value.trim())
-      } else {
-        window.location.hash += `&title=${searchBar.value.trim()}`
-      }
-    console.log(window.location.hash)
-    loadArticles(articleObj, pageList, true)
+    function searchInput(articleObj) {
+      loadArticles(articleObj, pageList, true)
+    }
   }
 
   searchSingleTag()
