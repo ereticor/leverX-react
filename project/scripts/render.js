@@ -400,9 +400,6 @@ function createPostPage({ tags }) {
 
       function formStatus() {
         alert('success')
-        setTimeout(() => {
-          window.location.reload
-        }, 500)
       }
     }
   })
@@ -410,20 +407,22 @@ function createPostPage({ tags }) {
 
   function createPOST(form) {
     let obj = {
-
+      
       title: form.querySelector('.create__title').value.trim(),
-  
+      
       content: [],
-  
+      
       picture: filePreview.src,
+      
   
-      author: 'some guy',
-  
+      author: JSON.parse(localStorage.getItem('logged')).name,
+      
       date: Date.now(),
-  
+      
       keywords: []
-
+      
     }
+    console.log(localStorage.getItem('logged'))
 
     let subTitles = form.querySelectorAll('.create__sub')
     let subTexts = form.querySelectorAll('.create__area')
