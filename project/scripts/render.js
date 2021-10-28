@@ -337,8 +337,21 @@ function createPostPage(tags) {
 
   formFoot.innerHTML = `
     <button class="btn btn_cancel">Cancel</button>
-    <button class="btn btn_submit">Publish</button>
+    <button class="btn btn_submit" type="submit">Publish</button>
   `
+
+  let cancelBtn = formFoot.querySelector('.btn_cancel')
+
+  cancelBtn.addEventListener('click', () => {
+    window.location = 'index.html'
+  })
+
+  let submitBtn = formFoot.querySelector('.btn_submit')
+
+  submitBtn.addEventListener('click', (e) => {
+    // e.preventDefault()
+    console.log('submit')
+  })
 
   form.append(formFoot)
 

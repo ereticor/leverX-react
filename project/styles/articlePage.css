@@ -137,6 +137,7 @@
 }
 
 .create__cover__wrapper {
+  position: relative;
   height: 116px;
   border: 1px dashed #2F80ED;
   border-radius: 4px;
@@ -146,7 +147,8 @@
 }
 
 .create__cover {
-  display: none;
+  position: absolute;
+  opacity: 0;
 }
 
 .create__head {
