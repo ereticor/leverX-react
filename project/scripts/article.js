@@ -1,38 +1,27 @@
-function loadArticles(list, pageList, fullLoad = false) {
+function loadArticles({articles, meta}, pageList, fullLoad = false) {
   const oldBtn = pageList.parentNode.querySelector('.articles__load')
   if (oldBtn) oldBtn.remove()
-
-  pageList.innerHTML = ''
   
-  if (fullLoad || list.length < 8) {
-    list.forEach(article => {
-      pageList.append(createArticle(article))
-    })
+  articles.forEach(article => {
+    pageList.append(createArticle(article))
+  })
 
+  if (fullLoad) {
     return
   }
 
   const newBtn = createLoadBtn()
 
-  const articlesPerPage = 8
-  let page = 0;
-
   function loadOnPage() {
-      const articlesToAppend = list.slice(page * articlesPerPage, (page + 1) * articlesPerPage);
-      page++;
-
-      articlesToAppend.forEach(article => {
-          pageList.append(createArticle(article))
-      })
-
-
-      if (pageList.children.length >= list.length) {
-        newBtn.remove()
-      } else if (!pageList.contains(newBtn)) {
-        pageList.parentNode.append(newBtn)
-      }
+     ++page
+     getArticles(false)
   }
-  loadOnPage()
+
+  if (page + 1 >= meta.maxPage)  {
+    newBtn.remove()
+  } else if (!pageList.parentNode.contains(newBtn)) {
+    pageList.parentNode.append(newBtn)
+  }
 
   newBtn.addEventListener('click', loadOnPage)
 }
@@ -75,7 +64,6 @@ function locationResolver(loc) {
       if (path === '/project/article.html') {
         getURLthrottle(`${server}/getArticles?tags=`, createFullPageSearch)
       } else {
-        let page = (hash.match(/(?<=page=)(.*?)(?=&|$)/) || 0)[0]
         getURL(`${server}/getTags`, getTags)
         getURLthrottle(`${server}/getArticles?page=${page}&tags=`, searchInput) //! look at this
       }

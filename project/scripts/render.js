@@ -248,11 +248,14 @@ function createFullPageSearch(articles) {
   searchBar.addEventListener('input', searchSingleTag)
 
   function searchSingleTag() {
-    getURLthrottle(`http://localhost:3228/getArticles?tags=${tag}&title=${searchBar.value.trim() || ''}`, searchInput)
 
-    function searchInput({ articles }) {
+    function inputSearch(articles) {
+      pageList.innerHTML = ''
       loadArticles(articles, pageList, true)
     }
+  
+    getURLthrottle(`http://localhost:3228/getArticles?tags=${tag}&title=${searchBar.value.trim() || ''}`, inputSearch)
+
   }
 
   searchSingleTag()

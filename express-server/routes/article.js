@@ -32,9 +32,10 @@ export default function articleSearch(req, res, next) {
   }
 
   if (params.page) {
-    const allPageCount = Math.round(filtered.lenght / 8);
+    const allPageCount = Math.round(filtered.length / 8);
     filtered = filtered.slice(params.page * 8 , params.page * 8 + 8)
-    return  res.send(JSON.stringify({ articles: filtered, meta: { maxPage: allPageCount } }))
+    res.send(JSON.stringify({ articles: filtered, meta: { maxPage: allPageCount } }))
+    return  
   }
 
   res.send(JSON.stringify({ articles: filtered, meta: {} }))
