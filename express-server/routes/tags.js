@@ -8,5 +8,5 @@ export default function tagsSearch(req, res, next) {
 
   console.log(tags)
 
-  res.send(JSON.stringify([...tags]))
+  res.send(JSON.stringify({ tags: [...tags], meta: {} }))
 }

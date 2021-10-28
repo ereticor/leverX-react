@@ -7,7 +7,8 @@ async function getURL(url, callback, options = null) {
     const data = await response.json()
     callback(data)
   } catch (error) {
-    callback(null, error)
+    console.log(error)
+    // callback(null, error)
   }
 }
 
@@ -52,7 +53,7 @@ logIn()
 */
 function saveUser(user, error) {
   if (error) {
-    window.location = 'index.html#login'
+    window.location = 'index.html?login'
     switch(error) {
       case 401:
         setTimeout(() => alert('wrong password'), 200)
@@ -88,7 +89,7 @@ function logIn(mail, pass) {
   let authorized = checkLogged()
 
   if (authorized) {
-    if (window.location.hash == '#login') {
+    if (window.location.hash == '?login') {
       window.location= 'index.html'
     } else {
       createLoginHeader()

@@ -1,15 +1,5 @@
 /*____________________________TAGS____________________________*/
-function createMultiTags(articleObj, parent, tagServe = false) {
-
-  let tags
-
-  if (tagServe) {
-    tags = articleObj
-  } else {
-    tags = articleObj.keywords 
-      ? articleObj.keywords
-      : new Set(articleObj.map(el => el.keywords).flat())
-  }
+function createMultiTags(tags, parent, tagServe = false) {
 
   let tagsHTML = [...tags].reduce( (acc, tag) => acc + createTag(tag), '')
 
@@ -82,31 +72,31 @@ function createLoginHeader() {
 /*____________________________ARTICLES____________________________*/
 /**
  * return article node with it's data
- * @param   {array} articleObj  Object from which the node is created
+ * @param   {array} articles  Object from which the node is created
  * @param   {string} type       type of article container for usage in list or section for full-page article
  * @param   {string} fullPage   adds additional information for article if rendered in full-page mode
  * @event                       link to full-page article if rendered in list
  * @event                       link on tag click to search page with predefined tag
  * @return  {nodeElement}       created article node
 */
-function createArticle(articleObj, type = 'li', fullPage = false) {
+function createArticle(articles, type = 'li', fullPage = false) {
   let article = document.createElement(type)
   
-  article.setAttribute('data-keywords', articleObj.keywords.join(', '))
+  article.setAttribute('data-keywords', articles.keywords.join(', '))
   article.classList.add('articles__item')
   
   let figure = document.createElement('figure')
   figure.classList.add('item__figure')
   
   let img = document.createElement('img')
-  img.src = articleObj.picture
+  img.src = articles.picture
   
   let cap = document.createElement('figcaption')
   cap.classList.add('item__cap')
   
   let capHead = document.createElement('h6')
   capHead.classList.add('cap__head')
-  capHead.innerHTML = articleObj.title
+  capHead.innerHTML = articles.title
   
   let capText = document.createElement(fullPage ? 'div' : 'p')
 
@@ -114,11 +104,11 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
   
   if (!fullPage) {
     capText.classList.add('cap__text')
-    capText.title = articleObj.content[0].text
-    capText.innerHTML = articleObj.content[0].text
+    capText.title = articles.content[0].text
+    capText.innerHTML = articles.content[0].text
 
     link = document.createElement('a')
-    link.href = `article.html#getArticle?id=${articleObj.index}`
+    link.href = `article.html#getArticle?id=${articles.index}`
 
     link.append(figure)
 
@@ -131,18 +121,18 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
 
   if (fullPage) {
     capText.classList.add('cap__content')
-    createContent(articleObj, capText)
+    createContent(articles, capText)
 
     let capCred = document.createElement('div')
     capCred.classList.add('cap__credits')
 
     let author = document.createElement('p')
     author.classList.add('credits__author')
-    author.innerText = articleObj.author
+    author.innerText = articles.author
 
     let date = document.createElement('time')
     date.classList.add('credits__date')
-    date.innerText = dateToHuman(articleObj.date)
+    date.innerText = dateToHuman(articles.date)
 
     capCred.append(author, date)
 
@@ -151,11 +141,11 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
     let tags = document.createElement('div')
     tags.classList.add('item__tags')
 
-    createMultiTags(articleObj, tags)
+    createMultiTags(articles.keywords, tags)
 
     for (let i = 0; i < tags.children.length; i++) {
       tags.children[i].addEventListener('click', () => {
-        window.location = `article.html#search?tags=${articleObj.keywords[i].replaceAll(' ', '_')}`
+        window.location = `article.html#search?tags=${articles.keywords[i].replaceAll(' ', '_')}`
       })
     }
 
@@ -166,8 +156,8 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
   
   return article
 
-  function createContent(articleObj, parent) {
-    let contentArr = articleObj.content
+  function createContent(articles, parent) {
+    let contentArr = articles.content
     for (let i = 0; i < contentArr.length; i++) {
       let head = document.createElement('h6')
       head.innerText = contentArr[i].head
@@ -197,7 +187,7 @@ function createArticle(articleObj, type = 'li', fullPage = false) {
   }
 }
 
-function createFullPageArticle(articleObj) {
+function createFullPageArticle(articles) {
   
   let wrapper = document.createElement('div')
   wrapper.classList.add('main__paper__wrapper', 'wrapper')
@@ -220,7 +210,7 @@ function createFullPageArticle(articleObj) {
 
   pagination.innerHTML = paginationContent
     
-  let article = createArticle(articleObj, 'article', true)
+  let article = createArticle(articles, 'article', true)
   
   section.append(pagination, article)
 
@@ -230,7 +220,7 @@ function createFullPageArticle(articleObj) {
 }
 
 /*____________________________FULL PAGE____________________________*/
-function createFullPageSearch(articleObj) {
+function createFullPageSearch(articles) {
   const main = document.querySelector('.main')
 
   let hashTag = (window.location.hash.match(/(?<=tags=)(.*?)(?=&|$)/) || '')[0]
@@ -260,8 +250,8 @@ function createFullPageSearch(articleObj) {
   function searchSingleTag() {
     getURLthrottle(`http://localhost:3228/getArticles?tags=${tag}&title=${searchBar.value.trim() || ''}`, searchInput)
 
-    function searchInput(articleObj) {
-      loadArticles(articleObj, pageList, true)
+    function searchInput({ articles }) {
+      loadArticles(articles, pageList, true)
     }
   }
 
@@ -278,7 +268,7 @@ function createFullPageSearch(articleObj) {
  * @override                    replaces footer with it's own for form
  * @return  {nodeElement}       created article node
 */
-function createPostPage(tags) {
+function createPostPage({ tags }) {
   const main = document.querySelector('.main')
 
   let postTemplate = `

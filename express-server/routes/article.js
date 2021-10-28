@@ -13,7 +13,7 @@ export default function articleSearch(req, res, next) {
   if (params.index) {
     filtered = filtered.find(el => el.index == params.index)
 
-    res.send(JSON.stringify(filtered))
+    res.send(JSON.stringify({ articles: filtered, meta: {} }))
     return
   }
 
@@ -31,5 +31,11 @@ export default function articleSearch(req, res, next) {
     : filtered.filter(el => new RegExp(el.keywords.join('|').toLowerCase()).test(tags))
   }
 
-  res.send(JSON.stringify(filtered))
+  if (params.page) {
+    const allPageCount = Math.round(filtered.lenght / 8);
+    filtered = filtered.slice(params.page * 8 , params.page * 8 + 8)
+    return  res.send(JSON.stringify({ articles: filtered, meta: { maxPage: allPageCount } }))
+  }
+
+  res.send(JSON.stringify({ articles: filtered, meta: {} }))
 }

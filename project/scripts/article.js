@@ -37,12 +37,12 @@ function loadArticles(list, pageList, fullLoad = false) {
   newBtn.addEventListener('click', loadOnPage)
 }
 
-function openFullPageArticle(articleObj) {
+function openFullPageArticle({ articles }) {
   const main = document.querySelector('.main')
 
   main.innerHTML = ''
 
-  let articleWrapper = createFullPageArticle(articleObj)
+  let articleWrapper = createFullPageArticle(articles)
 
   main.append(articleWrapper)
 }
@@ -58,23 +58,15 @@ function locationResolver(loc) {
   let locType = (hash.match(/\w+/) || '')[0]
   switch (locType) {
     case 'getArticle':
-      if (path === '/project/article.html') {
         let id = hash.match(/(?<=id=)(.*?)(?=&|$)/)[0] || 1
-        getURLthrottle(`${server}/getArticles?index=${id}`, openFullPageArticle)
-      } else {
-
-      }
+        getURL(`${server}/getArticles?index=${id}`, openFullPageArticle)
       break
     case 'search':
-      if (path === '/project/article.html') {
         let tag = (hash.match(/(?<=tags=)(.*?)(?=&|$)/) || '')[0]
         getURLthrottle(`${server}/getArticles?tags=${tag}`, createFullPageSearch)
-      } else {
-        getURLthrottle(`${server}/getArticles?tags=`, searchInput)
-      }
       break
     case 'createPost':
-      getURLthrottle(`${server}/getTags`, createPostPage)
+      getURL(`${server}/getTags`, createPostPage)
       break
     case 'login':
       createLoginPage()//* done
@@ -83,8 +75,9 @@ function locationResolver(loc) {
       if (path === '/project/article.html') {
         getURLthrottle(`${server}/getArticles?tags=`, createFullPageSearch)
       } else {
-        getURLthrottle(`${server}/getArticles?tags=`, firstSearch)
+        let page = (hash.match(/(?<=page=)(.*?)(?=&|$)/) || 0)[0]
+        getURL(`${server}/getTags`, getTags)
+        getURLthrottle(`${server}/getArticles?page=${page}&tags=`, searchInput) //! look at this
       }
   }
 }
-

@@ -1,16 +1,17 @@
+window.location.hash ='page=0'
+
 const articleSection = document.querySelector('.main__articles')
 const articleList = document.querySelector('.articles__list')
 const loadBtn = document.querySelector('.articles__load')
 
 const tagsList = document.querySelector('.main__articles__checkbar')
 
-function firstSearch(articleObj) {
-  createMultiTags(articleObj, tagsList)
-  loadArticles(articleObj, articleList)
+function getTags({ tags }) {
+  createMultiTags(tags, tagsList)
 }
 
-function searchInput(articleObj) {
-  loadArticles(articleObj, articleList)
+function searchInput({ articles }) {
+  loadArticles(articles, articleList)
 }
 
 
