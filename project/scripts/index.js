@@ -22,10 +22,8 @@ searchBar.addEventListener('input', getArticles)
 checkBar.addEventListener('click', getArticles)
 
 function getArticles() {
-  console.log(searchBar.value)
   const checkBoxes = document.querySelectorAll('.checkbar__label_checked')
   let tags = [...checkBoxes].map(el => el.innerText.replaceAll(' ', '_')).join('+')
-  console.log(tags)
 
   getURLthrottle(`http://localhost:3228/getArticles?tags=${tags}&title=${searchBar.value?.trim() || ''}`, searchInput)
 }

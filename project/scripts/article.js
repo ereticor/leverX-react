@@ -49,8 +49,6 @@ function openFullPageArticle(articleObj) {
 
 function locationResolver(loc) {
 
-  console.log(loc)
-
   let path = loc.pathname
 
   let hash = loc.hash
@@ -71,7 +69,6 @@ function locationResolver(loc) {
       if (path === '/project/article.html') {
         let tag = (hash.match(/(?<=tags=)(.*?)(?=&|$)/) || '')[0]
         // let title = (hash.match(/(?<=title=)(.*?)(?=&|$)/) || '')[0]
-        // console.log(title)
         getURLthrottle(`${server}/getArticles?tags=${tag}`, createFullPageSearch) //* done
       } else {
         getURLthrottle(`${server}/getArticles?tags=`, searchInput)

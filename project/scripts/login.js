@@ -1,6 +1,6 @@
-async function getURL(url, callback) {
+async function getURL(url, callback, options = null) {
   try {
-    const response = await fetch(url)
+    const response = await fetch(url, options)
     if (response.status >= 400) {
       throw response.status
     }

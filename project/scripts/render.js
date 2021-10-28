@@ -4,8 +4,6 @@ function createMultiTags(articleObj, parent, tagServe = false) {
   // let tags = new Set(articleObj.reduce((acc, next) => acc.concat(next.keywords), []))
   let tags
 
-  // console.log(articleObj)
-
   if (tagServe) {
     tags = articleObj
   } else {
@@ -333,7 +331,6 @@ function createPostPage(tags) {
         addBtn.classList.add('remove__story')
         addBtn.innerText = 'Remove next block'
       } else {
-        // console.log('x')
         if (subWrapper.lastElementChild === subStory.nextElementSibling) {
           addBtn.classList.remove('remove__story')
           addBtn.innerText = 'Add new block'
@@ -370,15 +367,29 @@ function createPostPage(tags) {
 
   // let submitBtn = formFoot.querySelector('.btn_submit')
 
-  form.method = 'POST'
-
-  form.addEventListener('submit', (e) => {
-    console.log(createPOST(form))
-    e.preventDefault()
-    console.log('submit')
-  })
+  // form.method = 'POST'
+  // form.action = 'http://localhost:3228/createPost'
 
   form.append(formFoot)
+
+  form.addEventListener('submit', (e) => {
+
+    e.preventDefault()
+
+    if (form.querySelectorAll('.checkbar__label_checked').length > 2) {
+
+      let newPost = createPOST(form)
+  
+      let options = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: newPost
+      }
+  
+      getURL(`http://localhost:3228/createPost`, formStatus, options)
+    }
+  })
+
 
   function createPOST(form) {
     let obj = {
@@ -413,8 +424,17 @@ function createPostPage(tags) {
   
     tags.forEach(tag => obj.keywords.push(tag.innerText.replaceAll(' ', '_')))
 
-    return obj
+    return JSON.stringify(obj)
 
+  }
+
+  function formStatus(res, err) {
+    if (err) {
+      alert(err)
+    } else {
+      alert('success')
+    }
+    window.location = 'index.html'
   }
 }
 
@@ -470,8 +490,6 @@ function createLoginPage() {
   form.method = 'GET'
   form.addEventListener('submit', (e) => {
     let check = (el) => el.parentElement.classList.contains('form_success')
-
-    // console.log(1)
 
     if (check(mailInput) && check(passInput)) {
       logIn(mailInput.value, passInput.value)
