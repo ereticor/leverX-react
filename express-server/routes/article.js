@@ -8,17 +8,14 @@ const articleList = JSON.parse(fs.readFileSync('./public/articleList.json'))
 export default function articleSearch(req, res, next) {
 
   res.type('json')
-  // console.log(req.query)
-  // console.log(articleList)
   
   let params = req.query
-
-  console.log(params)
   
   let filtered = articleList
   
   if (params.index) {
     filtered = filtered.find(el => el.index == params.index)
+
     res.send(JSON.stringify(filtered))
     return
   }
@@ -37,8 +34,6 @@ export default function articleSearch(req, res, next) {
 
   if (params.tags) {
     const tags = params.tags.replaceAll('_', ' ').toLowerCase()
-
-    console.log(tags)
 
     filtered = tags === ''
     ? filtered

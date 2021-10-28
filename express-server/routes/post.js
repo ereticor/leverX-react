@@ -1,5 +1,4 @@
 import fs from 'fs'
-
 import status from '../constants.js'
 
 const articleList = JSON.parse(fs.readFileSync('./public/articleList.json'))
@@ -12,8 +11,9 @@ export default function addPost(req, res, next) {
 
   newPost.index = articleList[articleList.length - 1].index + 1
 
+  newPost.keywords = newPost.keywords.map(key => key.replaceAll('_', ' '))
+
   articleList.push(newPost)
-  console.log(newPost)
   
   function generateId() {
     function* generateSequence(start = 48, end = 57) {
@@ -31,9 +31,9 @@ export default function addPost(req, res, next) {
 
   let newList = JSON.stringify(articleList, null, 2)
   
-  fs.writeFile('./public/articleList.json', newList, 'utf8', sendResp)
+  fs.writeFileSync('./public/articleList.json', newList, 'utf8', sendResp)
   
-  function sendResp(data, err) {
+  function sendResp(err) {
     if (err) {
       res.sendStatus(status.internalServerError)
     } else {

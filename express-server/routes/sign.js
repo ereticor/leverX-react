@@ -6,7 +6,6 @@ const usersList = JSON.parse(fs.readFileSync('./public/usersList.json'))
 export default function sign(req, res, next) {
 
   res.type('json')
-  console.log(req.query)
 
   const { email, password } = req.query
 
@@ -15,8 +14,6 @@ export default function sign(req, res, next) {
   if (!user) {
     res.sendStatus(status.noSuch)
   }
-
-  console.log(JSON.stringify(user))
   
   return user?.password === password
     ? res.send(JSON.stringify(user))

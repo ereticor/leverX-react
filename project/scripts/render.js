@@ -365,18 +365,13 @@ function createPostPage(tags) {
     window.location = 'index.html'
   })
 
-  // let submitBtn = formFoot.querySelector('.btn_submit')
-
-  // form.method = 'POST'
-  // form.action = 'http://localhost:3228/createPost'
-
   form.append(formFoot)
 
   form.addEventListener('submit', (e) => {
 
     e.preventDefault()
 
-    if (form.querySelectorAll('.checkbar__label_checked').length > 2) {
+    if (form.querySelectorAll('.checkbar__label_checked').length > 1) {
 
       let newPost = createPOST(form)
   
@@ -387,6 +382,13 @@ function createPostPage(tags) {
       }
   
       getURL(`http://localhost:3228/createPost`, formStatus, options)
+
+      function formStatus() {
+        alert('success')
+        setTimeout(() => {
+          window.location.reload
+        }, 500)
+      }
     }
   })
 
@@ -415,7 +417,7 @@ function createPostPage(tags) {
       obj.content.push(
         {
           head: subTitles[i].value.trim(),
-          text: subTexts[i].value.trim()
+          text: [subTexts[i].value.trim()]
         }
       )
     }
@@ -428,14 +430,6 @@ function createPostPage(tags) {
 
   }
 
-  function formStatus(res, err) {
-    if (err) {
-      alert(err)
-    } else {
-      alert('success')
-    }
-    window.location = 'index.html'
-  }
 }
 
 function createLoginPage() {
