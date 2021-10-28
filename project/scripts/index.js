@@ -4,24 +4,30 @@ const loadBtn = document.querySelector('.articles__load')
 
 const tagsList = document.querySelector('.main__articles__checkbar')
 
-function searchInput() {
-  let filtered = search(searchBar, articles, 'checkbar__label')
-  loadArticles(filtered, articleList)
+function firstSearch(articleObj) {
+  createMultiTags(articleObj, tagsList)
+  loadArticles(articleObj, articleList)
 }
 
-createMultiTags(articles, tagsList)
+function searchInput(articleObj) {
+  loadArticles(articleObj, articleList)
+}
 
-loadArticles(articles, articleList)
 
 const searchBar = document.querySelector('.search__input')
-const checkBoxes = document.querySelectorAll('.checkbar__input')
+const checkBar = document.querySelector('.main__articles__checkbar');
 
-checkBoxes.forEach(el => {
-  el.addEventListener('click', () => {
-    el.parentNode.classList.toggle('checkbar__label_checked')
-    searchInput()
-  })
+[searchBar, checkBar].forEach(el => {
+  el.addEventListener('click', getArticles)
 })
+
+function getArticles() {
+  const checkBoxes = document.querySelectorAll('.checkbar__label_checked')
+  let tags = [...checkBoxes].map(el => el.innerText.replaceAll(' ', '_')).join('+')
+  console.log(tags)
+
+  getURL(`http://localhost:3228/getArticles?tags=${tags}&title=${searchBar.value}`, searchInput)
+}
 
 searchBar.addEventListener('input', searchInput);
 
@@ -29,7 +35,7 @@ searchBar.addEventListener('input', searchInput);
 
   window.addEventListener(el, () => {
 
-  const location = window.location.hash
+  const location = window.location
 
   if (location) {
     locationResolver(location)

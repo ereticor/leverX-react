@@ -38,49 +38,49 @@ function loadArticles(list, pageList, fullLoad = false) {
   newBtn.addEventListener('click', loadOnPage)
 }
 
-let COUNTER = 0
+// let COUNTER = 0
 
-function search(input, articleObj, checkClass, singleTag = false) {
+// function search(input, articleObj, checkClass, singleTag = false) {
 
-  console.log(++COUNTER)
+//   console.log(++COUNTER)
 
-  let filtered = articleObj
+//   let filtered = articleObj
 
-  if (input.value.trim()) {
+//   if (input.value.trim()) {
 
-    let inputValue = input.value.trim().toLowerCase()
+//     let inputValue = input.value.trim().toLowerCase()
 
-    filtered = filtered.filter(el => el.title.toLowerCase().indexOf(inputValue) !== -1)
-  }
+//     filtered = filtered.filter(el => el.title.toLowerCase().indexOf(inputValue) !== -1)
+//   }
 
-  if (checkClass) {
-    const checkboxes = Array.from(document.querySelectorAll('.' + checkClass))
+//   if (checkClass) {
+//     const checkboxes = Array.from(document.querySelectorAll('.' + checkClass))
   
-    if (checkboxes.some(el => el.classList.contains(`${checkClass}_checked`))) {
+//     if (checkboxes.some(el => el.classList.contains(`${checkClass}_checked`))) {
   
-      let params = ''
+//       let params = ''
   
-      for (let i = 0; i < checkboxes.length; i++) {
-          const keyword = checkboxes[i].innerText.trim().toLowerCase()
+//       for (let i = 0; i < checkboxes.length; i++) {
+//           const keyword = checkboxes[i].innerText.trim().toLowerCase()
     
-          if (checkboxes[i].classList.contains(`${checkClass}_checked`)) {
-            params += `${keyword}, `
-          } else {
-            params = params.replaceAll(`${keyword}, `, '')
-          }
-      }
+//           if (checkboxes[i].classList.contains(`${checkClass}_checked`)) {
+//             params += `${keyword}, `
+//           } else {
+//             params = params.replaceAll(`${keyword}, `, '')
+//           }
+//       }
   
-      filtered = params === '' 
-      ? filtered
-      : filtered.filter(el => new RegExp(el.keywords.join('|').toLowerCase()).test(params))
-    }
-  } else if (singleTag) {
-    filtered = filtered.filter(el => new RegExp(el.keywords.join('|').toLowerCase()).test(singleTag.toLowerCase()))
-  }
+//       filtered = params === '' 
+//       ? filtered
+//       : filtered.filter(el => new RegExp(el.keywords.join('|').toLowerCase()).test(params))
+//     }
+//   } else if (singleTag) {
+//     filtered = filtered.filter(el => new RegExp(el.keywords.join('|').toLowerCase()).test(singleTag.toLowerCase()))
+//   }
 
-  return filtered
+//   return filtered
 
-}
+// }
 
 function openFullPageArticle(articleObj) {
   const main = document.querySelector('.main')
@@ -100,31 +100,40 @@ function locationResolver(loc) {
 
   let hash = loc.hash
 
-  let locType = hash.match(/\w+/)[0]
+  let server = 'http://localhost:3228'
+
+  let locType = (hash.match(/\w+/) || '')[0]
   switch (locType) {
     case 'getArticle':
       if (path === '/article.html') {
-        let id = hash.match(/\d+/) || 1
-        getURL(`http://localhost:3228/getArticles?index=${id}`, openFullPageArticle) //* done
+        let id = hash.match(/(?<=id=)(.*?)(?=&|$)/)[0] || 1
+        getURL(`${server}/getArticles?index=${id}`, openFullPageArticle) //* done
       } else {
 
       }
       break
     case 'search':
       if (path === '/article.html') {
-        let tag = (hash.match(/\w+$/) || '')[0]
-        getURL(`http://localhost:3228/getArticles?tags=${tag}`, createFullPageSearch) //? done
+        let tag = (hash.match(/(?<=tags=)(.*?)(?=&|$)/) || '')[0]
+        let title = (hash.match(/(?<=title=)(.*?)(?=&|$)/) || '')[0]
+        console.log(title)
+        getURL(`${server}/getArticles?tags=${tag}&title=${title}`, createFullPageSearch) //? done
       } else {
-        
+        getURL(`${server}/getArticles?tags=`, searchInput)
       }
       break
     case 'createPost':
-      createPostPage() //! will do
+      getURL(`${server}/getArticles?tags=`, createPostPage)
+      // createPostPage() //! will do
       break
     case 'login':
       createLoginPage()//* done
       break
     default:
-      getURL(`http://localhost:3228/getArticles?tags=`, createFullPageSearch) //? done
+      if (path === '/article.html') {
+        getURL(`${server}/getArticles?tags=`, createFullPageSearch) //? done
+      } else {
+        getURL(`${server}/getArticles?tags=`, firstSearch) 
+      }
   }
 }

@@ -9,6 +9,14 @@ function createMultiTags(articleObj, parent) {
   let tagsHTML = [...tags].reduce( (acc, tag) => acc + createTag(tag), '')
 
   parent.innerHTML = tagsHTML
+
+  let checkboxes = parent.querySelectorAll('.checkbar__input')
+
+  checkboxes.forEach(el => {
+    el.addEventListener('click', () => {
+      el.parentNode.classList.toggle('checkbar__label_checked')
+    })
+  })
   
 }
 
@@ -202,7 +210,7 @@ function createFullPageArticle(articleObj) {
 function createFullPageSearch(articleObj) {
   const main = document.querySelector('.main')
 
-  let tag = (window.location.hash.match(/\w+$/) || '')[0].replaceAll('_', ' ')
+  let tag = (window.location.hash.match(/(?<=tags=)(.*?)(?=&|$)/) || '')[0].replaceAll('_', ' ')
 
   let template = `
     <div class="main__articles__wrapper wrapper main__search__wrapper">
@@ -220,12 +228,23 @@ function createFullPageSearch(articleObj) {
 
   let searchBar = main.querySelector('.search__input')
 
+  // searchBar.value = window.location.hash.match(/(?<=title=)(.*?)(?=&|$)/) || ''
+
+  // (?<=tags=)(.*?)(?=&|$)
+
   let pageList = main.querySelector('.articles__list')
 
   searchBar.addEventListener('change', searchSingleTag)
 
-  function searchSingleTag(e) {
-    // window.location.hash = `title=f`
+  function searchSingleTag() {
+
+    console.log(searchBar.value)
+
+      if (window.location.hash.includes('title')) {
+        window.location.hash = window.location.hash.replace(/(?<=title=)(.*?)(?=&|$)/, searchBar.value.trim())
+      } else {
+        window.location.hash += `&title=${searchBar.value.trim()}`
+      }
     console.log(window.location.hash)
     loadArticles(articleObj, pageList, true)
   }
@@ -234,7 +253,7 @@ function createFullPageSearch(articleObj) {
 
 }
 
-function createPostPage() {
+function createPostPage(articleObj) {
   const main = document.querySelector('.main')
 
   let postTemplate = `
@@ -301,15 +320,7 @@ function createPostPage() {
 
   let tagsWrapper = main.querySelector('.create__tags')
 
-  createMultiTags(articles, tagsWrapper)
-
-  let tags = tagsWrapper.querySelectorAll('.checkbar__input')
-
-  tags.forEach(el => {
-    el.addEventListener('click', () => {
-      el.parentNode.classList.toggle('checkbar__label_checked')
-    })
-  })
+  createMultiTags(articleObj, tagsWrapper)
 
   const foot = document.querySelector('.foot__wrapper')
   foot.remove()
