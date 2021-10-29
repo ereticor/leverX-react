@@ -6,6 +6,15 @@ const sliderBtns = document.querySelectorAll('.slider__btn')
 
 const pagination = document.querySelectorAll('.pagination__label input')
 
+/**
+ * creates infinite slider in choosed containers
+ * @param   {nodeElement} slider       list container, in which cloned copies are created
+ * @param   {nodeElement} sliderItems  list sliders, which will be copied for infinite effect
+ * @param   {nodeElement} sliderBtns   buttons for slider scroll between all slides
+ * @param   {nodeElement} pagination   pagination for slider scroll between non-copied slides
+ * @event   {transitionend}            removes transition from slider when scrolls on copied slide, then scroll to non-copied one                 
+ * @event   {setTimeout}               autoscrolls when there is no user interaction with slider within 3 seconds             
+*/
 slide(slider, sliderItems, sliderBtns, pagination)
 
 function slide(slider, items, btns, pagination, index = 1) {
