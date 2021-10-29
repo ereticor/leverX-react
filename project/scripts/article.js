@@ -50,6 +50,13 @@ function openFullPageArticle({ articles }) {
 
 })
 
+/**
+ * calls functions based on page URL and hash
+ * @param   {string} loc        window.location for path resolving
+ * @event                       called functions based on window load & hash change
+ * @override                    redirects unauthorized users from createPost page
+ * @override                    redirects logged users from log in page
+*/
 function locationResolver(loc) {
 
   let path = loc.pathname
