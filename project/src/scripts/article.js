@@ -26,16 +26,6 @@ function loadArticles({articles, meta}, pageList, fullLoad = false) {
   newBtn.addEventListener('click', loadOnPage)
 }
 
-function openFullPageArticle({ articles }) {
-  const main = document.querySelector('.main')
-
-  main.innerHTML = ''
-
-  let articleWrapper = createFullPageArticle(articles)
-
-  main.append(articleWrapper)
-}
-
 ['load', 'hashchange'].forEach(el => {
 
   window.addEventListener(el, () => {
@@ -69,7 +59,7 @@ function locationResolver(loc) {
   switch (locType) {
     case 'getArticle':
         let id = hash.match(/(?<=id=)(.*?)(?=&|$)/)[0] || 1
-        getURL(`${server}/getArticles?index=${id}`, openFullPageArticle)
+        getURL(`${server}/getArticles?index=${id}`, createFullPageArticle)
       break
     case 'search':
         let tag = (hash.match(/(?<=tags=)(.*?)(?=&|$)/) || '')[0]

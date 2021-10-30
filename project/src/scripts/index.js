@@ -1,5 +1,15 @@
 let page = 0
 
+const sliderWrapper = document.querySelector('.main__intro__slider')
+const slider = document.querySelector('.slider__list')
+const sliderItems = document.getElementsByClassName('slider__item')
+
+const sliderBtns = document.querySelectorAll('.slider__btn')
+
+const pagination = document.querySelectorAll('.pagination__label input')
+
+slide(slider, sliderItems, sliderBtns, pagination)
+
 const articleSection = document.querySelector('.main__articles')
 const articleList = document.querySelector('.articles__list')
 const loadBtn = document.querySelector('.articles__load')

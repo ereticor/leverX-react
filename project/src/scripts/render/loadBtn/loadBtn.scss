@@ -1,0 +1,15 @@
+.articles__load {
+  position: relative;
+  left: -32px;
+  margin: 44px auto 0;
+  text-transform: none;
+
+  &:hover {
+    width: 155px;
+  }
+  
+  &:active {
+    width: 145px;
+    transform: scale(0.9);
+  }
+}

@@ -1,10 +1,4 @@
-const sliderWrapper = document.querySelector('.main__intro__slider')
-const slider = document.querySelector('.slider__list')
-const sliderItems = document.getElementsByClassName('slider__item')
-
-const sliderBtns = document.querySelectorAll('.slider__btn')
-
-const pagination = document.querySelectorAll('.pagination__label input')
+import './slider.scss'
 
 /**
  * creates infinite slider in choosed containers
@@ -15,9 +9,7 @@ const pagination = document.querySelectorAll('.pagination__label input')
  * @event   {transitionend}            removes transition from slider when scrolls on copied slide, then scroll to non-copied one                 
  * @event   {setTimeout}               autoscrolls when there is no user interaction with slider within 3 seconds             
 */
-slide(slider, sliderItems, sliderBtns, pagination)
-
-function slide(slider, items, btns, pagination, index = 1) {
+export function slide(slider, items, btns, pagination, index = 1) {
   
   const sliderLength = items.length
   

@@ -1,0 +1,117 @@
+/* article page */
+.main__paper__wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 48px 144px 76px;
+  background: #F2F2F2;
+  transition-duration: 0.5s;
+
+  .main__paper {
+    height: 100%;
+
+    .paper__pagination {
+      margin-bottom: 50px;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 24px;
+      letter-spacing: 0.0075em;
+
+      .pagination__link {
+        cursor: pointer;
+        color: #828282;
+      }
+
+      span > span {
+        display: inline-block;
+        margin: 2px 18px 0;
+        transform: scaleY(1.3);
+      }
+    }
+
+    .articles__item {
+      width: 100%;
+      height: 100%;
+
+      .item__figure {
+        border-radius: 0;
+        background: none;
+        box-shadow: none;
+        cursor: initial;
+
+        img {
+          height: unset;
+          aspect-ratio: 2.47;
+        }
+
+        .item__cap {
+          padding: 12px 0 52px;
+
+          .cap__head {
+            margin: 38px 0 46px;
+            font-size: 42px;
+            line-height: 56px;
+          }
+          
+          .cap__content {
+            color: #4F4F4F;
+
+            .content__head {
+              margin: 48px 0 24px;
+              font-size: 24px;
+              letter-spacing: 0.01em;
+
+              &::first-letter {
+                text-transform: uppercase;
+              }
+            }
+            
+            .content__text {
+              margin-bottom: 26px;
+              font-size: 16px;
+              line-height: 150%;
+              letter-spacing: 0.022em;
+
+              &:last-of-type {
+                margin-bottom: 49px;
+              }
+            }
+            
+          }
+
+          .cap__credits {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 23px;
+            border-top: 1px solid #BDBDBD;
+            font-weight: 600;
+            letter-spacing: 0.005em;
+          
+            .credits__author {
+              text-transform: capitalize;
+            }
+          }
+        }
+        
+        .item__tags {
+          display: flex;
+          gap: 16px;
+          padding: 3px 2px;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

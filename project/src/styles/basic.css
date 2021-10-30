@@ -81,3 +81,19 @@ li {
   color: #333333;
   transition-duration: 0.1s;
 }
+
+.main {
+  position: relative;
+}
+
+/* remaining from articlePage.css
+@import './basic.css';
+@import './header.css';
+@import './footer.css';
+@import './articles.css'; */
+
+/* remaining from index.css
+@import './basic.css';
+@import './header.css';
+@import './footer.css';
+@import './articles.css'; */
