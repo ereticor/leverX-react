@@ -34,11 +34,6 @@
   color: #FFFFFF;
 }
 
-body {
-  margin: 0;
-  background: #F2F2F2;
-}
-
 * {
   margin: 0;
   font-family: 'Lato';
@@ -46,12 +41,18 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
-button {
-  border-radius: 24px;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 1em;
-  text-transform: capitalize;
+body {
+  background: #F2F2F2;
+}
+
+.main {
+  position: relative;
+}
+
+.wrapper {
+  max-width: 1440px;
+  padding: 0 80px;
+  margin: 0 auto;
 }
 
 a {
@@ -60,16 +61,18 @@ a {
 
 ul {
   padding: 0;
+
+  li {
+    list-style-type: none;
+  }
 }
 
-li {
-  list-style-type: none;
-}
-
-.wrapper {
-  max-width: 1440px;
-  padding: 0 80px;
-  margin: 0 auto;
+button {
+  border-radius: 24px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1em;
+  text-transform: capitalize;
 }
 
 .btn {
@@ -82,9 +85,7 @@ li {
   transition-duration: 0.1s;
 }
 
-.main {
-  position: relative;
-}
+
 
 /* remaining from articlePage.css
 @import './basic.css';
