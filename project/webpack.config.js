@@ -15,8 +15,8 @@ const devServer = (isDev) => !isDev ? {} : {
 module.exports = ({development}) => ({
   mode: development ? 'development' : 'production',
   entry: {
-    main: './src/scripts/index.js',
-    // search: './src/scripts/article.js',
+    main: './src/scripts/slider.js',
+    article: './src/scripts/article.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -51,14 +51,14 @@ module.exports = ({development}) => ({
   plugins: [
     new HtmlWebpackPlugin({
       chunks: ['main'],
-      filename: 'main.js',
+      filename: 'main.html',
       template: './src/index.html',
     }),
-    // new HtmlWebpackPlugin({
-    //   chunks: ['search'],
-    //   filename: 'search.js',
-    //   template: './src/article.html',
-    // }),
+    new HtmlWebpackPlugin({
+      chunks: ['article'],
+      filename: 'article.html',
+      template: './src/article.html',
+    }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
     }),
