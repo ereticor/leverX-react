@@ -35,7 +35,7 @@ export function createFullPageSearch(articles) {
       loadArticles(articles, pageList, true)
     }
   
-    getURLthrottle(`http://localhost:3228/getArticles?tags=${tag}&title=${searchBar.value.trim() || ''}`, inputSearch)
+    getURLthrottle(`getArticles?tags=${tag}&title=${searchBar.value.trim() || ''}`, inputSearch)
 
   }
 

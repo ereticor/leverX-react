@@ -136,7 +136,7 @@ export function createPostPage({ tags }) {
         body: newPost
       }
   
-      getURL(`http://localhost:3228/createPost`, formStatus, options)
+      getURL(`createPost`, formStatus, options)
 
       function formStatus() {
         alert('success')

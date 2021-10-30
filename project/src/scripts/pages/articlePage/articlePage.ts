@@ -31,7 +31,7 @@ export function createFullPageArticle({ articles }) {
 
   const main: Element | null = document.querySelector('.main')
 
-  main!.innerHTML = ''
+  main.innerHTML = ''
 
-  main!.append(wrapper)
+  main.append(wrapper)
 }

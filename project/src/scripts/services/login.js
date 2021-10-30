@@ -1,6 +1,6 @@
 async function getURL(url, callback, options = null) {
   try {
-    const response = await fetch(url, options)
+    const response = await fetch(`http://localhost:3228/${url}`, options)
     if (response.status >= 400) {
       throw response.status
     }
@@ -44,30 +44,6 @@ const getURLthrottle = throttle(getURL, 1000)
 
 logIn()
 
-/**
- * saves user information in localStorage
- * @param   {object} user       user's info (without password) for localStorage
- * @param   {number} error      error status if user cant be founded in database
- * @see     {logIn}             runs to login when user is saved
-*/
-function saveUser(user, error) {
-  if (error) {
-    window.location = 'index.html#login'
-    switch(error) {
-      case 401:
-        setTimeout(() => alert('wrong password'), 200)
-        break
-      case 404:
-        setTimeout(() => alert('no such user'), 200)
-        break
-    }
-    return
-  }
-
-  localStorage.setItem('logged', JSON.stringify(user))
-
-  logIn()
-}
 
 /**
  * checks if user already logged in
@@ -83,18 +59,45 @@ function checkLogged() {
  * @param   {string} pass       user's password
  * @see     {checkLogged}       no futher server requests if user already logged in
  * @override                    replaces header log in button with createPost one and user's image
-*/
+ */
 function logIn(mail, pass) {
   let authorized = checkLogged()
-
+  
   if (authorized) {
-    if (window.location.hash == '#login') {
-      window.location = 'index.html'
-    } else {
-      createLoginHeader()
+    window.location.hash == '#login'
+      ? window.location = 'index.html' 
+      : createLoginHeader()
+
+    return
+  }
+
+  if (mail && pass) {
+    getURLthrottle(`sign?email=${mail}&password=${pass}`, saveUser)
+  }
+
+  /**
+   * saves user information in localStorage
+   * @param   {object} user       user's info (without password) for localStorage
+   * @param   {number} error      error status if user cant be founded in database
+   * @see     {logIn}             runs to login when user is saved
+  */
+  function saveUser(user, error) {
+    if (error) {
+      window.location = 'index.html#login'
+      switch(error) {
+        case 401:
+          setTimeout(() => alert('wrong password'), 200)
+          break
+        case 404:
+          setTimeout(() => alert('no such user'), 200)
+          break
+      }
+      return
     }
-  } else if (mail && pass) {
-    getURLthrottle(`http://localhost:3228/sign?email=${mail}&password=${pass}`, saveUser)
+  
+    localStorage.setItem('logged', JSON.stringify(user))
+  
+    logIn()
   }
 }
 

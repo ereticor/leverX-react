@@ -40,5 +40,5 @@ function getArticles(isUpdateList = true) {
   const checkBoxes = document.querySelectorAll('.checkbar__label_checked')
   let tags = [...checkBoxes].map(el => el.innerText.replaceAll(' ', '_')).join('+')
 
-  getURLthrottle(`http://localhost:3228/getArticles?tags=${tags}&title=${searchBar.value?.trim() || ''}&page=${page}`, searchInput)
+  getURLthrottle(`getArticles?tags=${tags}&title=${searchBar.value?.trim() || ''}&page=${page}`, searchInput)
 }
