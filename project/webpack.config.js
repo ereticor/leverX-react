@@ -8,20 +8,20 @@ const devServer = (isDev) => !isDev ? {} : {
     open: true,
     hot: true,
     port: 5050,
-    contentBase: path.join(__dirname, 'public')
+    // contentBase: path.join(__dirname, 'public')
   }
 };
 
 module.exports = ({development}) => ({
   mode: development ? 'development' : 'production',
   entry: {
-    main: './src/scripts/slider.js',
-    article: './src/scripts/article.js',
+    main: './src/index.ts',
+    // article: './src/index.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
-    assetModuleFilename: 'assets/[hash][ext]',
+    assetModuleFilename: 'assets/[hash].[ext]',
   },
   module: {
     rules: [
@@ -45,7 +45,11 @@ module.exports = ({development}) => ({
       {
         test: /\.s[ac]ss$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
-      }
+      },
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+      },
     ]
   },
   plugins: [
@@ -54,11 +58,11 @@ module.exports = ({development}) => ({
       filename: 'main.html',
       template: './src/index.html',
     }),
-    new HtmlWebpackPlugin({
-      chunks: ['article'],
-      filename: 'article.html',
-      template: './src/article.html',
-    }),
+    // new HtmlWebpackPlugin({
+    //   chunks: ['article'],
+    //   filename: 'article.html',
+    //   template: './src/article.html',
+    // }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
     }),
