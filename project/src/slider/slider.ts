@@ -14,7 +14,9 @@ export function slide(index = 1) {
   const slider: HTMLElement | null = document.querySelector(".slider__list");
   const sliderItems = slider!.getElementsByClassName("slider__item");
   const sliderBtns = document.querySelectorAll(".slider__btn");
-  const pagination: NodeListOf<Input> = document.querySelectorAll(".pagination__label input");
+  const pagination: NodeListOf<Input> = document.querySelectorAll(
+    ".pagination__label input"
+  );
 
   const sliderLength = sliderItems.length;
 
