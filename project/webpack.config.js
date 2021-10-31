@@ -9,7 +9,6 @@ const devServer = (isDev) => !isDev ? {} : {
     open: true,
     hot: true,
     port: 5050,
-    // contentBase: path.join(__dirname, 'public')
   }
 };
 
@@ -17,7 +16,6 @@ module.exports = ({development}) => ({
   mode: development ? 'development' : 'production',
   entry: {
     index: './src/index.ts',
-    article: './src/index.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -60,7 +58,7 @@ module.exports = ({development}) => ({
       template: './src/index.html',
     }),
     new HtmlWebpackPlugin({
-      chunks: ['article'],
+      chunks: ['index'],
       filename: 'article.html',
       template: './src/article.html',
     }),
