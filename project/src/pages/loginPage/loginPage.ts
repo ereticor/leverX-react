@@ -1,4 +1,3 @@
-// import { logIn } from 'services/login'
 import "./loginPage.scss";
 import { main } from "../../constants/app";
 import { Input } from "interfaces/input";

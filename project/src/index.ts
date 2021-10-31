@@ -1,5 +1,4 @@
-import { searchBar, sign, state, tagsList } from "./constants/app";
-import { getArticles } from "./services/getArticles";
+import { sign } from "./constants/app";
 import { locationResolver } from "./services/locationResolver";
 import { slide } from "./slider/slider";
 

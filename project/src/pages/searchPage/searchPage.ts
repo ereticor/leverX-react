@@ -1,5 +1,3 @@
-// import { fetchWrapperthrottle } from '../'
-// import { loadArticles } from '../'
 import { main } from "../../constants/app";
 import { ArticlePayload } from "interfaces/article";
 import { fetchWrapperThrottle } from "../../services/fetchWrapper";
@@ -32,8 +30,6 @@ function searchSingleTag({
 
 export function createFullPageSearch(hashTag: string) {
   if (!main) return;
-
-  // let hashTag = (window.location.hash.match(/(?<=tags=)(.*?)(?=&|$)/) || '')[0]
 
   let tag = hashTag.replace(/_/g, " ");
 
