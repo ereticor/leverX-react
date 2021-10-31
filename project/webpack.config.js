@@ -17,7 +17,7 @@ module.exports = ({development}) => ({
   mode: development ? 'development' : 'production',
   entry: {
     index: './src/index.ts',
-    // article: './src/index.ts',
+    article: './src/index.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -59,11 +59,11 @@ module.exports = ({development}) => ({
       filename: 'index.html',
       template: './src/index.html',
     }),
-    // new HtmlWebpackPlugin({
-    //   chunks: ['article'],
-    //   filename: 'article.html',
-    //   template: './src/article.html',
-    // }),
+    new HtmlWebpackPlugin({
+      chunks: ['article'],
+      filename: 'article.html',
+      template: './src/article.html',
+    }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
     }),

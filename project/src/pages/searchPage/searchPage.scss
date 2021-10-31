@@ -1,15 +1,17 @@
-.main__search__wrapper {
-  padding: 19px 144px 80px;
-
-  .main__articles__head {
-    margin-bottom: 14px;
-    font-size: 34px;
-    line-height: 44px;
-  }
-
-  .articles__list {
-    width: 100%;
-    margin: 28px 0 0;
-    gap: 25px 24px;
+.main {
+  .main__search__wrapper {
+    padding: 19px 144px 80px;
+  
+    .main__articles__head {
+      margin-bottom: 14px;
+      font-size: 34px;
+      line-height: 44px;
+    }
+  
+    .articles__list {
+      width: 100%;
+      margin: 28px 0 0;
+      gap: 25px 24px;
+    }
   }
 }

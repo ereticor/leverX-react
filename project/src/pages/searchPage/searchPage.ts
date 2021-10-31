@@ -38,7 +38,7 @@ export function createFullPageSearch(hashTag: string) {
 
   // let hashTag = (window.location.hash.match(/(?<=tags=)(.*?)(?=&|$)/) || '')[0]
 
-  let tag = hashTag.replace(/\s/g, " ");
+  let tag = hashTag.replace(/_/g, " ");
 
   let template = `
     <div class="main__articles__wrapper wrapper main__search__wrapper">

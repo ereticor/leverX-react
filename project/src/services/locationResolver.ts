@@ -23,7 +23,7 @@ export function locationResolver(loc: Location) {
 
   let isLogged = checkLogged();
 
-  if (isLogged) {
+  if (isLogged && !document.querySelector('.head__login')) {
     createLoginHeader();
   }
 

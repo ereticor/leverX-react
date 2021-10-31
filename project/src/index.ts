@@ -5,7 +5,9 @@ import { slide } from "./slider/slider";
 
 import "./styles/index.scss";
 
-slide();
+if (document.querySelector('.main__intro__slider')) {
+  slide();
+}
 
 ["load", "hashchange"].forEach((el) => {
   window.addEventListener(el, () => {
