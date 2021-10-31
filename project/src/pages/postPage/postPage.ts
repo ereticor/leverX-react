@@ -144,6 +144,7 @@ export function createPostPage({ tags }: { tags: string[] }) {
 
         function formStatus() {
           alert("success");
+          window.location.href = "index.html";
         }
       }
     }
@@ -184,17 +185,4 @@ export function createPostPage({ tags }: { tags: string[] }) {
 
     return JSON.stringify(obj);
   }
-}
-
-function UrlOptions(
-  arg0: string,
-  formStatus: () => void,
-  options: {
-    method: string;
-    headers: { "Content-Type": string };
-    body: string;
-  },
-  UrlOptions: any
-) {
-  throw new Error("Function not implemented.");
 }
