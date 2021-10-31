@@ -17,13 +17,17 @@ import { checkLogged } from "./login";
  * @override                    redirects logged users from log in page
  */
 export function locationResolver(loc: Location) {
+
+  let origin = loc.origin
+
   let path = loc.href;
+  console.log(path)
 
   let hash = loc.hash;
 
   let isLogged = checkLogged();
 
-  if (isLogged && !document.querySelector('.head__login')) {
+  if (isLogged && !document.querySelector(".head__login")) {
     createLoginHeader();
   }
 
@@ -52,7 +56,7 @@ export function locationResolver(loc: Location) {
       createLoginPage();
       break;
     default:
-      if (path === "/project/article.html") {
+      if (path === `${origin}/article.html`) {
         createFullPageSearch("");
       } else {
         fetchWrapper(`getTags`, ({ tags }: { tags: string[] }) => {
