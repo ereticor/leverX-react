@@ -21,9 +21,12 @@ export function getArticles(isUpdateList = true) {
   const checkBoxes: NodeListOf<HTMLElement> = document.querySelectorAll(
     ".checkbar__label_checked"
   );
-  let tags = [...checkBoxes]
-    .map((el) => el.innerText.replace(/\s/g, "_"))
-    .join("+"); //!delete this mess
+
+  let tags = checkBoxes.length !== 0
+    ? [...checkBoxes]
+        .map((el) => el.innerText.replace(/\s/g, "_"))
+        .join("+") //!delete this mess
+    : ''
 
   fetchWrapperThrottle(
     `getArticles?tags=${tags}&title=${searchBar!.value?.trim() || ""}&page=${
