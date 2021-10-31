@@ -1,5 +1,5 @@
 @ECHO OFF
-ECHO Lol, i will start installing dependencies
+ECHO (!-!) SERVER DEPENDENCIES (-_-)
 PAUSE
 call npm install
 ECHO well... now we can run our server
