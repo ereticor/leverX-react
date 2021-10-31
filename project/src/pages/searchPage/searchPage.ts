@@ -1,39 +1,36 @@
 // import { fetchWrapperthrottle } from '../'
 // import { loadArticles } from '../'
-import { searchBar } from "../../constants/app";
+import { main } from "../../constants/app";
 import { ArticlePayload } from "interfaces/article";
 import { fetchWrapperThrottle } from "../../services/fetchWrapper";
 import { loadArticles } from "../../services/loadArticles";
 
 import "./searchPage.scss";
+import { Input } from "interfaces/input";
 
 function searchSingleTag({
-  pageList,
+  articleList,
   tag,
   searchValue,
 }: {
-  pageList: HTMLElement;
+  articleList: HTMLElement;
   tag: string;
   searchValue: string;
 }) {
   function inputSearch(payload: ArticlePayload) {
-    if (pageList) {
-      pageList.innerHTML = "";
+    if (articleList) {
+      articleList.innerHTML = "";
     }
-    loadArticles(payload, pageList, true);
+    loadArticles(payload, articleList, true);
   }
 
-  if (searchBar) {
-    fetchWrapperThrottle(
-      `getArticles?tags=${tag}&title=${searchValue.trim() || ""}`,
-      inputSearch
-    );
-  }
+  fetchWrapperThrottle(
+    `getArticles?tags=${tag}&title=${searchValue.trim() || ""}`,
+    inputSearch
+  );
 }
 
 export function createFullPageSearch(hashTag: string) {
-  const main = document.querySelector(".main");
-
   if (!main) return;
 
   // let hashTag = (window.location.hash.match(/(?<=tags=)(.*?)(?=&|$)/) || '')[0]
@@ -54,19 +51,23 @@ export function createFullPageSearch(hashTag: string) {
 
   main.innerHTML = template;
 
-  let searchBar: HTMLInputElement | null = main.querySelector(".search__input");
+  const searchBar: Input | null = main.querySelector('.search__input')
 
-  let pageList: HTMLElement | null = main.querySelector(".articles__list");
+  const articleList: HTMLElement | null = main.querySelector('.articles__list')
 
   if (searchBar) {
     searchBar.addEventListener("input", () => {
-      if (pageList) {
-        searchSingleTag({ pageList, tag, searchValue: searchBar?.value || "" });
+      if (articleList) {
+        searchSingleTag({
+          articleList,
+          tag,
+          searchValue: searchBar?.value || "",
+        });
       }
     });
   }
 
-  if (pageList) {
-    searchSingleTag({ pageList, tag, searchValue: searchBar?.value || "" });
+  if (articleList) {
+    searchSingleTag({ articleList, tag, searchValue: searchBar?.value || "" });
   }
 }

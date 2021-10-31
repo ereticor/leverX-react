@@ -31,7 +31,6 @@ export function loadArticles(
     newBtn.remove();
   } else if (!pageList.parentNode!.contains(newBtn)) {
     pageList.parentNode!.append(newBtn);
+    newBtn.addEventListener("click", loadOnPage);
   }
-
-  newBtn.addEventListener("click", loadOnPage);
 }

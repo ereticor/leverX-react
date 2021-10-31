@@ -61,6 +61,8 @@
     gap: 48px 40px;
     width: calc(100% - 80px);
     margin-bottom: 26px;
+    min-height: 300px;
+    height: 100%;
 
     .articles__item {
       position: relative;

@@ -1,3 +1,4 @@
+import { getArticles } from "../../services/getArticles";
 import "./multiTags.scss";
 
 function createTag(text: string) {
@@ -11,7 +12,7 @@ function createTag(text: string) {
 export function createMultiTags(
   tags: string[],
   parent: HTMLElement,
-  tagServe = false
+  searchHandler = true
 ) {
   let tagsHTML = [...tags].reduce((acc, tag) => acc + createTag(tag), "");
 
@@ -22,6 +23,9 @@ export function createMultiTags(
   checkboxes.forEach((el) => {
     el.addEventListener("click", () => {
       el.parentElement!.classList.toggle("checkbar__label_checked");
+      if (searchHandler) {
+        getArticles();
+      }
     });
   });
 }

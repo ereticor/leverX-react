@@ -1,11 +1,11 @@
-import { checkBar, searchBar, sign, state, tagsList } from "./constants/app";
+import { searchBar, sign, state, tagsList } from "./constants/app";
 import { getArticles } from "./services/getArticles";
 import { locationResolver } from "./services/locationResolver";
 import { slide } from "./slider/slider";
 
 import "./styles/index.scss";
 
-if (document.querySelector('.main__intro__slider')) {
+if (document.querySelector(".main__intro__slider")) {
   slide();
 }
 
@@ -18,10 +18,6 @@ if (document.querySelector('.main__intro__slider')) {
     }
   });
 });
-
-searchBar?.addEventListener("input", () => getArticles());
-
-checkBar?.addEventListener("click", () => getArticles());
 
 sign?.addEventListener("click", () => {
   window.location.href = "index.html#login";

@@ -103,7 +103,7 @@ export function createPostPage({ tags }: { tags: string[] }) {
   let tagsWrapper: HTMLElement | null = main!.querySelector(".create__tags");
 
   if (tagsWrapper) {
-    createMultiTags(tags, tagsWrapper, true);
+    createMultiTags(tags, tagsWrapper);
   }
 
   const foot = document.querySelector(".foot__wrapper");

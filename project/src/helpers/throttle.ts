@@ -18,4 +18,3 @@ export const throttle = (func: Function, ms: number): Function => {
     }
   }
 }
-

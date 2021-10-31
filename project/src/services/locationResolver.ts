@@ -1,4 +1,4 @@
-import { state, tagsList } from "../constants/app";
+import { searchBar, state, tagsList } from "../constants/app";
 import { createFullPageArticle } from "../pages/articlePage/articlePage";
 import { createLoginPage } from "../pages/loginPage/loginPage";
 import { createPostPage } from "../pages/postPage/postPage";
@@ -6,7 +6,7 @@ import { createFullPageSearch } from "../pages/searchPage/searchPage";
 import { createLoginHeader } from "../render/loginHeader/loginHeader";
 import { createMultiTags } from "../render/multiTags/multiTags";
 import { fetchWrapper, fetchWrapperThrottle } from "./fetchWrapper";
-import { searchInput } from "./getArticles";
+import { getArticles, searchInput } from "./getArticles";
 import { checkLogged } from "./login";
 
 /**
@@ -17,11 +17,10 @@ import { checkLogged } from "./login";
  * @override                    redirects logged users from log in page
  */
 export function locationResolver(loc: Location) {
-
-  let origin = loc.origin
+  let origin = loc.origin;
 
   let path = loc.href;
-  console.log(path)
+  console.log(path);
 
   let hash = loc.hash;
 
@@ -59,6 +58,8 @@ export function locationResolver(loc: Location) {
       if (path === `${origin}/article.html`) {
         createFullPageSearch("");
       } else {
+        searchBar?.addEventListener("input", () => getArticles());
+
         fetchWrapper(`getTags`, ({ tags }: { tags: string[] }) => {
           if (tagsList) {
             createMultiTags(tags, tagsList);

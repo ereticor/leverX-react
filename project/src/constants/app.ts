@@ -16,9 +16,6 @@ export const tagsList: HTMLElement | null = document.querySelector(
   ".main__articles__checkbar"
 );
 export const searchBar: Input | null = document.querySelector(".search__input");
-export const checkBar: HTMLElement | null = document.querySelector(
-  ".main__articles__checkbar"
-);
 
 export const state = {
   page: 0,

@@ -78,7 +78,7 @@ export function createArticle(
     let tags = document.createElement("div");
     tags.classList.add("item__tags");
 
-    createMultiTags(articles.keywords, tags);
+    createMultiTags(articles.keywords, tags, false);
 
     for (let i = 0; i < tags.children.length; i++) {
       tags.children[i].addEventListener("click", () => {
