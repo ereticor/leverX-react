@@ -82,7 +82,7 @@ export function createArticle(
 
     for (let i = 0; i < tags.children.length; i++) {
       tags.children[i].addEventListener("click", () => {
-        window.location.pathname = `article.html#search?tags=${articles.keywords[
+        window.location.href = `article.html#search?tags=${articles.keywords[
           i
         ].replace(/\s/g, "_")}`;
       });

@@ -17,7 +17,7 @@ export function checkLogged() {
  */
 function saveUser(user: User, error?: unknown) {
   if (error) {
-    window.location.pathname = "index.html#login";
+    window.location.href = "index.html#login";
     switch (error) {
       case 401:
         setTimeout(() => alert("wrong password"), 200);
@@ -31,7 +31,7 @@ function saveUser(user: User, error?: unknown) {
 
   localStorage.setItem("logged", JSON.stringify(user));
 
-  window.location.pathname = "index.html";
+  window.location.href = "index.html";
 }
 
 /**

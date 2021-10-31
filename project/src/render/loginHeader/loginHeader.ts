@@ -18,7 +18,7 @@ export function createLoginHeader() {
   let postBtn = logInWrapper.querySelector(".login__create");
 
   postBtn!.addEventListener("click", () => {
-    window.location.pathname = "article.html#createPost";
+    window.location.href = "article.html#createPost";
   });
 
   let userProfile = logInWrapper.querySelector(".login__user");

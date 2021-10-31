@@ -17,7 +17,7 @@ import { checkLogged } from "./login";
  * @override                    redirects logged users from log in page
  */
 export function locationResolver(loc: Location) {
-  let path = loc.pathname;
+  let path = loc.href;
 
   let hash = loc.hash;
 
@@ -39,14 +39,14 @@ export function locationResolver(loc: Location) {
       break;
     case "createPost":
       if (!isLogged) {
-        window.location.pathname = "index.html";
+        window.location.href = "index.html";
         break;
       }
       fetchWrapper(`getTags`, createPostPage);
       break;
     case "login":
       if (isLogged) {
-        window.location.pathname = "index.html";
+        window.location.href = "index.html";
         break;
       }
       createLoginPage();

@@ -16,7 +16,7 @@ const devServer = (isDev) => !isDev ? {} : {
 module.exports = ({development}) => ({
   mode: development ? 'development' : 'production',
   entry: {
-    main: './src/index.ts',
+    index: './src/index.ts',
     // article: './src/index.ts',
   },
   output: {
@@ -55,8 +55,8 @@ module.exports = ({development}) => ({
   },
   plugins: [
     new HtmlWebpackPlugin({
-      chunks: ['main'],
-      filename: 'main.html',
+      chunks: ['index'],
+      filename: 'index.html',
       template: './src/index.html',
     }),
     // new HtmlWebpackPlugin({

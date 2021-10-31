@@ -7,10 +7,6 @@ import "./styles/index.scss";
 
 slide();
 
-searchBar?.addEventListener("input", () => getArticles());
-
-checkBar?.addEventListener("click", () => getArticles());
-
 ["load", "hashchange"].forEach((el) => {
   window.addEventListener(el, () => {
     const location = window.location;
@@ -21,6 +17,10 @@ checkBar?.addEventListener("click", () => getArticles());
   });
 });
 
+searchBar?.addEventListener("input", () => getArticles());
+
+checkBar?.addEventListener("click", () => getArticles());
+
 sign?.addEventListener("click", () => {
-  window.location.pathname = "index.html#login";
+  window.location.href = "index.html#login";
 });

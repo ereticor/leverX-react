@@ -122,7 +122,7 @@ export function createPostPage({ tags }: { tags: string[] }) {
   let cancelBtn = formFoot.querySelector(".btn_cancel");
 
   cancelBtn!.addEventListener("click", () => {
-    window.location.pathname = "index.html";
+    window.location.href = "index.html";
   });
 
   form!.append(formFoot);
