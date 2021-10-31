@@ -144,8 +144,8 @@ export function createPostPage({ tags }: { tags: string[] }) {
 
         function formStatus(resp: { redirectTo: string }, err: number) {
           if (err) {
-            alert('something went wrong');
-            window.location.reload()
+            alert("something went wrong");
+            window.location.reload();
           } else {
             alert("success");
             window.location.hash = resp.redirectTo;

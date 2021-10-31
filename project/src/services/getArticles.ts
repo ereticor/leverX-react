@@ -22,11 +22,10 @@ export function getArticles(isUpdateList = true) {
     ".checkbar__label_checked"
   );
 
-  let tags = checkBoxes.length !== 0
-    ? [...checkBoxes]
-        .map((el) => el.innerText.replace(/\s/g, "_"))
-        .join("+") //!delete this mess
-    : ''
+  let tags =
+    checkBoxes.length !== 0
+      ? [...checkBoxes].map((el) => el.innerText.replace(/\s/g, "_")).join("+") //!delete this mess
+      : "";
 
   fetchWrapperThrottle(
     `getArticles?tags=${tags}&title=${searchBar!.value?.trim() || ""}&page=${

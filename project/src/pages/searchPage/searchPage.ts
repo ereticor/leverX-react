@@ -51,9 +51,9 @@ export function createFullPageSearch(hashTag: string) {
 
   main.innerHTML = template;
 
-  const searchBar: Input | null = main.querySelector('.search__input')
+  const searchBar: Input | null = main.querySelector(".search__input");
 
-  const articleList: HTMLElement | null = main.querySelector('.articles__list')
+  const articleList: HTMLElement | null = main.querySelector(".articles__list");
 
   if (searchBar) {
     searchBar.addEventListener("input", () => {
