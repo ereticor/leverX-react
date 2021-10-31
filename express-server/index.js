@@ -8,7 +8,6 @@ import router from './routes/router.js'
 const app = express()
 const port = 3228
 
-
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(requestTime)

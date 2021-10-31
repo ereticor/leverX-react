@@ -7,6 +7,8 @@ export default function addPost(req, res, next) {
 
   let newPost = req.body
 
+  console.log(newPost)
+
   newPost._id = generateId()
 
   newPost.index = articleList[articleList.length - 1].index + 1
@@ -31,13 +33,18 @@ export default function addPost(req, res, next) {
 
   let newList = JSON.stringify(articleList, null, 2)
   
-  fs.writeFileSync('./public/articleList.json', newList, 'utf8', sendResp)
+  fs.writeFile('./public/articleList.json', newList, 'utf8', sendResp)
+
+  const responseBody = {
+    redirectTo: `getArticle?id=${newPost.index}`
+  }
   
-  function sendResp(err) {
+  function sendResp(data, err) {
+    console.log({data, err})
     if (err) {
       res.sendStatus(status.internalServerError)
     } else {
-      res.sendStatus(status.ok)
+      res.send(JSON.stringify(responseBody)) 
     }
   }
 }

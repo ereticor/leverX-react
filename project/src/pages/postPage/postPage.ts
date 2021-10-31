@@ -103,7 +103,7 @@ export function createPostPage({ tags }: { tags: string[] }) {
   let tagsWrapper: HTMLElement | null = main!.querySelector(".create__tags");
 
   if (tagsWrapper) {
-    createMultiTags(tags, tagsWrapper);
+    createMultiTags(tags, tagsWrapper, false);
   }
 
   const foot = document.querySelector(".foot__wrapper");
@@ -142,9 +142,14 @@ export function createPostPage({ tags }: { tags: string[] }) {
 
         fetchWrapper(`createPost`, formStatus, options);
 
-        function formStatus() {
-          alert("success");
-          window.location.href = "index.html";
+        function formStatus(resp: { redirectTo: string }, err: number) {
+          if (err) {
+            alert('something went wrong');
+            window.location.reload()
+          } else {
+            alert("success");
+            window.location.hash = resp.redirectTo;
+          }
         }
       }
     }
