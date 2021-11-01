@@ -15,7 +15,7 @@ const devServer = (isDev) => !isDev ? {} : {
 module.exports = ({development}) => ({
   mode: development ? 'development' : 'production',
   entry: {
-    index: './src/index.ts',
+    index: './src/index.tsx',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -75,7 +75,7 @@ module.exports = ({development}) => ({
     })
   ],
   resolve: {
-    extensions: ['.ts', '.js', 'tsx', 'jsx']
+    extensions: ['.ts', '.js', '.tsx', '.jsx']
   },
   ...devServer(development)
 });
