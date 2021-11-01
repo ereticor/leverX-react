@@ -1,0 +1,150 @@
+/* slider */
+.main .main__intro__wrapper {
+  padding: 0;
+  background: #000000;
+
+  .main__intro {
+    position: relative;
+
+    .main__intro__slider {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+
+      .slider__list {
+        display: flex;
+        height: 100%;
+        transform: translateX(-100%);
+        transition: none;
+
+        &_transition {
+          transition: all 0.3s ease-in-out;
+        }
+
+      }
+      
+    }
+  }
+}
+
+.slider__item {
+  display: flex;
+  flex: 0 0 100%;
+  height: 100%;
+  padding: 80px 80px 132px;
+  background: center / cover var(--back);
+  color: #FFFFFF;
+  font-weight: 600;
+
+  .slider__item__info {
+    width: 50%;
+  
+    h4.slider__item__head {
+      font-size: 34px;
+      line-height: 46px;
+      font-weight: 400;
+    }
+    
+    h2.slider__item__head {
+      font-size: 60px;
+      letter-spacing: 0.03em;
+      color: #F2C94C;
+      text-transform: uppercase;
+    }
+    
+    .slider__item__text {
+      max-width: 510px;
+      margin: 27px 0 55px;
+      font-size: 18px;
+      line-height: 24px;
+      font-weight: 400;
+    }
+
+    .slider__item__btn {
+      margin-left: 8px;
+    
+      &:hover {
+        box-shadow: 3px 5px #FFFFFF;
+      }
+      
+      &:active {
+        transform: translate(2px, 3px);
+        box-shadow: 1px 2px #FFFFFF;
+      }
+    }
+  }
+
+  .slider__item__img {
+    width: 50%;
+    background: center / contain no-repeat var(--img);
+  }
+}
+
+.slider__btn {
+  position: absolute;
+  top: 0;
+  width: 80px;
+  height: 100%;
+  background: none;
+  border: none;
+  border-radius: unset;
+  color: #FFFFFF;
+  font-size: 30px;
+  opacity: 0;
+  
+  .main__intro:hover & {
+    opacity: 1;
+  }
+
+  &:hover {
+    background: rgba(116, 116, 116, 0.3);
+  }
+  
+  &:active {
+    background: rgba(116, 116, 116, 0.5);
+    transform: translateX(-5px)
+  }
+
+  &.slider__left {
+    left: 0px;
+  }
+  
+  &.slider__right {
+    right: 0px;
+    
+    &:active {
+      transform: translateX(5px)
+    }
+  }
+}
+
+.slider__pagination {
+  position: absolute;
+  top: calc(100% + 20px);
+  display: flex;
+  gap: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  .pagination__label {
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+    
+    input {
+      display: none;
+
+      &:checked+span {
+        background: #000000;
+      }
+    }
+    span {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 1px solid #000000;
+      border-radius: 50%;
+  
+    }
+  }
+}
