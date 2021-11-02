@@ -2,6 +2,7 @@ import Slider from "../../components/Slider";
 import React from "react";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
+import ArticlesBlock from "../../components/ArticlesBlock/ArticlesBlock";
 
 export default class Home extends React.Component {
   render() {
@@ -14,23 +15,7 @@ export default class Home extends React.Component {
               <Slider/>
             </section>
           </div>
-          <div className="main__articles__wrapper wrapper">
-            <section className="main__articles">
-              <h3 className="main__articles__head">
-                Interesting articles by LeverX Group
-              </h3>
-              <div className="main__articles__search">
-                <input
-                  type="search"
-                  className="search__input"
-                  placeholder="Search for article"
-                />
-              </div>
-              <div className="main__articles__checkbar"></div>
-              <ul className="articles__list"></ul>
-              <button className="articles__load btn">Load more</button>
-            </section>
-          </div>
+          <ArticlesBlock title='Interesting articles by LeverX Group'/>
         </main>
         <Footer />
       </div>

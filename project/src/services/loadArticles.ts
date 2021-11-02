@@ -1,36 +1,36 @@
-import { state } from "../constants/app";
-import { Article } from "../interfaces/article";
-import { createArticle } from "../render/article/article";
-import { createLoadBtn } from "../render/loadBtn/loadBtn";
-import { getArticles } from "./getArticles";
+// import { state } from "../constants/app";
+// import { Article } from "../interfaces/article";
+// import { createArticle } from "../components/Article/article";
+// import { createLoadBtn } from "../components/LoadBtn/LoadBtn";
+// import { getArticles } from "./getArticles";
 
-export function loadArticles(
-  { articles, meta }: { articles: Article[]; meta: { maxPage: number } },
-  pageList: HTMLElement,
-  fullLoad = false
-) {
-  const oldBtn = pageList.parentNode!.querySelector(".articles__load");
-  if (oldBtn) oldBtn.remove();
+// export function loadArticles(
+//   { articles, meta }: { articles: Article[]; meta: { maxPage: number } },
+//   pageList: HTMLElement,
+//   fullLoad = false
+// ) {
+//   const oldBtn = pageList.parentNode!.querySelector(".articles__load");
+//   if (oldBtn) oldBtn.remove();
 
-  articles.forEach((article) => {
-    pageList.append(createArticle(article));
-  });
+//   articles.forEach((article) => {
+//     pageList.append(createArticle(article));
+//   });
 
-  if (fullLoad) {
-    return;
-  }
+//   if (fullLoad) {
+//     return;
+//   }
 
-  const newBtn = createLoadBtn();
+//   const newBtn = createLoadBtn();
 
-  function loadOnPage() {
-    state.page += 1;
-    getArticles(false);
-  }
+//   function loadOnPage() {
+//     state.page += 1;
+//     getArticles(false);
+//   }
 
-  if (state.page + 1 >= meta.maxPage) {
-    newBtn.remove();
-  } else if (!pageList.parentNode!.contains(newBtn)) {
-    pageList.parentNode!.append(newBtn);
-    newBtn.addEventListener("click", loadOnPage);
-  }
-}
+//   if (state.page + 1 >= meta.maxPage) {
+//     newBtn.remove();
+//   } else if (!pageList.parentNode!.contains(newBtn)) {
+//     pageList.parentNode!.append(newBtn);
+//     newBtn.addEventListener("click", loadOnPage);
+//   }
+// }
