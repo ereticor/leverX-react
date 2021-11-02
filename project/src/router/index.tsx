@@ -12,6 +12,9 @@ export default class Router extends React.Component {
         <Route path="/">
           <Home/>
         </Route>
+        {/* <Route path="/article">
+          <Article/>
+        </Route> */}
       </Switch>
     </BrowserRouter>
     )

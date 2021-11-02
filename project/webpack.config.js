@@ -68,11 +68,11 @@ module.exports = ({development}) => ({
     new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false
     }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {from: './slider', to: './assets/slider'}
-      ]
-    })
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {from: './slider', to: './assets/slider'}
+    //   ]
+    // })
   ],
   resolve: {
     extensions: ['.ts', '.js', '.tsx', '.jsx']
