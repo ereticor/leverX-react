@@ -11,6 +11,11 @@
     height: max-content;
     /* aspect-ratio: 2.5; */
     font-size: 0.01px;
+
+    & .create__preview {
+      position: relative;
+      display: block;
+    }
   }
 
   .create__cover {
@@ -25,10 +30,6 @@
     display: none;
     object-fit: contain;
   
-    &.show {
-      position: relative;
-      display: block;
-    }
   }
 }
 
@@ -116,7 +117,7 @@
     font-size: 20px;
   }
   
-  .checkbar__label_checked::before {
+  .checkbar__label.checked::before {
     content: none;
   }
 }
