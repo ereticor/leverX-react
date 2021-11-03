@@ -9,6 +9,7 @@ const devServer = (isDev) => !isDev ? {} : {
     open: true,
     hot: true,
     port: 5050,
+    historyApiFallback: true,
   }
 };
 
@@ -18,6 +19,7 @@ module.exports = ({development}) => ({
     index: './src/index.tsx',
   },
   output: {
+    publicPath: '/',
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
     assetModuleFilename: 'assets/[hash].[ext]',
@@ -57,11 +59,11 @@ module.exports = ({development}) => ({
       filename: 'index.html',
       template: './src/index.html',
     }),
-    new HtmlWebpackPlugin({
-      chunks: ['index'],
-      filename: 'article.html',
-      template: './src/article.html',
-    }),
+    // new HtmlWebpackPlugin({
+    //   chunks: ['index'],
+    //   filename: 'article.html',
+    //   template: './src/article.html',
+    // }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
     }),

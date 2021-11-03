@@ -23,6 +23,7 @@ interface State {
 interface Props {
   className?: string;
   title: string;
+  singleTag?: string;
 }
 
 export default class ArticlesBlock extends React.Component<Props, State> {
@@ -43,6 +44,8 @@ export default class ArticlesBlock extends React.Component<Props, State> {
 
     this.changeCheckedTags = this.changeCheckedTags.bind(this);
     this.getMoreArticles = this.getMoreArticles.bind(this);
+
+    
   }
 
   getArticles(isLoadMore = false) {
@@ -57,7 +60,7 @@ export default class ArticlesBlock extends React.Component<Props, State> {
         }
       }, () => {
         const { page, checkedTags, searchValue } = this.state;
-        const tags = checkedTags.join("+").replace(/\s/g, "_");
+        const tags = this.props.singleTag || checkedTags.join("+").replace(/\s/g, "_");
         const search = searchValue.trim();
         console.log('fetchWrapper')
         fetchWrapperThrottle(
@@ -91,12 +94,14 @@ export default class ArticlesBlock extends React.Component<Props, State> {
 
   componentDidMount() {
     console.log('DidMount')
-    fetchWrapper(`getTags`, ({ tags }: { tags: string[] }) => {
-      this.setState({
-        isLoadingTags: false,
-        tags: tags,
+    if (!this.props.singleTag) {
+      fetchWrapper(`getTags`, ({ tags }: { tags: string[] }) => {
+        this.setState({
+          isLoadingTags: false,
+          tags: tags,
+        });
       });
-    });
+    }
     this.getArticles();
   }
 
@@ -144,14 +149,15 @@ export default class ArticlesBlock extends React.Component<Props, State> {
             />
           </div>
           <div className="main__articles__checkbar">
-            {/*component list of tags*/}
-            <MultiTags
-              error={error}
-              isLoading={isLoadingTags}
-              tags={tags}
-              checkedTags={checkedTags}
-              clickHandler={this.changeCheckedTags}
-            />
+            {!!tags.length && 
+              (<MultiTags
+                error={error}
+                isLoading={isLoadingTags}
+                tags={tags}
+                checkedTags={checkedTags}
+                clickHandler={this.changeCheckedTags}
+              />)
+            }
           </div>
           <ul className="articles__list">
             {articlesData.map((article, index) => (

@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "../pages/Home";
+import SearchPage from "../pages/SearchPage";
 // const Home = React.lazy(() => import('../pages/Home'));
 
 export default class Router extends React.Component {
@@ -9,12 +10,12 @@ export default class Router extends React.Component {
     return (
       <BrowserRouter>
       <Switch>
-        <Route path="/">
+        <Route path="/search/:tag">
+          <SearchPage/>
+        </Route>
+        <Route path="/home">
           <Home/>
         </Route>
-        {/* <Route path="/article">
-          <Article/>
-        </Route> */}
       </Switch>
     </BrowserRouter>
     )
