@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import { RouteComponentProps } from "react-router-dom";
+import { Link, RouteComponentProps } from "react-router-dom";
 
 import {
   Article,
@@ -53,9 +53,9 @@ export default class ArticlePage extends React.Component<
             <section className="main__paper">
               <div className="paper__pagination">
                 <div className="paper__pagination">
-                  <a href="/" className="pagination__link">
+                  <Link to="/" className="pagination__link">
                     Home page
-                  </a>
+                  </Link>
                   <span>
                     <span>&gt;</span>Article
                   </span>
