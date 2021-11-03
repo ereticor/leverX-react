@@ -76,6 +76,7 @@ export default class Slider extends React.Component<{}, State> {
 
   componentDidMount() {
     this.autoSlide()
+    this.checkSlide()
   }
 
   render() {
