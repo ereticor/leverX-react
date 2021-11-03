@@ -1,3 +1,3 @@
-import ArticlesBlock from './ArticlesBlock';
+import ArticlesBlock from "./ArticlesBlock";
 
-export default ArticlesBlock
+export default ArticlesBlock;

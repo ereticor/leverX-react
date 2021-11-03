@@ -1,7 +1,7 @@
 import React from "react";
 import Router from "./router";
 
-import './styles/index.scss'
+import './index.scss'
 
 export default class App extends React.Component {
   

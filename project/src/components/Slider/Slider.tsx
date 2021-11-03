@@ -90,11 +90,11 @@ export default class Slider extends React.Component<{}, State> {
         <button className="slider__right slider__btn" onClick={(e) => this.transformSlide(1, e)}>&gt;</button>
         <div className="slider__pagination">
           <label className="pagination__label" onClick={(e) => this.transformSlide(-1, e)}>
-            <input type="radio" name="sliderPagination" checked={this.state.index === 1} />
+            <input type="radio" name="sliderPagination" checked={this.state.index === 1} onChange={() => {}}/>
             <span></span>
           </label>
           <label className="pagination__label" onClick={(e) => this.transformSlide(1, e)}>
-            <input type="radio" name="sliderPagination" checked={this.state.index === 2}/>
+            <input type="radio" name="sliderPagination" checked={this.state.index === 2} onChange={() => {}}/>
             <span></span>
           </label>
         </div>

@@ -15,7 +15,7 @@ export default class Tag extends React.Component<Props> {
     const { text, isChecked, clickHandler } = this.props;
     return (
       <label className={`checkbar__label ${isChecked ? 'checked' : ''}`}>
-        <input className="checkbar__input" type="checkbox" checked={isChecked} onClick={() => {
+        <input className="checkbar__input" type="checkbox" checked={isChecked} onChange={() => {
           if (clickHandler) {
             clickHandler(text);
           }
