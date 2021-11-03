@@ -20,6 +20,7 @@ export default class LoginHeader extends React.Component<{}, State> {
     // this.transformSlide = this.transformSlide.bind(this)
     // this.checkSlide = this.checkSlide.bind(this)
     // this.autoSlide = this.autoSlide.bind(this)
+    //! name this loginBlock
   }
 
   componentDidMount() {

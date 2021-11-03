@@ -13,7 +13,7 @@ export default function articleSearch(req, res, next) {
   if (params.index) {
     filtered = filtered.find(el => el.index == params.index)
 
-    res.send(JSON.stringify({ articles: filtered, meta: {} }))
+    res.send(JSON.stringify({ articles: [filtered], meta: {} }))
     return
   }
 

@@ -4,10 +4,10 @@ import Tag from "./Tag";
 import './multiTags.scss'
 
 interface Props {
-  error: Error | null;
+  error?: Error | null;
   tags: string[];
-  checkedTags: string[];
-  isLoading: boolean;
+  checkedTags?: string[];
+  isLoading?: boolean;
   clickHandler: (tag: string) => void;
 }
 
@@ -17,7 +17,7 @@ export default class MultiTags extends React.Component<Props> {
   }
 
   render() {
-    const {error, isLoading, tags, checkedTags, clickHandler} = this.props;
+    const {error, isLoading, tags, checkedTags = [], clickHandler} = this.props;
     if (error) {
       return <p className="main_error">{error} occurred</p>
     }
@@ -31,5 +31,3 @@ export default class MultiTags extends React.Component<Props> {
     );
   }
 }
-
-// getArticles();

@@ -7,7 +7,7 @@ export default class Header extends React.Component {
     return (
       <div className="head__wrapper wrapper">
         <header className="head">
-          <a href="/search" className="head__link">
+          <a href="/" className="head__link">
             <h1 className="head__logo">leverX</h1>
           </a>
           <button className="head__sign head__btn">sign in</button>

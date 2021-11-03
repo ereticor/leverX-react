@@ -15,11 +15,3 @@ export default class LoadBtn extends React.Component<Props> {
     )
   }
 }
-
-// export function createLoadBtn() {
-//   let btn = document.createElement("button");
-//   btn.classList.add("articles__load", "btn");
-//   btn.innerText = "Load more";
-
-//   return btn;
-// }

@@ -1,4 +1,4 @@
-interface ArticleContent {
+export interface ArticleContent {
   head: string;
   text: string[];
 }

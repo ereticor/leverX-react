@@ -133,11 +133,9 @@ export default class ArticlesBlock extends React.Component<Props, State> {
       >
         <section className="main__articles">
           <h3 className="main__articles__head">
-            {/*component list head*/}
             {this.props.title}
           </h3>
           <div className="main__articles__search">
-            {/*component searchbar*/}
             <input
               type="search"
               className="search__input"
@@ -164,7 +162,6 @@ export default class ArticlesBlock extends React.Component<Props, State> {
               <Article key={`article ${index}`} articleData={article} />
             ))}
           </ul>
-          {/*component list of articles*/}
           {page + 1 < maxPage && <LoadBtn clickHandler={ this.getMoreArticles} />}
         </section>
       </div>

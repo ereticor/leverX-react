@@ -1,3 +1,4 @@
+import ArticlePage from "../pages/ArticlePage";
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "../pages/Home";
@@ -13,7 +14,10 @@ export default class Router extends React.Component {
         <Route path="/search/:tag">
           <SearchPage/>
         </Route>
-        <Route path="/home">
+        <Route path="/article/:index">
+          <ArticlePage/>
+        </Route>
+        <Route path="/">
           <Home/>
         </Route>
       </Switch>
