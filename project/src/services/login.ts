@@ -1,4 +1,4 @@
-import { fetchWrapperThrottle } from "./fetchWrapper";
+import { fetchWrapper } from "./fetchWrapper";
 import { User } from "interfaces/user";
 
 /**
@@ -17,7 +17,7 @@ export function checkLogged() {
  */
 function saveUser(user: User, error?: unknown) {
   if (error) {
-    window.location.href = "index.html#login";
+    // window.location.href = "/login";
     switch (error) {
       case 401:
         setTimeout(() => alert("wrong password"), 200);
@@ -31,7 +31,7 @@ function saveUser(user: User, error?: unknown) {
 
   localStorage.setItem("logged", JSON.stringify(user));
 
-  window.location.href = "index.html";
+  // window.location.href = "/";
 }
 
 /**
@@ -43,6 +43,10 @@ function saveUser(user: User, error?: unknown) {
  */
 export function logIn(mail?: string, pass?: string) {
   if (mail && pass) {
-    fetchWrapperThrottle(`sign?email=${mail}&password=${pass}`, saveUser);
+    fetchWrapper(`sign?email=${mail}&password=${pass}`, saveUser);
   }
+}
+
+export function logOut() {
+  localStorage.removeItem("logged");
 }

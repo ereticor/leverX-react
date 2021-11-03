@@ -44,8 +44,6 @@ export default class ArticlesBlock extends React.Component<Props, State> {
 
     this.changeCheckedTags = this.changeCheckedTags.bind(this);
     this.getMoreArticles = this.getMoreArticles.bind(this);
-
-    
   }
 
   getArticles(isLoadMore = false) {

@@ -1,6 +1,5 @@
 import React from "react";
 import Footer from "../../components/Footer";
-import Header from "../../components/Header";
 import { Link, RouteComponentProps } from "react-router-dom";
 
 import {
@@ -46,8 +45,7 @@ export default class ArticlePage extends React.Component<
   render() {
     const { title, content, author, date, keywords, picture } = this.state;
     return (
-      <div>
-        <Header />
+      <>
         <main className="main">
           <div className="main__paper__wrapper wrapper">
             <section className="main__paper">
@@ -88,7 +86,7 @@ export default class ArticlePage extends React.Component<
           </div>
         </main>
         <Footer />
-      </div>
+      </>
     );
   }
 }

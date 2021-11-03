@@ -1,53 +1,38 @@
 import React from "react";
-import { checkLogged } from "../../../services/login";
-import { Link, RouteComponentProps } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-// import { sliderData } from "../../constants/slider";
+interface Props {
+  isLogged: boolean, 
+  logger: (state: boolean) => void,
+}
 
-// interface State {
-//   index: number;
-//   interacted: boolean;
-//   transition: boolean;
-// }
+export default class LoginBlock extends React.Component<Props> {
 
-export default class LoginBlock extends React.Component {
-  // private slider: React.RefObject<HTMLUListElement>
-  constructor(props: RouteComponentProps<{}>) {
+  constructor(props: Props) {
     super(props);
-
-    // this.state = { index: 1, interacted: false, transition: false };
-
-    // this.slider = React.createRef()
-
-    // this.transformSlide = this.transformSlide.bind(this)
-    // this.checkSlide = this.checkSlide.bind(this)
-    // this.autoSlide = this.autoSlide.bind(this)
-    //! name this loginBlock
   }
 
-  componentDidMount() {
-    // this.autoSlide()
+  logOut = () => {
+    localStorage.removeItem("logged");
+    this.props.logger(false)
   }
 
   render() {
-    if (checkLogged()) {
+    if (this.props.isLogged) {
+      const userImg = JSON.parse(localStorage.getItem("logged") || "").picture
+      return (
       <div className="head__login">
         <Link to="/post" className="head__btn login__create link_btn">Create a Post</Link>
         <img
           className="login__user"
-          src="${userImg}"
+          src={userImg}
           title="click to log out"
+          onClick={this.logOut}
         />
-      </div>;
+      </div>
+      )
     } else {
       return <Link to="/login" className="head__sign head__btn link_btn">sign in</Link>;
     }
   }
-}
-
-{
-  /* <div className="head__login">
-  <button className="head__btn login__create">Create a Post</button>
-  <img className="login__user" src="${userImg}" title="click to log out"/>
-</div> */
 }
