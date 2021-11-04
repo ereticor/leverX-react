@@ -1,3 +1,4 @@
 import PostForm from "./PostForm";
+import { withRouter } from "react-router";
 
-export default PostForm;
+export default withRouter(PostForm);

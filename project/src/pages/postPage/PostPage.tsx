@@ -1,11 +1,22 @@
 import PostForm from "../../components/PostForm";
 import React from "react";
-import Header from "../../components/Header";
 
 import './postPage.scss'
 
 export default class PostPage extends React.Component {
 
+  render() {
+    return (
+      <>
+        <main className="main">
+          <div className="main__create__wrapper wrapper">
+            <PostForm/>
+          </div>
+        </main>
+      </>
+    );
+  }
+}
   // preview(input: Input) {
   //   let reader = new FileReader();
 
@@ -121,16 +132,3 @@ export default class PostPage extends React.Component {
   //   return JSON.stringify(obj);
   // }
 
-  render() {
-    return (
-      <div>
-        <Header />
-        <main className="main">
-          <div className="main__create__wrapper wrapper">
-            <PostForm/>
-          </div>
-        </main>
-      </div>
-    );
-  }
-}

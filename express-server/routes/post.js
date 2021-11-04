@@ -36,7 +36,7 @@ export default function addPost(req, res, next) {
   fs.writeFile('./public/articleList.json', newList, 'utf8', sendResp)
 
   const responseBody = {
-    redirectTo: `getArticle?id=${newPost.index}`
+    redirectTo: `/article/${newPost.index}`
   }
   
   function sendResp(data, err) {

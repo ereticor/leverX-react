@@ -39,7 +39,9 @@ export default class ArticlePage extends React.Component<
 
   stateWrapper(payload: ArticlePayload) {
     console.log(payload, this)
-    this.setState({...payload.articles[0]})
+    if (payload) {
+      this.setState({...payload.articles[0]})
+    }
   }
 
   render() {
