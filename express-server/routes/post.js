@@ -7,8 +7,6 @@ export default function addPost(req, res, next) {
 
   let newPost = req.body
 
-  console.log(newPost)
-
   newPost._id = generateId()
 
   newPost.index = articleList[articleList.length - 1].index + 1
@@ -40,7 +38,6 @@ export default function addPost(req, res, next) {
   }
   
   function sendResp(data, err) {
-    console.log({data, err})
     if (err) {
       res.sendStatus(status.internalServerError)
     } else {
