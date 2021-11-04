@@ -50,6 +50,7 @@
     }
   
     .main__articles__checkbar {
+      position: relative;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -57,6 +58,7 @@
     }
   
     .articles__list {
+      position: relative;
       display: flex;
       flex-wrap: wrap;
       gap: 48px 40px;

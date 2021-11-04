@@ -30,6 +30,21 @@
   }
 }
 
+@keyframes load {
+  from {
+    content: '';
+  }
+  33% {
+    content: '.';
+  }
+  66% {
+    content: '..';
+  }
+  to {
+    content: '...';
+  }
+}
+
 ::selection {
   background: #2F80ED;
   color: #FFFFFF;
@@ -44,6 +59,12 @@
 
 body {
   background: #F2F2F2;
+}
+
+.app {
+  position: relative;
+  height: max-content;
+  min-height: 500px;
 }
 
 .main {
@@ -103,3 +124,19 @@ button, a.link_btn {
 @import './header.css';
 @import './footer.css';
 @import './articles.css'; */
+
+.loading {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+
+  &::after {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    animation: load 1s ease-in-out infinite;
+  }
+}
