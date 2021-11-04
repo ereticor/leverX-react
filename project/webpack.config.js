@@ -2,7 +2,6 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const devServer = (isDev) => !isDev ? {} : {
   devServer: {
@@ -70,11 +69,6 @@ module.exports = ({development}) => ({
     new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false
     }),
-    // new CopyWebpackPlugin({
-    //   patterns: [
-    //     {from: './slider', to: './assets/slider'}
-    //   ]
-    // })
   ],
   resolve: {
     extensions: ['.ts', '.js', '.tsx', '.jsx']
