@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 import "./loadBtn.scss";
 
@@ -12,6 +12,6 @@ export default class LoadBtn extends React.Component<Props> {
       <button className="btn articles__load" onClick={this.props.clickHandler}>
         Load more
       </button>
-    )
+    );
   }
 }

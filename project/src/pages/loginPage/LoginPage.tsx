@@ -5,7 +5,7 @@ import "./loginPage.scss";
 import LoginForm from "../../components/LoginForm";
 
 interface Props {
-  logger: (state: boolean) => void,
+  logger: (state: boolean) => void;
 }
 
 export default class LoginPage extends React.Component<Props> {
@@ -20,7 +20,7 @@ export default class LoginPage extends React.Component<Props> {
           <div className="main__login__wrapper wrapper">
             <section className="main__login">
               <h3 className="main__login__head">Welcome to course</h3>
-              <LoginForm logger={this.props.logger}/>
+              <LoginForm logger={this.props.logger} />
             </section>
           </div>
           ;

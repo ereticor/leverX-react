@@ -18,47 +18,45 @@ export default class Router extends React.Component<{}, State> {
 
     this.state = {
       isLogged: false,
-    }
+    };
 
-    this.logger = this.logger.bind(this)
-    this.checkLogin = this.checkLogin.bind(this)
+    this.logger = this.logger.bind(this);
+    this.checkLogin = this.checkLogin.bind(this);
   }
 
   logger(state: boolean) {
-    this.setState({ isLogged: state })
+    this.setState({ isLogged: state });
   }
 
   checkLogin() {
-    return this.state.isLogged
+    return this.state.isLogged;
   }
 
   componentDidMount() {
-    this.setState({ isLogged: !!localStorage.getItem('logged') })
+    this.setState({ isLogged: !!localStorage.getItem("logged") });
   }
-  
+
   render() {
-    const {isLogged} = this.state;
+    const { isLogged } = this.state;
     return (
       <BrowserRouter>
-      <Header isLogged={isLogged} logger={this.logger}/>
-      <Switch>
-        <Route path="/login">
-          {!isLogged && <LoginPage logger={this.logger}/> || <Home/>}
-        </Route>
-        <Route path="/post">
-          {isLogged && <PostPage/> || <Home/>}
-        </Route>
-        <Route path="/search/:tag">
-          <SearchPage/>
-        </Route>
-        <Route path="/article/:index">
-          <ArticlePage/>
-        </Route>
-        <Route path="/">
-          <Home/>
-        </Route>
-      </Switch>
-    </BrowserRouter>
-    )
+        <Header isLogged={isLogged} logger={this.logger} />
+        <Switch>
+          <Route path="/login">
+            {(!isLogged && <LoginPage logger={this.logger} />) || <Home />}
+          </Route>
+          <Route path="/post">{(isLogged && <PostPage />) || <Home />}</Route>
+          <Route path="/search/:tag">
+            <SearchPage />
+          </Route>
+          <Route path="/article/:index">
+            <ArticlePage />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
   }
 }

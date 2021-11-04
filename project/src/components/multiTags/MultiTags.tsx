@@ -1,7 +1,7 @@
 import React from "react";
 import Tag from "./Tag";
 
-import './multiTags.scss'
+import "./multiTags.scss";
 
 interface Props {
   error?: Error | null;
@@ -17,16 +17,29 @@ export default class MultiTags extends React.Component<Props> {
   }
 
   render() {
-    const {error, isLoading, tags, checkedTags = [], clickHandler} = this.props;
+    const {
+      error,
+      isLoading,
+      tags,
+      checkedTags = [],
+      clickHandler,
+    } = this.props;
     if (error) {
-      return <p className="main_error">{error} occurred</p>
+      return <p className="main_error">{error} occurred</p>;
     }
     if (isLoading) {
-      return <p className="main_load">Loading</p>
+      return <p className="main_load">Loading</p>;
     }
     return (
       <>
-        {tags.map( (tag, index) => <Tag key={`tag: ${index}`} text={tag} clickHandler={clickHandler} isChecked={checkedTags.includes(tag)}/>)}
+        {tags.map((tag, index) => (
+          <Tag
+            key={`tag: ${index}`}
+            text={tag}
+            clickHandler={clickHandler}
+            isChecked={checkedTags.includes(tag)}
+          />
+        ))}
       </>
     );
   }

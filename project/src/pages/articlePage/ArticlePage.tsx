@@ -2,19 +2,17 @@ import React from "react";
 import Footer from "../../components/Footer";
 import { Link, RouteComponentProps } from "react-router-dom";
 
-import {
-  Article,
-  ArticlePayload,
-} from "../../interfaces/article";
+import { Article, ArticlePayload } from "../../interfaces/article";
 import MultiTags from "../../components/multiTags";
 import { fetchWrapper } from "../../services/fetchWrapper";
 
-import './articlePage.scss'
+import "./articlePage.scss";
 import ArticleContent from "./ArticleContent";
 import dateToHuman from "../../helpers/dateToHuman";
 
 export default class ArticlePage extends React.Component<
-  RouteComponentProps<{ index: string }>, Article
+  RouteComponentProps<{ index: string }>,
+  Article
 > {
   constructor(props: RouteComponentProps<{ index: string }>) {
     super(props);
@@ -28,19 +26,22 @@ export default class ArticlePage extends React.Component<
       author: "",
       date: 0,
       keywords: [],
-    }
+    };
 
-    this.stateWrapper = this.stateWrapper.bind(this)
+    this.stateWrapper = this.stateWrapper.bind(this);
   }
 
   componentDidMount() {
-    fetchWrapper(`getArticles?index=${this.props.match.params.index}`, this.stateWrapper);
+    fetchWrapper(
+      `getArticles?index=${this.props.match.params.index}`,
+      this.stateWrapper
+    );
   }
 
   stateWrapper(payload: ArticlePayload) {
-    console.log(payload, this)
+    console.log(payload, this);
     if (payload) {
-      this.setState({...payload.articles[0]})
+      this.setState({ ...payload.articles[0] });
     }
   }
 
@@ -67,7 +68,13 @@ export default class ArticlePage extends React.Component<
                   <figcaption className="item__cap">
                     <h6 className="cap__head">{title}</h6>
                     <div className="cap__content">
-                      {content.map( (block, index) => (<ArticleContent head={block.head} text={block.text} key={`content ${index}`}/>))}
+                      {content.map((block, index) => (
+                        <ArticleContent
+                          head={block.head}
+                          text={block.text}
+                          key={`content ${index}`}
+                        />
+                      ))}
                     </div>
                     <div className="cap__credits">
                       <p className="credits__author">{author}</p>
@@ -76,11 +83,11 @@ export default class ArticlePage extends React.Component<
                   </figcaption>
                   <div className="item__tags">
                     <MultiTags
-                        tags={keywords}
-                        clickHandler={(text) => {
-                          this.props.history.push(`/search/${text}`);
-                        }}
-                      />
+                      tags={keywords}
+                      clickHandler={(text) => {
+                        this.props.history.push(`/search/${text}`);
+                      }}
+                    />
                   </div>
                 </figure>
               </article>

@@ -1,7 +1,5 @@
 import React from "react";
-import {
-  ArticleContent as IArticleContent,
-} from "../../interfaces/article";
+import { ArticleContent as IArticleContent } from "../../interfaces/article";
 
 export default class ArticleContent extends React.Component<IArticleContent> {
   constructor(props: IArticleContent) {

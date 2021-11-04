@@ -23,7 +23,10 @@ interface State {
   keywords: string[];
 }
 // this.props.history.push(`/search/${text}`);
-export default class PostForm extends React.Component<RouteComponentProps<{}>, State> {
+export default class PostForm extends React.Component<
+  RouteComponentProps<{}>,
+  State
+> {
   constructor(props: RouteComponentProps<{}>) {
     super(props);
 
@@ -107,33 +110,39 @@ export default class PostForm extends React.Component<RouteComponentProps<{}>, S
   postFormData = (e: FormEvent) => {
     e.preventDefault();
     if (this.state.keywords.length > 1) {
+      const { tags, isLoadingTags, content, ...data } = this.state;
 
-      const {tags, isLoadingTags, content, ...data} = this.state;
+      const formattedContent = content.map((el) => ({
+        ...el,
+        text: el.text.split("\n"),
+      }));
 
-      const formattedContent = content.map((el) => ({...el, text: el.text.split('\n')}) )
-
-      const postData = {...data, date: Date.now(), author: JSON.parse(localStorage.getItem("logged") || "").name, content: formattedContent}
+      const postData = {
+        ...data,
+        date: Date.now(),
+        author: JSON.parse(localStorage.getItem("logged") || "").name,
+        content: formattedContent,
+      };
 
       const options = {
         method: Method.POST,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(postData)
-      }
+        body: JSON.stringify(postData),
+      };
 
       const formStatus = (resp: { redirectTo: string }, err: number) => {
-        console.log(err)
+        console.log(err);
         if (err) {
           alert("something went wrong");
         } else {
           alert("success");
           this.props.history.push(resp.redirectTo);
         }
-      }
-      
-      fetchWrapper(`createPost`, formStatus, options)
+      };
 
+      fetchWrapper(`createPost`, formStatus, options);
     }
-  }
+  };
 
   render() {
     const { tags, keywords, picture, content } = this.state;
@@ -173,8 +182,8 @@ export default class PostForm extends React.Component<RouteComponentProps<{}>, S
                     ? this.addContentItem
                     : () => this.deleteContentItem(index)
                 }
-                changeHandler={
-                  (value: {head?: string, text?: string}) => this.setContent(index, value)
+                changeHandler={(value: { head?: string; text?: string }) =>
+                  this.setContent(index, value)
                 }
                 isAdding={index === content.length - 1}
                 key={`content ${index}`}

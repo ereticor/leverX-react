@@ -47,51 +47,58 @@ export default class ArticlesBlock extends React.Component<Props, State> {
   }
 
   getArticles(isLoadMore = false) {
-    console.log('getArticles')
+    console.log("getArticles");
     const { isLoadingArticles } = this.state;
     if (!isLoadingArticles) {
-      this.setState((prevState) => {
-        return {
-          ...prevState,
-          isLoadingArticles: true,
-          page: isLoadMore ? prevState.page : 0,
+      this.setState(
+        (prevState) => {
+          return {
+            ...prevState,
+            isLoadingArticles: true,
+            page: isLoadMore ? prevState.page : 0,
+          };
+        },
+        () => {
+          const { page, checkedTags, searchValue } = this.state;
+          const tags =
+            this.props.singleTag || checkedTags.join("+").replace(/\s/g, "_");
+          const search = searchValue.trim();
+          console.log("fetchWrapper");
+          fetchWrapperThrottle(
+            `getArticles?page=${page}&tags=${tags}&title=${search}`,
+            (articlesPayload: ArticlePayload) => {
+              this.setState((prevState) => ({
+                ...prevState,
+                isLoadingArticles: false,
+                articlesData: isLoadMore
+                  ? [...prevState.articlesData, ...articlesPayload.articles]
+                  : articlesPayload.articles,
+                maxPage: articlesPayload.meta.maxPage,
+              }));
+            }
+          );
         }
-      }, () => {
-        const { page, checkedTags, searchValue } = this.state;
-        const tags = this.props.singleTag || checkedTags.join("+").replace(/\s/g, "_");
-        const search = searchValue.trim();
-        console.log('fetchWrapper')
-        fetchWrapperThrottle(
-          `getArticles?page=${page}&tags=${tags}&title=${search}`,
-          (articlesPayload: ArticlePayload) => {
-            this.setState((prevState) => ({
-              ...prevState,
-              isLoadingArticles: false,
-              articlesData: isLoadMore 
-                ? [...prevState.articlesData, ...articlesPayload.articles]
-                : articlesPayload.articles,
-              maxPage: articlesPayload.meta.maxPage,
-            }));
-          }
-        );
-      });
+      );
     }
   }
 
   getMoreArticles() {
-    console.log('getMoreArticles')
-    this.setState((prevState) => {
-      return {
-        ...prevState,
-        page: prevState.page + 1
+    console.log("getMoreArticles");
+    this.setState(
+      (prevState) => {
+        return {
+          ...prevState,
+          page: prevState.page + 1,
+        };
+      },
+      () => {
+        this.getArticles(true);
       }
-    }, () => {
-      this.getArticles(true)
-    });
+    );
   }
 
   componentDidMount() {
-    console.log('DidMount')
+    console.log("DidMount");
     if (!this.props.singleTag) {
       fetchWrapper(`getTags`, ({ tags }: { tags: string[] }) => {
         this.setState({
@@ -104,7 +111,7 @@ export default class ArticlesBlock extends React.Component<Props, State> {
   }
 
   changeCheckedTags(tag: string) {
-    console.log('changeCheckedTags')
+    console.log("changeCheckedTags");
     const { checkedTags } = this.state;
 
     if (checkedTags.includes(tag)) {
@@ -118,21 +125,26 @@ export default class ArticlesBlock extends React.Component<Props, State> {
   }
 
   componentDidUpdate() {
-    console.log('DidUpdate')
+    console.log("DidUpdate");
   }
 
   render() {
-    console.log('render'.toUpperCase())
-    const { error, isLoadingTags, tags, checkedTags, articlesData, page, maxPage } =
-      this.state;
+    console.log("render".toUpperCase());
+    const {
+      error,
+      isLoadingTags,
+      tags,
+      checkedTags,
+      articlesData,
+      page,
+      maxPage,
+    } = this.state;
     return (
       <div
         className={`main__articles__wrapper wrapper ${this.props.className}`}
       >
         <section className="main__articles">
-          <h3 className="main__articles__head">
-            {this.props.title}
-          </h3>
+          <h3 className="main__articles__head">{this.props.title}</h3>
           <div className="main__articles__search">
             <input
               type="search"
@@ -145,22 +157,24 @@ export default class ArticlesBlock extends React.Component<Props, State> {
             />
           </div>
           <div className="main__articles__checkbar">
-            {!!tags.length && 
-              (<MultiTags
+            {!!tags.length && (
+              <MultiTags
                 error={error}
                 isLoading={isLoadingTags}
                 tags={tags}
                 checkedTags={checkedTags}
                 clickHandler={this.changeCheckedTags}
-              />)
-            }
+              />
+            )}
           </div>
           <ul className="articles__list">
             {articlesData.map((article, index) => (
               <Article key={`article ${index}`} articleData={article} />
             ))}
           </ul>
-          {page + 1 < maxPage && <LoadBtn clickHandler={ this.getMoreArticles} />}
+          {page + 1 < maxPage && (
+            <LoadBtn clickHandler={this.getMoreArticles} />
+          )}
         </section>
       </div>
     );

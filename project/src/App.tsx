@@ -1,13 +1,10 @@
 import React from "react";
 import Router from "./router";
 
-import './index.scss'
+import "./index.scss";
 
 export default class App extends React.Component {
-  
   render() {
-    return (
-      <Router/>
-    )
+    return <Router />;
   }
 }

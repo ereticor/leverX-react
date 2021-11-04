@@ -10,10 +10,10 @@ export default class Home extends React.Component {
         <main className="main">
           <div className="main__intro__wrapper wrapper">
             <section className="main__intro">
-              <Slider/>
+              <Slider />
             </section>
           </div>
-          <ArticlesBlock title='Interesting articles by LeverX Group'/>
+          <ArticlesBlock title="Interesting articles by LeverX Group" />
         </main>
         <Footer />
       </>
