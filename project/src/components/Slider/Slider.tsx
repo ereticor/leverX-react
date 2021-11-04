@@ -1,105 +1,111 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SliderItem from "./SliderItem";
 
-import './slider.scss';
+import "./slider.scss";
 import { sliderData } from "../../constants/slider";
 
-interface State {
-  index: number;
-  interacted: boolean;
-  transition: boolean;
-}
+const Slider = () => {
+  const [index, setIndex] = useState(1);
+  const [interacted, setInteracted] = useState(true);
+  const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
+  const [transition, setTransition] = useState(false);
 
-export default class Slider extends React.Component<{}, State> {
-  private slider: React.RefObject<HTMLUListElement> 
-  constructor(props: {}) {
-    super(props);
+  function transformSlide(dir: number) {
+    setInteracted(true);
 
-    this.state = { index: 1, interacted: false, transition: false };
-
-    this.slider = React.createRef()
-
-    this.transformSlide = this.transformSlide.bind(this)
-    this.checkSlide = this.checkSlide.bind(this)
-    this.autoSlide = this.autoSlide.bind(this)
-  }
-
-  transformSlide(dir: number, e?: React.MouseEvent) {
-    if (!this.slider.current) {
-      return
+    if (timer) {
+      clearInterval(timer);
     }
 
-    const { index, transition } = this.state;
-    if (e) {
-      this.setState({ interacted: true })
+    const interactedTimer = setInterval(() => {
+      setInteracted(false);
+    }, 3000);
 
-      setTimeout(() => this.setState({ interacted: false }), 3000);
-    }
-
-    this.slider.current!.classList.add("slider__list_transition");
+    setTimer(interactedTimer);
 
     if (!transition) {
       if (dir == 1) {
-        this.slider.current!.style.transform = `translateX(-${index + 1}00%)`
-        this.setState({ index: index + 1 })
+        setIndex((prevIndex) => prevIndex + 1);
       } else {
-        this.slider.current!.style.transform = `translateX(-${index - 1}00%)`;
-        this.setState({ index: index - 1 })
+        setIndex((prevIndex) => prevIndex - 1);
       }
     }
 
-    this.setState({ transition: true })
+    setTransition(true);
   }
 
-  checkSlide() {
-    this.slider.current!.classList.remove("slider__list_transition");
-
-    if (this.state.index == 0) {
-      this.slider.current!.style.transform = `translateX(-${2}00%)`;
-      this.setState({ index: 2 })
+  function checkSlide() {
+    if (index == 0) {
+      setIndex(2);
     }
 
-    if (this.state.index == 3) {
-      this.slider.current!.style.transform = `translateX(-${1}00%)`;
-      this.setState({ index: 1 })
+    if (index == sliderData.length - 1) {
+      setIndex(1);
     }
 
-    this.setState({ transition: false })
+    setTransition(false);
   }
 
-  autoSlide() {
-    if (!this.state.interacted) {
-      this.transformSlide(1);
+  useEffect(() => {
+    console.log(interacted);
+    if (!interacted) {
+      transformSlide(1);
     }
-    setTimeout(this.autoSlide, 3000);
-  }
+  }, [interacted]);
 
-  componentDidMount() {
-    this.autoSlide()
-    this.checkSlide()
-  }
+  useEffect(() => {
+    transformSlide(1);
+  }, []);
 
-  render() {
-    return (
-      <>
-        <div className="slider">
-          <ul className="slider__list" ref={this.slider} onTransitionEnd={this.checkSlide}>
-            {sliderData.map( (el, index) => <SliderItem key={index} {...el}/>)}
-          </ul>
-        </div>
-        <button className="slider__left slider__btn" onClick={(e) => this.transformSlide(-1, e)}>&lt;</button>
-        <button className="slider__right slider__btn" onClick={(e) => this.transformSlide(1, e)}>&gt;</button>
-        <div className="slider__pagination">
-          <label className="pagination__label" onClick={(e) => this.transformSlide(-1, e)}>
-            <input type="radio" name="sliderPagination" checked={this.state.index === 1} onChange={() => {}}/>
-            <span></span>
-          </label>
-          <label className="pagination__label" onClick={(e) => this.transformSlide(1, e)}>
-            <input type="radio" name="sliderPagination" checked={this.state.index === 2} onChange={() => {}}/>
-            <span></span>
-          </label>
-        </div>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <div className="slider">
+        <ul
+          className={`slider__list ${
+            transition ? "slider__list_transition" : ""
+          }`}
+          style={{ transform: `translateX(-${index}00%)` }}
+          onTransitionEnd={checkSlide}
+        >
+          {sliderData.map((el, index) => (
+            <SliderItem key={index} {...el} />
+          ))}
+        </ul>
+      </div>
+      <button
+        className="slider__left slider__btn"
+        onClick={() => transformSlide(-1)}
+      >
+        &lt;
+      </button>
+      <button
+        className="slider__right slider__btn"
+        onClick={() => transformSlide(1)}
+      >
+        &gt;
+      </button>
+      <div className="slider__pagination">
+        <label className="pagination__label">
+          <input
+            type="radio"
+            name="sliderPagination"
+            checked={index === 1}
+            onChange={() => transformSlide(-1)}
+          />
+          <span></span>
+        </label>
+        <label className="pagination__label">
+          <input
+            type="radio"
+            name="sliderPagination"
+            checked={index === 2}
+            onChange={() => transformSlide(1)}
+          />
+          <span></span>
+        </label>
+      </div>
+    </>
+  );
+};
+
+export default Slider;

@@ -9,7 +9,7 @@
     height: 100%;
 
     .foot__credits {
-      color: #FFFFFF;
+      color: #ffffff;
       letter-spacing: 0.02em;
     }
 
@@ -38,7 +38,8 @@
             background: center / cover url(../../assets/icons/foot/Facebook.svg);
           }
           &:nth-of-type(2) .foot__nav__link {
-            background: center / cover url(../../assets/icons/foot/Instagram.svg);
+            background: center / cover
+              url(../../assets/icons/foot/Instagram.svg);
           }
           &:nth-of-type(3) .foot__nav__link {
             background: center / cover url(../../assets/icons/foot/Telegram.svg);
@@ -47,7 +48,7 @@
           &:hover .foot__nav__link {
             transform: scale(1.2);
           }
-          
+
           &:active .foot__nav__link {
             transform: scale(0.9);
           }
@@ -56,14 +57,14 @@
 
       .foot__nav__support {
         font-weight: 600;
-        color: #F2C94C;
+        color: #f2c94c;
         letter-spacing: 0.005em;
         margin-right: 8px;
-      
+
         &:hover {
           color: #aa830e;
         }
-      
+
         &:active {
           transform: scale(0.9);
         }

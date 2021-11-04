@@ -1,127 +1,55 @@
-/* search */
-.main {
-  .main__articles__wrapper {
-    background: #F2F2F2;
-    padding: 70px 80px 52px;
-  
-    .main__articles__head {
-      font-weight: 700;
-      font-size: 42px;
-      line-height: 56px;
-      margin-bottom: 44px;
+.articles__item {
+  position: relative;
+  width: 270px;
+  height: 352px;
+  // transition-duration: 0.5s;
+  // animation: appear 0.5s ease-in;
+  user-select: text;
+
+  .item__figure {
+    overflow: hidden;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background: #ffffff;
+    box-shadow: 0px 6px 8px rgba(234, 237, 242, 0.5);
+
+    &:hover {
+      box-shadow: 0px 12px 24px rgba(188, 201, 220, 0.4);
     }
-  
-    .main__articles__search {
-      display: flex;
-      align-items: center;
+
+    &:active {
+      box-shadow: 0px 12px 24px rgba(227, 232, 240, 0.5);
+    }
+
+    img {
+      height: 194px;
       width: 100%;
-      max-width: 920px;
-      height: 62px;
-      padding: 0 35px;
-      border-radius: 40px;
-      background: #FFFFFF;
-      box-shadow: 0px -6px 8px rgba(234, 237, 242, 0.5), 0px 6px 8px rgba(234, 237, 242, 0.5);
-      transition-duration: 0.1s;
-    
-      &:hover,
-      &:focus-within {
-        outline: 3px solid #2F80ED;
-      }
-    
-      &::before {
-        display: inline-block;
-        content: "";
-        width: 20.5px;
-        height: 20.5px;
-        margin-right: 19.5px;
-        background: center / contain no-repeat url(../../assets/icons/search.svg);
-      }
-  
-      .search__input {
-        border: none;
-        outline: none;
-        width: 100%;
-        height: 100%;
-        border-radius: 40px;
+      object-fit: cover;
+    }
+
+    .item__cap {
+      padding: 12px 16px 24px;
+
+      .cap__head {
+        margin-bottom: 8px;
         font-weight: 600;
         font-size: 18px;
+        line-height: 24px;
         letter-spacing: 0.0075em;
+        color: #333333;
       }
-    }
-  
-    .main__articles__checkbar {
-      position: relative;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 42px 0 40px;
-    }
-  
-    .articles__list {
-      position: relative;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 48px 40px;
-      width: calc(100% - 80px);
-      margin-bottom: 26px;
-      min-height: 300px;
-      height: 100%;
-  
-      .articles__item {
-        position: relative;
-        width: 270px;
-        height: 352px;
-        // transition-duration: 0.5s;
-        // animation: appear 0.5s ease-in;
-        user-select: text;
-  
-        .item__figure {
-          overflow: hidden;
-          cursor: pointer;
-          width: 100%;
-          height: 100%;
-          border-radius: 15px;
-          background: #FFFFFF;
-          box-shadow: 0px 6px 8px rgba(234, 237, 242, 0.5);
-        
-          &:hover {
-            box-shadow: 0px 12px 24px rgba(188, 201, 220, 0.4);
-          }
-        
-          &:active {
-            box-shadow: 0px 12px 24px rgba(227, 232, 240, 0.5);
-          }
-        
-          img {
-            height: 194px;
-            width: 100%;
-            object-fit: cover;
-          }
-        
-          .item__cap {
-            padding: 12px 16px 24px;
-        
-            .cap__head {
-              margin-bottom: 8px;
-              font-weight: 600;
-              font-size: 18px;
-              line-height: 24px;
-              letter-spacing: 0.0075em;
-              color: #333333;
-            }
-            
-            .cap__text {
-              font-size: 14px;
-              line-height: 142%;
-              letter-spacing: 0.0168em;
-              color: #4F4F4F;
-              display: -webkit-box;
-              -webkit-box-orient: vertical;
-              -webkit-line-clamp: 3;
-              overflow: hidden;
-            }
-          }
-        }
+
+      .cap__text {
+        font-size: 14px;
+        line-height: 142%;
+        letter-spacing: 0.0168em;
+        color: #4f4f4f;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
       }
     }
   }

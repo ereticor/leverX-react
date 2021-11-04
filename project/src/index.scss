@@ -1,10 +1,10 @@
 @font-face {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   src: url(./assets/fonts/Open_Sans/OpenSans-Regular.ttf),
     url(./assets/fonts/Open_Sans/OpenSans-Bold.ttf);
 }
 @font-face {
-  font-family: 'Lato';
+  font-family: "Lato";
   src: url(./assets/fonts/Lato/Lato-Regular.ttf),
     url(./assets/fonts/Lato/Lato-Bold.ttf);
 }
@@ -32,33 +32,33 @@
 
 @keyframes load {
   from {
-    content: '';
+    content: "";
   }
   33% {
-    content: '.';
+    content: ".";
   }
   66% {
-    content: '..';
+    content: "..";
   }
   to {
-    content: '...';
+    content: "...";
   }
 }
 
 ::selection {
-  background: #2F80ED;
-  color: #FFFFFF;
+  background: #2f80ed;
+  color: #ffffff;
 }
 
 * {
   margin: 0;
-  font-family: 'Lato';
+  font-family: "Lato";
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
 }
 
 body {
-  background: #F2F2F2;
+  background: #f2f2f2;
 }
 
 .app {
@@ -89,7 +89,8 @@ ul {
   }
 }
 
-button, a.link_btn {
+button,
+a.link_btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,13 +106,11 @@ button, a.link_btn {
   display: block;
   width: 145px;
   height: 48px;
-  background: #F2C94C;
+  background: #f2c94c;
   border: none;
   color: #333333;
   transition-duration: 0.1s;
 }
-
-
 
 /* remaining from articlePage.css
 @import './basic.css';
@@ -136,7 +135,7 @@ button, a.link_btn {
   &::after {
     position: absolute;
     display: inline-block;
-    content: '';
+    content: "";
     animation: load 1s ease-in-out infinite;
   }
 }
