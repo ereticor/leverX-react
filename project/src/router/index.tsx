@@ -3,7 +3,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "../pages/Home";
 import SearchPage from "../pages/SearchPage";
-import LoginPage from "../pages/loginPage";
+import LoginPage from "../pages/LoginPage";
 import PostPage from "../pages/PostPage/PostPage";
 import Header from "../components/Header";
 // const Home = React.lazy(() => import('../pages/Home'));

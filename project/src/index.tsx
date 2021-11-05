@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
-ReactDOM.render(<App />, document.querySelector(".main"));
+ReactDOM.render(<App />, document.querySelector(".app"));
 
 // import { sign } from "./constants/app";
 // import { locationResolver } from "./services/locationResolver";
