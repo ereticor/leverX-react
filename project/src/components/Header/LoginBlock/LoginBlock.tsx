@@ -1,19 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Action, ActionFunctionAny } from "redux-actions";
 
 interface Props {
   isLogged: boolean;
-  logger: (state: boolean) => void;
+  userImage?: string;
+  LogOut: ActionFunctionAny<Action<any>>;
 }
 
-const LoginBlock = ({ isLogged, logger }: Props) => {
-  const logOut = () => {
-    localStorage.removeItem("logged");
-    logger(false);
-  };
+const LoginBlock = ({ isLogged, LogOut, userImage }: Props) => {
+  // const logOut = () => {
+  //   localStorage.removeItem("logged");
+  //   logger(false);
+  // };
 
   if (isLogged) {
-    const userImg = JSON.parse(localStorage.getItem("logged") || "").picture;
+    // const userImg = JSON.parse(localStorage.getItem("logged") || "").picture;
     return (
       <div className="head__login">
         <Link to="/post" className="head__btn login__create link_btn">
@@ -21,9 +23,9 @@ const LoginBlock = ({ isLogged, logger }: Props) => {
         </Link>
         <img
           className="login__user"
-          src={userImg}
+          src={userImage || ""}
           title="click to log out"
-          onClick={logOut}
+          onClick={LogOut}
         />
       </div>
     );

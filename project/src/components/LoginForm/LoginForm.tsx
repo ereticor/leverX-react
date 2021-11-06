@@ -1,41 +1,42 @@
 import React, { useState } from "react";
 
-import { fetchWrapper } from "../../services/fetchWrapper";
 import spellChecker from "../../helpers/spellChecker";
 
 import "./loginForm.scss";
 import { Input } from "../../interfaces/input";
-import { User } from "../../interfaces/user";
+
+import { RSAAAction } from "redux-api-middleware";
 
 interface Props {
-  logger: (state: boolean) => void;
+  LogIn: (query: string) => RSAAAction<unknown, unknown, unknown>;
 }
 
-const LoginForm = ({ logger }: Props) => {
+const LoginForm = ({ LogIn }: Props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isShowPass, setIsShowPass] = useState(false);
 
-  const saveUser = (user: User, error?: unknown) => {
-    if (error) {
-      switch (error) {
-        case 401:
-          setTimeout(() => alert("wrong password"), 200);
-          break;
-        case 404:
-          setTimeout(() => alert("no such user"), 200);
-          break;
-      }
-      return;
-    }
+  // const saveUser = (user: User, error?: unknown) => {
+  //   if (error) {
+  //     switch (error) {
+  //       case 401:
+  //         setTimeout(() => alert("wrong password"), 200);
+  //         break;
+  //       case 404:
+  //         setTimeout(() => alert("no such user"), 200);
+  //         break;
+  //     }
+  //     return;
+  //   }
 
-    localStorage.setItem("logged", JSON.stringify(user));
-    logger(true);
-  };
+  //   localStorage.setItem("logged", JSON.stringify(user));
+  //   LogIn(true);
+  // };
 
   const logIn = (mail: string, pass: string) => {
     if (mail && pass) {
-      fetchWrapper(`sign?email=${mail}&password=${pass}`, saveUser);
+      LogIn(`email=${mail}&password=${pass}`);
+      // fetchWrapper(`sign?email=${mail}&password=${pass}`, saveUser);
     }
   };
 
