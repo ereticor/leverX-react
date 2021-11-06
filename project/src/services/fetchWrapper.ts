@@ -1,5 +1,6 @@
 import { throttle } from "../helpers/throttle";
 import { UrlOptions } from "interfaces/urlOptions";
+import { server } from "../constants/server";
 
 export async function fetchWrapper(
   url: string,
@@ -7,7 +8,7 @@ export async function fetchWrapper(
   options: UrlOptions | null = null
 ) {
   try {
-    const response = await fetch(`http://localhost:3228/${url}`, options || {});
+    const response = await fetch(`${server}/${url}`, options || {});
     if (response.status >= 400) {
       throw response.status;
     }
