@@ -13,9 +13,12 @@ export default function sign(req, res, next) {
 
   if (!user) {
     res.sendStatus(status.noSuch)
+    return
   }
+
+  const {password: pass, ...noPassUser} = user
   
   return user?.password === password
-    ? res.send(JSON.stringify(user))
+    ? res.send(JSON.stringify(noPassUser))
     : res.sendStatus(status.unauthorized)
 }

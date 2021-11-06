@@ -41,6 +41,7 @@ export default function addPost(req, res, next) {
     if (err) {
       res.sendStatus(status.internalServerError)
     } else {
+      res.type('json')
       res.send(JSON.stringify(responseBody)) 
     }
   }
