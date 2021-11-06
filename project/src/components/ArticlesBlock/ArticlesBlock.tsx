@@ -1,28 +1,31 @@
 import { Article as IArticle, ArticlePayload } from "../../interfaces/article";
 import React, { useEffect, useState } from "react";
-import {
-  fetchWrapper,
-  fetchWrapperThrottle,
-} from "../../services/fetchWrapper";
+import { fetchWrapperThrottle } from "../../services/fetchWrapper";
 import LoadBtn from "../LoadBtn";
 import MultiTags from "../multiTags";
 import Article from "../Article";
+import { ActionProps, SelectorProps } from "../../interfaces/tags";
 
-interface Props {
+interface Props extends ActionProps, SelectorProps {
   className?: string;
   title: string;
   singleTag?: string;
 }
 
-const ArticlesBlock = ({ className, title, singleTag }: Props) => {
+const ArticlesBlock = ({
+  className,
+  title,
+  singleTag,
+  tags,
+  getTags,
+  isLoadingTags,
+}: Props) => {
   const [searchValue, setSearchValue] = useState("");
   const [checkedTags, setCheckedTags] = useState<string[]>([]);
   const [page, setPage] = useState(0);
   const [maxPage, setMaxPage] = useState(0);
   const [error, setError] = useState<number | null>(null);
-  const [isLoadingTags, setIsLoadingTags] = useState(true);
   const [isLoadingArticles, setIsLoadingArticles] = useState(false);
-  const [tags, setTags] = useState<string[]>([]);
   const [articlesData, setArticleData] = useState<IArticle[]>([]);
 
   useEffect(() => {
@@ -48,10 +51,9 @@ const ArticlesBlock = ({ className, title, singleTag }: Props) => {
 
   useEffect(() => {
     if (!singleTag) {
-      fetchWrapper(`getTags`, ({ tags }: { tags: string[] }) => {
-        setIsLoadingTags(false);
-        setTags(tags);
-      });
+      if (!tags.length) {
+        getTags();
+      }
       getArticles();
     }
   }, []);
@@ -82,7 +84,7 @@ const ArticlesBlock = ({ className, title, singleTag }: Props) => {
           />
         </div>
         <div className="main__articles__checkbar">
-          {!!tags.length && (
+          {!!tags.length && !singleTag && (
             <MultiTags
               error={error}
               isLoading={isLoadingTags}

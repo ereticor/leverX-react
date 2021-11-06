@@ -8,10 +8,11 @@ import SubStory from "./SubStory";
 import "./postForm.scss";
 import { Input } from "../../interfaces/input";
 import { Method } from "../../interfaces/urlOptions";
+import { ActionProps, SelectorProps } from "interfaces/tags";
 
-const PostForm = () => {
-  const [tags, setTags] = useState<string[]>([]);
-  const [isLoadingTags, setIsLoadingTags] = useState(true);
+interface Props extends ActionProps, SelectorProps {}
+
+const PostForm = ({ tags, getTags, isLoadingTags }: Props) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState([{ head: "", text: "" }]);
   const [picture, setPicture] = useState("#");
@@ -20,10 +21,9 @@ const PostForm = () => {
   const history = useHistory();
 
   useEffect(() => {
-    fetchWrapper(`getTags`, ({ tags }: { tags: string[] }) => {
-      setTags(tags);
-      setIsLoadingTags(false);
-    });
+    if (!tags.length) {
+      getTags();
+    }
   }, []);
 
   const updateContent = (
@@ -159,6 +159,7 @@ const PostForm = () => {
       <div className="create__tags">
         <MultiTags
           tags={tags}
+          isLoading={isLoadingTags}
           checkedTags={keywords}
           clickHandler={changeKeywords}
         />
