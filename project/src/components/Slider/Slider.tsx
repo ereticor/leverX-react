@@ -47,7 +47,6 @@ const Slider = () => {
   }
 
   useEffect(() => {
-    console.log(interacted);
     if (!interacted) {
       transformSlide(1);
     }
