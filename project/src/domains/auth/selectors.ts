@@ -1,4 +1,4 @@
-import { ReduxStore } from "../../reducers";
+import { ReduxStore } from "../../interfaces/store";
 import { createSelector } from "reselect";
 
 export const getAuth = (state: ReduxStore) => {
