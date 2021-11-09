@@ -1,7 +1,8 @@
-import Router from "./Router";
 import { connect } from "react-redux";
-import { selectors } from "../domains/auth";
 import { createStructuredSelector } from "reselect";
+
+import Router from "./Router";
+import { selectors } from "../domains/auth";
 
 const selector = createStructuredSelector({
   isLogged: selectors.isLogged,

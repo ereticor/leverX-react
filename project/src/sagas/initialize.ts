@@ -1,4 +1,5 @@
 import { put } from "@redux-saga/core/effects";
+
 import { setUser } from "../domains/auth/actions";
 
 export function* initialize() {

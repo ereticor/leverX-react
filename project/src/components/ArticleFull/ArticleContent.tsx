@@ -1,4 +1,5 @@
 import React from "react";
+
 import { ArticleContent as IArticleContent } from "../../interfaces/article";
 
 const ArticleContent = ({ head, text }: IArticleContent) => {

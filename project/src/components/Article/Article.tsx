@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import { Article as IArticle } from "../../interfaces/article";
 
 import "./article.scss";

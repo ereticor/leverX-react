@@ -1,7 +1,8 @@
-import Slider from "../../components/Slider";
 import React from "react";
-import Footer from "../../components/Footer";
+
+import Slider from "../../components/Slider";
 import ArticlesBlock from "../../components/ArticlesBlock";
+import Footer from "../../components/Footer";
 
 import "./home.scss";
 

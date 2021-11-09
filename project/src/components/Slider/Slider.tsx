@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+
+import { sliderData } from "../../constants/slider";
+
 import SliderItem from "./SliderItem";
 
 import "./slider.scss";
-import { sliderData } from "../../constants/slider";
 
 const Slider = () => {
   const [index, setIndex] = useState(1);

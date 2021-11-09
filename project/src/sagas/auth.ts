@@ -1,5 +1,6 @@
-import { ActionTypes } from "../domains/auth";
 import { all, takeEvery } from "redux-saga/effects";
+
+import { ActionTypes } from "../domains/auth";
 
 export function* LogInWorker({ payload }: { type: string; payload: any }) {
   localStorage.setItem("logged", JSON.stringify(payload));

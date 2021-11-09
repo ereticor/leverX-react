@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
 import { Article, ArticlePayload } from "../../interfaces/article";
-import MultiTags from "../multiTags";
+
 import { fetchWrapper } from "../../services/fetchWrapper";
+import dateToHuman from "../../helpers/dateToHuman";
+
+import ArticleContent from "./ArticleContent";
+import MultiTags from "../multiTags";
 
 import "./articleFull.scss";
-import ArticleContent from "./ArticleContent";
-import dateToHuman from "../../helpers/dateToHuman";
 
 const ArticleFull = () => {
   const [article, setArticle] = useState<Article | null>(null);

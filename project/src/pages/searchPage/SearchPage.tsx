@@ -1,7 +1,8 @@
 import React from "react";
-import Footer from "../../components/Footer";
-import ArticlesBlock from "../../components/ArticlesBlock";
 import { useParams } from "react-router-dom";
+
+import ArticlesBlock from "../../components/ArticlesBlock";
+import Footer from "../../components/Footer";
 
 import "../Home/home.scss";
 import "./searchPage.scss";

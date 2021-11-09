@@ -1,7 +1,9 @@
 import { createAction as createApiAction } from "redux-api-middleware";
 import { createAction } from "redux-actions";
-import ActionTypes from "./actionTypes";
+
 import { server } from "../../constants/server";
+
+import ActionTypes from "./actionTypes";
 
 export const LogIn = (query: string) => {
   return createApiAction({

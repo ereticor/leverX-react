@@ -1,5 +1,6 @@
-import ActionTypes from "./actionTypes";
 import { AnyAction } from "redux";
+
+import ActionTypes from "./actionTypes";
 
 export interface AppState {
   tags: string[];

@@ -1,6 +1,8 @@
-import { throttle } from "../helpers/throttle";
 import { UrlOptions } from "interfaces/urlOptions";
+
 import { server } from "../constants/server";
+
+import { throttle } from "../helpers/throttle";
 
 export async function fetchWrapper(
   url: string,
@@ -20,11 +22,3 @@ export async function fetchWrapper(
 }
 
 export const fetchWrapperThrottle = throttle(fetchWrapper, 1000);
-
-// function log(data, error) {
-//   if (error) {
-//     console.error(error)
-//   } else {
-//     console.log(data)
-//   }
-// }

@@ -1,5 +1,6 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+
 const Header = React.lazy(() => import("../components/Header"));
 const Home = React.lazy(() => import("../pages/Home"));
 const SearchPage = React.lazy(() => import("../pages/searchPage"));

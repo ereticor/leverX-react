@@ -1,5 +1,7 @@
-import { server } from "../../constants/server";
 import { createAction as createApiAction } from "redux-api-middleware";
+
+import { server } from "../../constants/server";
+
 import ActionTypes from "./actionTypes";
 
 export const getTagsRequest = () => {

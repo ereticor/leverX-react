@@ -1,7 +1,6 @@
+import { routerMiddleware } from "connected-react-router";
 import { createStore, applyMiddleware, compose } from "redux";
 import { createMiddleware } from "redux-api-middleware";
-
-import { routerMiddleware } from "connected-react-router";
 import createSagaMiddleware from "redux-saga";
 
 import rootReducer from "../reducers";

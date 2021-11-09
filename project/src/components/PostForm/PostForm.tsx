@@ -1,14 +1,16 @@
 import React, { FormEvent, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
+import { Input } from "../../interfaces/input";
+import { Method } from "../../interfaces/urlOptions";
+import { ActionProps, SelectorProps } from "interfaces/tags";
+
 import { fetchWrapper } from "../../services/fetchWrapper";
+
 import MultiTags from "../../components/multiTags";
 import SubStory from "./SubStory";
 
 import "./postForm.scss";
-import { Input } from "../../interfaces/input";
-import { Method } from "../../interfaces/urlOptions";
-import { ActionProps, SelectorProps } from "interfaces/tags";
 
 interface Props extends ActionProps, SelectorProps {}
 

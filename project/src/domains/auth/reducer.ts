@@ -1,7 +1,8 @@
-import ActionTypes from "./actionTypes";
 import { AnyAction } from "redux";
+
 import User from "../../interfaces/user";
-import actionTypes from "./actionTypes";
+
+import ActionTypes from "./actionTypes";
 
 export interface AuthState {
   isLoadingUser: boolean;
@@ -15,32 +16,32 @@ const initialState: AuthState = {
 
 export default function (state = initialState, { payload, type }: AnyAction) {
   switch (type) {
-    case actionTypes.POST_USER_DATA_REQUEST: {
+    case ActionTypes.POST_USER_DATA_REQUEST: {
       return {
         ...state,
         isLoadingUser: true,
       };
     }
-    case actionTypes.POST_USER_DATA_SUCCESS: {
+    case ActionTypes.POST_USER_DATA_SUCCESS: {
       return {
         ...state,
         user: payload,
         isLoadingUser: false,
       };
     }
-    case actionTypes.POST_USER_DATA_FAILURE: {
+    case ActionTypes.POST_USER_DATA_FAILURE: {
       return {
         ...state,
         isLoadingUser: false,
       };
     }
-    case actionTypes.SET_USER: {
+    case ActionTypes.SET_USER: {
       return {
         ...state,
         user: payload,
       };
     }
-    case actionTypes.LOG_OUT: {
+    case ActionTypes.LOG_OUT: {
       return {
         ...state,
         user: null,

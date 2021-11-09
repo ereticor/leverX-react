@@ -1,4 +1,3 @@
-import { Action } from "redux-actions";
 import { RSAAAction } from "redux-api-middleware";
 
 export interface SelectorProps {
