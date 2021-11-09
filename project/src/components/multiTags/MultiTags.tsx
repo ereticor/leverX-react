@@ -1,4 +1,7 @@
 import React from "react";
+
+import PropTypes from "prop-types";
+
 import Tag from "./Tag";
 
 import "./multiTags.scss";
@@ -36,6 +39,14 @@ const MultiTags = ({
       ))}
     </>
   );
+};
+
+MultiTags.propTypes = {
+  error: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf([null])]),
+  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  checkedTags: PropTypes.arrayOf(PropTypes.string),
+  isLoading: PropTypes.bool,
+  clickHandler: PropTypes.func.isRequired,
 };
 
 export default MultiTags;

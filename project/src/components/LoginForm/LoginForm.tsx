@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { RSAAAction } from "redux-api-middleware";
+
+import { Input } from "../../interfaces/input";
+import PropTypes from "prop-types";
 
 import spellChecker from "../../helpers/spellChecker";
 
 import "./loginForm.scss";
-import { Input } from "../../interfaces/input";
-
-import { RSAAAction } from "redux-api-middleware";
 
 interface Props {
   LogIn: (query: string) => RSAAAction<unknown, unknown, unknown>;
@@ -16,27 +17,9 @@ const LoginForm = ({ LogIn }: Props) => {
   const [password, setPassword] = useState("");
   const [isShowPass, setIsShowPass] = useState(false);
 
-  // const saveUser = (user: User, error?: unknown) => {
-  //   if (error) {
-  //     switch (error) {
-  //       case 401:
-  //         setTimeout(() => alert("wrong password"), 200);
-  //         break;
-  //       case 404:
-  //         setTimeout(() => alert("no such user"), 200);
-  //         break;
-  //     }
-  //     return;
-  //   }
-
-  //   localStorage.setItem("logged", JSON.stringify(user));
-  //   LogIn(true);
-  // };
-
   const logIn = (mail: string, pass: string) => {
     if (mail && pass) {
       LogIn(`email=${mail}&password=${pass}`);
-      // fetchWrapper(`sign?email=${mail}&password=${pass}`, saveUser);
     }
   };
 
@@ -90,6 +73,10 @@ const LoginForm = ({ LogIn }: Props) => {
       </button>
     </form>
   );
+};
+
+LoginForm.propTypes = {
+  LogIn: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

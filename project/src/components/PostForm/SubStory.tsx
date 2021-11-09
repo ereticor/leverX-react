@@ -1,5 +1,7 @@
 import React from "react";
 
+import PropTypes from "prop-types";
+
 interface Props {
   clickHandler: () => void;
   changeHandler: (value: { head?: string; text?: string }) => void;
@@ -42,6 +44,12 @@ const SubStory = ({ clickHandler, changeHandler, isAdding }: Props) => {
       )}
     </div>
   );
+};
+
+SubStory.propTypes = {
+  clickHandler: PropTypes.func.isRequired,
+  changeHandler: PropTypes.func.isRequired,
+  isAdding: PropTypes.bool.isRequired,
 };
 
 export default SubStory;

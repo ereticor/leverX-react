@@ -1,5 +1,7 @@
 import React from "react";
 
+import PropTypes from "prop-types";
+
 import "./loadBtn.scss";
 
 interface Props {
@@ -12,6 +14,10 @@ const LoadBtn = ({ clickHandler }: Props) => {
       Load more
     </button>
   );
+};
+
+LoadBtn.propTypes = {
+  clickHandler: PropTypes.func.isRequired,
 };
 
 export default LoadBtn;

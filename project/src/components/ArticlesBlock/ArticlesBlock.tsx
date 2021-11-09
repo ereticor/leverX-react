@@ -1,10 +1,14 @@
-import { Article as IArticle, ArticlePayload } from "../../interfaces/article";
 import React, { useEffect, useState } from "react";
+
+import { Article as IArticle, ArticlePayload } from "../../interfaces/article";
+import { ActionProps, SelectorProps } from "../../interfaces/tags";
+import PropTypes from "prop-types";
+
 import { fetchWrapperThrottle } from "../../services/fetchWrapper";
+
 import LoadBtn from "../LoadBtn";
 import MultiTags from "../multiTags";
 import Article from "../Article";
-import { ActionProps, SelectorProps } from "../../interfaces/tags";
 
 interface Props extends ActionProps, SelectorProps {
   className?: string;
@@ -109,6 +113,12 @@ const ArticlesBlock = ({
       </section>
     </div>
   );
+};
+
+ArticlesBlock.propTypes = {
+  className: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  singleTag: PropTypes.string,
 };
 
 export default ArticlesBlock;

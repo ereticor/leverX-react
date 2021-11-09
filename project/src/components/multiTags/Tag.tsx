@@ -1,5 +1,7 @@
 import React from "react";
 
+import PropTypes from "prop-types";
+
 interface Props {
   text: string;
   clickHandler?: (tag: string) => void;
@@ -22,6 +24,12 @@ const Tag = ({ text, isChecked, clickHandler }: Props) => {
       {text}
     </label>
   );
+};
+
+Tag.propTypes = {
+  text: PropTypes.string.isRequired,
+  clickHandler: PropTypes.func,
+  isChecked: PropTypes.bool.isRequired,
 };
 
 export default Tag;

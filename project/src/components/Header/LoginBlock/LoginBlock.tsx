@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Action, ActionFunctionAny } from "redux-actions";
 
+import PropTypes from "prop-types";
+
 interface Props {
   isLogged: boolean;
   userImage?: string;
@@ -9,13 +11,7 @@ interface Props {
 }
 
 const LoginBlock = ({ isLogged, LogOut, userImage }: Props) => {
-  // const logOut = () => {
-  //   localStorage.removeItem("logged");
-  //   logger(false);
-  // };
-
   if (isLogged) {
-    // const userImg = JSON.parse(localStorage.getItem("logged") || "").picture;
     return (
       <div className="head__login">
         <Link to="/post" className="head__btn login__create link_btn">
@@ -36,6 +32,12 @@ const LoginBlock = ({ isLogged, LogOut, userImage }: Props) => {
       </Link>
     );
   }
+};
+
+LoginBlock.propTypes = {
+  isLogged: PropTypes.bool.isRequired,
+  userImage: PropTypes.string,
+  LogOut: PropTypes.func.isRequired,
 };
 
 export default LoginBlock;

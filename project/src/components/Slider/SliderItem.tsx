@@ -1,5 +1,7 @@
 import React from "react";
 
+import PropTypes from "prop-types";
+
 interface Props {
   className?: string;
   image: string;
@@ -20,6 +22,14 @@ const SliderItem = ({ title, subtitle, text, image, className }: Props) => {
       <img className="slider__item__img" src={image} />
     </li>
   );
+};
+
+SliderItem.propTypes = {
+  className: PropTypes.string,
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  text: PropTypes.element,
 };
 
 export default SliderItem;
