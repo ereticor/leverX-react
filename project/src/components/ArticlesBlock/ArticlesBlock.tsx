@@ -4,6 +4,8 @@ import { Article as IArticle, ArticlePayload } from "../../interfaces/article";
 import { ActionProps, SelectorProps } from "../../interfaces/tags";
 import PropTypes from "prop-types";
 
+import WithError from "../../hocs/WithError";
+
 import { fetchWrapperThrottle } from "../../services/fetchWrapper";
 
 import LoadBtn from "../LoadBtn";
@@ -121,4 +123,4 @@ ArticlesBlock.propTypes = {
   singleTag: PropTypes.string,
 };
 
-export default ArticlesBlock;
+export default WithError(ArticlesBlock);

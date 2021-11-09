@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Footer from "../../components/Footer";
+import WithFooter from "../../hocs/WithFooter";
+
 import ArticleFull from "../../components/ArticleFull";
 
 import "./articlePage.scss";
@@ -26,9 +27,8 @@ const ArticlePage = () => {
           </section>
         </div>
       </main>
-      <Footer />
     </>
   );
 };
 
-export default ArticlePage;
+export default WithFooter(ArticlePage);

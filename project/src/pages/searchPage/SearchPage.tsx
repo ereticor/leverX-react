@@ -1,8 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
+import WithFooter from "../../hocs/WithFooter";
+
 import ArticlesBlock from "../../components/ArticlesBlock";
-import Footer from "../../components/Footer";
 
 import "../Home/home.scss";
 import "./searchPage.scss";
@@ -18,9 +19,8 @@ const SearchPage = () => {
           singleTag={tag}
         />
       </main>
-      <Footer />
     </>
   );
 };
 
-export default SearchPage;
+export default WithFooter(SearchPage);

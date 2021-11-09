@@ -1,7 +1,8 @@
 import React from "react";
 
+import WithFooter from "../../hocs/WithFooter";
+
 import LoginForm from "../../components/LoginForm";
-import Footer from "../../components/Footer";
 
 import "./loginPage.scss";
 
@@ -17,9 +18,8 @@ const LoginPage = () => {
         </div>
         ;
       </main>
-      <Footer />
     </>
   );
 };
 
-export default LoginPage;
+export default WithFooter(LoginPage);

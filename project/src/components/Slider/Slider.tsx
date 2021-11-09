@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import { sliderData } from "../../constants/slider";
 
@@ -58,6 +58,16 @@ const Slider = () => {
     transformSlide(1);
   }, []);
 
+  const SliderItems = useMemo(() => {
+    return (
+      <>
+        {sliderData.map((el, index) => (
+          <SliderItem key={index} {...el} />
+        ))}
+      </>
+    );
+  }, []);
+
   return (
     <>
       <div className="slider">
@@ -68,9 +78,7 @@ const Slider = () => {
           style={{ transform: `translateX(-${index}00%)` }}
           onTransitionEnd={checkSlide}
         >
-          {sliderData.map((el, index) => (
-            <SliderItem key={index} {...el} />
-          ))}
+          {SliderItems}
         </ul>
       </div>
       <button

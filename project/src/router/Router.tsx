@@ -1,6 +1,8 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
+import WithError from "../hocs/WithError";
+
 const Header = React.lazy(() => import("../components/Header"));
 const Home = React.lazy(() => import("../pages/Home"));
 const SearchPage = React.lazy(() => import("../pages/searchPage"));
@@ -35,4 +37,4 @@ const Router = ({ isLogged }: { isLogged: boolean }) => {
   );
 };
 
-export default Router;
+export default WithError(Router);

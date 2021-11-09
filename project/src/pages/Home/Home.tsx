@@ -1,8 +1,9 @@
 import React from "react";
 
+import WithFooter from "../../hocs/WithFooter";
+
 import Slider from "../../components/Slider";
 import ArticlesBlock from "../../components/ArticlesBlock";
-import Footer from "../../components/Footer";
 
 import "./home.scss";
 
@@ -17,9 +18,8 @@ const Home = () => {
         </div>
         <ArticlesBlock title="Interesting articles by LeverX Group" />
       </main>
-      <Footer />
     </>
   );
 };
 
-export default Home;
+export default WithFooter(Home);

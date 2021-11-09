@@ -5,6 +5,8 @@ import { Input } from "../../interfaces/input";
 import { Method } from "../../interfaces/urlOptions";
 import { ActionProps, SelectorProps } from "interfaces/tags";
 
+import WithError from "../../hocs/WithError";
+
 import { fetchWrapper } from "../../services/fetchWrapper";
 
 import MultiTags from "../../components/multiTags";
@@ -178,4 +180,4 @@ const PostForm = ({ tags, getTags, isLoadingTags }: Props) => {
   );
 };
 
-export default PostForm;
+export default WithError(PostForm);
