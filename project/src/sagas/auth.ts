@@ -7,7 +7,7 @@ export function* LogInWorker({ payload }: { type: string; payload: any }) {
 }
 
 export function* LogInWatcher() {
-  yield takeEvery(ActionTypes.POST_USER_DATA_SUCCESS, LogInWorker);
+  yield takeEvery(ActionTypes.success, LogInWorker);
 }
 
 export function* LogOutWorker() {
@@ -15,7 +15,7 @@ export function* LogOutWorker() {
 }
 
 export function* LogOutWatcher() {
-  yield takeEvery(ActionTypes.LOG_OUT, LogOutWorker);
+  yield takeEvery(ActionTypes.logOut, LogOutWorker);
 }
 
 export default function* authSaga() {

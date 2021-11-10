@@ -1,7 +1,9 @@
-import LoginBlock from "./LoginBlock";
 import { connect } from "react-redux";
-import { ActionCreators, selectors } from "../../../domains/auth";
 import { createStructuredSelector } from "reselect";
+
+import { ActionCreators, selectors } from "../../../domains/auth";
+
+import LoginBlock from "./LoginBlock";
 
 const selector = createStructuredSelector({
   userImage: selectors.getUserImage,
@@ -9,7 +11,7 @@ const selector = createStructuredSelector({
 });
 
 const mapDispatchToProps = {
-  LogOut: ActionCreators.LogOut,
+  LogOut: ActionCreators.logOut,
 };
 
 export default connect(selector, mapDispatchToProps)(LoginBlock);

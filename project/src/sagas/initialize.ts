@@ -1,6 +1,6 @@
 import { put } from "@redux-saga/core/effects";
 
-import { setUser } from "../domains/auth/actions";
+import { setUser } from "../domains/auth/slice";
 
 export function* initialize() {
   const user = localStorage.getItem("logged");

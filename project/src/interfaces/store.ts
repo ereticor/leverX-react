@@ -1,7 +1,15 @@
 import { RouterState } from "connected-react-router";
+import User from "./user";
 
-import { AppState } from "../domains/app/reducer";
-import { AuthState } from "../domains/auth/reducer";
+export interface AppState {
+  tags: string[];
+  isLoadingTags: boolean;
+}
+
+export interface AuthState {
+  isLoadingUser: boolean;
+  user: User | null;
+}
 
 export interface ReduxStore {
   router: RouterState<unknown>;

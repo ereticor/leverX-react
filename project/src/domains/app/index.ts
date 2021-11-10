@@ -1,6 +1,8 @@
-import * as ActionCreators from "./actions";
-import ActionTypes from "./actionTypes";
-import reducer from "./reducer";
 import * as selectors from "./selectors";
+import reducer, { getTags, tagsReqTypes } from "./slice";
 
-export { ActionTypes, ActionCreators, reducer, selectors };
+const ActionCreators = {
+  getTags,
+};
+
+export { tagsReqTypes as ActionTypes, ActionCreators, reducer, selectors };
