@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import WithFooter from "../../hocs/WithFooter";
+import WithFooter from "../../hocs/WithFooter/WithFooter";
 
 import ArticleFull from "../../components/ArticleFull";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-import WithFooter from "../../hocs/WithFooter";
+import WithFooter from "../../hocs/WithFooter/WithFooter";
 
 import ArticlesBlock from "../../components/ArticlesBlock";
 

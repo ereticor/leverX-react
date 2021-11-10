@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
-import WithError from "../hocs/WithError";
+import WithError from "../hocs/WithError/WithError";
 
 const Header = React.lazy(() => import("../components/Header"));
 const Home = React.lazy(() => import("../pages/Home"));

@@ -1,6 +1,6 @@
 import React from "react";
 
-import WithFooter from "../../hocs/WithFooter";
+import WithFooter from "../../hocs/WithFooter/WithFooter";
 
 import Slider from "../../components/Slider";
 import ArticlesBlock from "../../components/ArticlesBlock";

@@ -4,7 +4,7 @@ import { Article as IArticle, ArticlePayload } from "../../interfaces/article";
 import { ActionProps, SelectorProps } from "../../interfaces/tags";
 import PropTypes from "prop-types";
 
-import WithError from "../../hocs/WithError";
+import WithError from "../../hocs/WithError/WithError";
 
 import { fetchWrapperThrottle } from "../../services/fetchWrapper";
 

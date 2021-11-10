@@ -5,7 +5,7 @@ import { Input } from "../../interfaces/input";
 import { Method } from "../../interfaces/urlOptions";
 import { ActionProps, SelectorProps } from "interfaces/tags";
 
-import WithError from "../../hocs/WithError";
+import WithError from "../../hocs/WithError/WithError";
 
 import { fetchWrapper } from "../../services/fetchWrapper";
 

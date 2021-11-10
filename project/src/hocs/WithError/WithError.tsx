@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./error.scss";
+
 interface State {
   hasError: boolean;
   err: Error | null;
@@ -27,13 +29,16 @@ const WithError = <P extends object>(Component: React.ComponentType<P>) => {
     }
 
     render() {
-      const { hasError, err } = this.state;
+      const { hasError } = this.state;
       if (hasError) {
         return (
           <div className="error__wrapper wrapper">
-            <h1>Something went wrong x_x</h1>
-            <p>Error: {err}</p>
-            <button className="btn" onClick={() => window.location.reload()}>
+            <h1 className="error__head">Something went wrong x_x</h1>
+            {/* <p>Error: {errInfo}</p> */}
+            <button
+              className="btn error__btn"
+              onClick={() => window.location.reload()}
+            >
               Reload page
             </button>
           </div>

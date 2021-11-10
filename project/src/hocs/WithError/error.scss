@@ -1,0 +1,46 @@
+@keyframes errorFocus {
+  from {
+    box-shadow: 0px 0px 1px 1px tomato;
+  }
+  50% {
+    box-shadow: 0px 0px 2px 2px tomato;
+  }
+  to {
+    box-shadow: 0px 0px 1px 1px tomato;
+  }
+}
+
+.wrapper.error__wrapper {
+  display: grid;
+  place-items: center;
+  padding: 50px;
+
+  .error__head {
+    font-size: 2rem;
+    margin-bottom: 20px;
+
+    &::before {
+      position: relative;
+      top: 10px;
+      right: 10px;
+      display: inline-block;
+      content: "";
+      width: 50px;
+      height: 50px;
+      background: url(../../assets/icons/error.gif) no-repeat center / contain;
+    }
+  }
+
+  .error__btn {
+    animation: errorFocus 1s infinite ease-in-out;
+
+    &:hover {
+      background-color: tomato;
+      color: #ffffff;
+    }
+    &:active {
+      cursor: progress;
+      transform: scale(0.9);
+    }
+  }
+}
