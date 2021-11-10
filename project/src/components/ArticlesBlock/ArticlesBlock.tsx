@@ -85,6 +85,7 @@ const ArticlesBlock = ({
             placeholder="Search for article"
             onInput={(e) => {
               const target = e.target as HTMLInputElement;
+              setPage(0);
               setSearchValue(target.value);
             }}
           />
