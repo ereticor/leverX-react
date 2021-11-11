@@ -8,19 +8,16 @@ import "./slider.scss";
 
 const Slider = () => {
   const [index, setIndex] = useState(1);
-  const [interacted, setInteracted] = useState(true);
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
   const [transition, setTransition] = useState(false);
 
   function transformSlide(dir: number) {
-    setInteracted(true);
-
     if (timer) {
-      clearInterval(timer);
+      clearTimeout(timer);
     }
 
-    const interactedTimer = setInterval(() => {
-      setInteracted(false);
+    const interactedTimer = setTimeout(() => {
+      transformSlide(1);
     }, 3000);
 
     setTimer(interactedTimer);
@@ -49,23 +46,15 @@ const Slider = () => {
   }
 
   useEffect(() => {
-    if (!interacted) {
+    let mounted = true;
+    if (!mounted && timer) {
+      clearTimeout(timer);
+    } else {
       transformSlide(1);
     }
-  }, [interacted]);
-
-  useEffect(() => {
-    transformSlide(1);
-  }, []);
-
-  const SliderItems = useMemo(() => {
-    return (
-      <>
-        {sliderData.map((el, index) => (
-          <SliderItem key={index} {...el} />
-        ))}
-      </>
-    );
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   return (
@@ -78,7 +67,9 @@ const Slider = () => {
           style={{ transform: `translateX(-${index}00%)` }}
           onTransitionEnd={checkSlide}
         >
-          {SliderItems}
+          {sliderData.map((el, index) => (
+            <SliderItem key={index} {...el} />
+          ))}
         </ul>
       </div>
       <button

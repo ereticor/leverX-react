@@ -25,7 +25,7 @@ const WithError = <P extends object>(Component: React.ComponentType<P>) => {
     }
 
     componentDidCatch(err: Error, errInfo: {} | string) {
-      console.log("wake up, you obosralsia!");
+      console.log("you ruined my page!");
     }
 
     render() {
