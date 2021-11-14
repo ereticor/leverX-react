@@ -1,0 +1,26 @@
+
+@font-face {
+  font-family: "Open Sans", sans-serif;
+  src: url(./assets/fonts/OpenSans/OpenSans-Regular.ttf),
+       url(./assets/fonts/OpenSans/OpenSans-Bold.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn {
+  border: none;
+  outline: none;
+}
+
+.wrapper {
+  padding: 0 120px;
+}
