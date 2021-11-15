@@ -2,7 +2,7 @@ import HeaderButton from '../../HeaderButton'
 
 import userImg from '../../../assets/images/users/user1.png'
 
-import './profileblock.scss'
+import './profileBlock.scss'
 
 const userName = "anna smith"
 
@@ -12,7 +12,7 @@ const LoginBlock = () => {
     <div className="head__profile">
       <HeaderButton type="post"/>
       <div className="head__user">
-        <img className="user__img" src={userImg} title="you" />
+        <img className="user__img" src={userImg} alt="avatar" title="you" />
         <p className="user__name">{userName}</p>
       </div>
       <HeaderButton type="logout"/>

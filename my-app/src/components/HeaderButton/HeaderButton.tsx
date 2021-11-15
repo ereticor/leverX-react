@@ -1,4 +1,4 @@
-import './headerbutton.scss';
+import './headerButton.scss';
 
 const HeaderButton = ({type}: {type: string}) => {
   return (

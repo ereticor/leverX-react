@@ -1,7 +1,9 @@
+import "./leaveHistory.scss";
+
 const LeaveHistory = () => {
   return (
-    <div>
-      <h2>My Leave Requests</h2>
+    <div className="history__wrapper wrapper">
+      <h2 className="history__head heading">My Leave Requests</h2>
       <div>
         <h3>2019 year</h3>
         <ul>

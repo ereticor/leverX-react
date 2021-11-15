@@ -1,0 +1,33 @@
+.days__wrapper {
+  grid-area: 1;
+}
+
+.days__head {
+  margin: 0 30px;
+}
+
+.days__info {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 30px;
+}
+
+.info__details {
+  // width: 100%;
+  height: 26px;
+  background: #F6F8FD;
+  text-align: center;
+  cursor: pointer;
+}
+
+.details__title {
+  font-size: 10px;
+  line-height: 14px;
+  color: #AFB7BF;
+
+  &::before {
+    display: inline-block;
+    content: "»";
+    transform: rotate(90deg);
+  }
+}
