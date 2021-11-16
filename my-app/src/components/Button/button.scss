@@ -1,0 +1,17 @@
+.form__btn {
+  width: 120px;
+  height: 36px;
+  border-radius: 3px;
+  background: #5495FF;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  text-transform: uppercase;
+
+  &_cancel {
+    background: inherit;
+    color: #225FBF;
+  }
+}

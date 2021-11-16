@@ -1,3 +1,88 @@
 .history__wrapper {
   grid-area: 1 / 2 / span 2 / 3;
+
+  .history__head {
+    padding: 21px 24px 20px;
+  }
+}
+
+.list__head {
+  display: flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 26px;
+  background: #5495FF;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: -0.289412px;
+  color: #FFFFFF;
+}
+
+.history__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 26px;
+  height: 94px;
+  cursor: pointer;
+
+  &:nth-of-type(2n + 1) {
+    background: #F6F8FD;
+  }
+
+
+  .item__type {
+    display: block;
+    content: "";
+    width: 53.7px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+
+    &.vacation {
+      background: #BAB3FF no-repeat center / 70%;
+      background-image: url(../../assets/images/vacType/vacation.svg);
+    }
+    &.own {
+      background: #14CCB0 no-repeat center / 45%;
+      background-image: url(../../assets/images/vacType/own.svg);
+    }
+    &.sick {
+      background: #FFA200 no-repeat center / 50%;
+      background-image: url(../../assets/images/vacType/sick.svg);
+    }
+  }
+
+  .item__content {
+    width: 100%;
+
+    .history__duration {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 20px;
+    }
+
+    .duration__posted,
+    .duration__status {
+      font-size: 12px;
+      line-height: 17px;
+    }
+
+    .duration__posted {
+      margin: 3px 0 5px 0;
+    }
+
+    .duration__status {
+      font-style: italic;
+      font-weight: 600;
+
+      &.approve {
+        color: #3FAD44;
+      }
+      &.decline {
+        color: tomato;
+      }
+    }
+  }
 }
