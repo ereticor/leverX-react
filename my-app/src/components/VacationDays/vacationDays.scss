@@ -3,20 +3,23 @@
 }
 
 .days__head {
-  margin: 0 30px;
+  margin: 31px 30px 11px;
 }
 
 .days__info {
   display: flex;
   justify-content: space-between;
-  margin: 0 30px;
+  margin: 0 30px 14.5px;
+  font-size: 13px;
+  line-height: 18px;
 }
 
 .info__details {
+  display: grid;
+  place-items: center;
   // width: 100%;
   height: 26px;
   background: #F6F8FD;
-  text-align: center;
   cursor: pointer;
 }
 
@@ -28,6 +31,7 @@
   &::before {
     display: inline-block;
     content: "»";
+    margin-right: 8px;
     transform: rotate(90deg);
   }
 }

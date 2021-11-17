@@ -1,0 +1,32 @@
+.dates__wrapper {
+  width: 140px;
+  font-weight: 600;
+
+  span {
+    font-weight: 400;
+    color: #B9C0C7;
+  }
+  
+  label {
+    display: flex;
+    align-items: center;
+    width: 140px;
+    margin-top: 5px;
+    
+    input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      outline: none;
+      font-weight: 400;
+    }
+
+    &::after {
+      display: block;
+      width: 17px;
+      aspect-ratio: 1;
+      content: "";
+      background: no-repeat center / contain url(../../assets/icons/date/calendar.svg);
+    }
+  }
+}

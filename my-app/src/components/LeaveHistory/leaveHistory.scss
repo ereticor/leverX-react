@@ -1,5 +1,7 @@
 .history__wrapper {
   grid-area: 1 / 2 / span 2 / 3;
+  min-height: 98%;
+  height: min-content;
 
   .history__head {
     padding: 21px 24px 20px;
@@ -10,7 +12,7 @@
   display: flex;
   align-items: center;
   height: 22px;
-  padding: 0 26px;
+  padding: 0 30px;
   background: #5495FF;
   font-size: 12px;
   line-height: 17px;
@@ -22,7 +24,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 0 26px;
+  padding: 0 26px 5px;
   height: 94px;
   cursor: pointer;
 
@@ -34,8 +36,9 @@
   .item__type {
     display: block;
     content: "";
-    width: 53.7px;
+    width: 56px;
     aspect-ratio: 1;
+    margin-bottom: 9px;
     border-radius: 50%;
 
     &.vacation {
@@ -61,6 +64,15 @@
       font-weight: 600;
       font-size: 15px;
       line-height: 20px;
+      letter-spacing: 0.01em;
+
+      span {
+        position: relative;
+        top: -3px;
+        transform: scaleY(1.4);
+        font-weight: 400;
+        color: #AFB7BF;
+      }
     }
 
     .duration__posted,
@@ -76,6 +88,7 @@
     .duration__status {
       font-style: italic;
       font-weight: 600;
+      letter-spacing: -0.04em;
 
       &.approve {
         color: #3FAD44;
