@@ -3,13 +3,23 @@
 
   .form__back {
     // width: 100%;
-    // height: 31%;
-    border-radius: inherit;
+    height: 170px;
+    border-radius: inherit inherit 0 0;
+
+    &.vacation {
+      background: url(../../assets/images/formImg/vacation.svg);
+    }
+    &.own {
+      background: url(../../assets/images/formImg/own.svg);
+    }
+    &.sick {
+      background: url(../../assets/images/formImg/sick.svg);
+    }
   }
 
   .form {
     max-width: 360px;
-    margin: 27px 79px 24px 30px;
+    margin: 31px 79px 24px 30px;
 
     *:not(.form__head) {
       font-size: 13px;
@@ -39,7 +49,8 @@
 
       .form__select {
         width: 100%;
-        padding-inline: 8px 12px;
+        height: 100%;
+        padding-inline: 5px 12px;
         border: none;
         background: inherit;
   
@@ -62,6 +73,14 @@
       }
     }
 
+    .form__warning {
+      margin-bottom: 24px;
+
+      span {
+        font-weight: 600;
+      }
+    }
+
     .form__dates {
       display: flex;
       gap: 2.5%;
@@ -74,35 +93,13 @@
         position: absolute;
         top: 1px;
         right: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 15px;
-        height: 15px;
-        border: 1px solid;
-        border-radius: 50%;
-        cursor: help;
-        font-size: 12px;
-        
-        &:hover::after {  
-          position: absolute;
-          bottom: 20px;
-          display: block;
-          content: attr(data-title);      
-          width: 340px;
-          height: 170px;
-          padding: 21px 30px 29px;
-          border-radius: 6px;
-          background: #FFFFFF;
-          box-shadow: 0px 2px 10px rgba(32, 75, 146, 0.15);
-          color: #333D47;
-        }
       }
     }
 
 
     .dates__count {
       width: 60px;
+      background: #F6F8FD;
 
       &::after {
         display: none;
@@ -111,6 +108,7 @@
       input {
         height: 100%;
         border: none;
+        background: inherit;
       }
     }
 
