@@ -4,14 +4,14 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import "./dateInput.scss";
 
-interface DateInput {
+interface IDateInput {
   date: Date;
   minDate: Date;
   setDate(date: Date): void;
   text: string;
 }
 
-const DateInput = ({setDate, date, minDate, text}: DateInput) => {
+const DateInput = ({setDate, date, minDate, text}: IDateInput) => {
   return (
     <div className="dates__wrapper">
       {text} <span>(inclusive)</span>

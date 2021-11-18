@@ -19,7 +19,7 @@ const VacationForm = () => {
     if (startDate > endDate) {
       setEndDate(startDate);
     }
-  }, [startDate])
+  }, [startDate, endDate])
 
   return (
     <div className="form__wrapper wrapper">
