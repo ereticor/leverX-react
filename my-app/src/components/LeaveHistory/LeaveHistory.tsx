@@ -1,6 +1,22 @@
 import "./leaveHistory.scss";
 
 const LeaveHistory = () => {
+
+  const arr = []
+
+  if (!arr.length) {
+    return (
+      <div className="history__wrapper wrapper">
+        <h2 className="history__head heading">My Leave Requests</h2>
+        <div className="history__empty__wrapper">
+          <div className="empty__back"></div>
+          <h3 className="empty__head">No vacation requests yet</h3>
+          <p className="empty__text">As soon as you create your first request, you can find it here</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="history__wrapper wrapper">
       <h2 className="history__head heading">My Leave Requests</h2>
