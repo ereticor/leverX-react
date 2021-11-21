@@ -20,19 +20,44 @@ const VacationForm = () => {
   const [isShowModal, setIsShowModal] = useState(false);
 
   const openModal = () => {
-    setIsShowModal(prev => !prev)
+    setIsShowModal((prev) => !prev);
+  };
+
+  const getModalMessage = () => {
+    if (daysCount(startDate, endDate) > 14) {
+      return 'weekLimit'
+    }
+    if (daysCount(startDate, endDate) < 3 && startDate.getDay() > 5 && endDate.getDay() > 5) {
+      return 'onlyHolidays'
+    }
+    if (!!Math.ceil(Math.random() - 0.5)) {
+      return 'alreadyCreated'
+    }
+    if (daysCount(Date.now(), startDate) < 14) {
+      return 'tooEarly'
+    }
+    return 'noWarnings'
   }
 
   useEffect(() => {
     if (startDate > endDate) {
       setEndDate(startDate);
     }
-  }, [startDate, endDate])
+    if (daysCount(Date.now(), startDate) > 14) {
+      
+    }
+  }, [startDate, endDate]);
 
   return (
     <div className="form__wrapper wrapper">
       <div className={`form__back ${vacType}`} />
-      <form className="form" onSubmit={(e) => {e.preventDefault(); console.log(startDate,endDate,vacType,comment)}}>
+      <form
+        className="form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          console.log(startDate, endDate, vacType, comment);
+        }}
+      >
         <h2 className="form__head heading">New Request</h2>
         <label className="form__select__wrapper">
           <select
@@ -72,20 +97,29 @@ const VacationForm = () => {
             <div className="dates__wrapper">
               Day(s){" "}
               <span className="dates__explanation">
-                <PopExplanation content={daysCountExplanation}/>
+                <PopExplanation content={daysCountExplanation} />
               </span>
               <label className="dates__count">
-                <input type="number" disabled value={daysCount({startDate, endDate})}/>
+                <input
+                  type="number"
+                  disabled
+                  value={daysCount(startDate, endDate)}
+                />
               </label>
             </div>
           ) : null}
         </div>
         <div className="form__comment__wrapper">
           <h3 className="comment__head">Comment</h3>
-          <textarea className="comment__input" onChange={(e) => {setComment(e.target.value)}}></textarea>
+          <textarea
+            className="comment__input"
+            onChange={(e) => {
+              setComment(e.target.value);
+            }}
+          ></textarea>
         </div>
         <div className="form__submit">
-          <Button Itype="submit" text="Submit" clickHandler={openModal}/>
+          <Button Itype="submit" text="Submit" clickHandler={openModal} />
           <p className="submit__info">
             Have questions?{" "}
             <a className="submit__link" href="https://youtu.be/dQw4w9WgXcQ">
@@ -93,7 +127,12 @@ const VacationForm = () => {
             </a>
           </p>
         </div>
-        <PopConfirmation showModal={isShowModal} cancelBtnHandler={openModal} submitBtnHandler={openModal} />
+        <PopConfirmation
+          showModal={isShowModal}
+          warning={getModalMessage()}
+          cancelBtnHandler={openModal}
+          submitBtnHandler={openModal}
+        />
       </form>
     </div>
   );

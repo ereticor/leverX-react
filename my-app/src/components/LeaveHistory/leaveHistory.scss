@@ -1,5 +1,6 @@
 .history__wrapper {
   grid-area: 1 / 2 / span 2 / 3;
+  // width: max-content;
   max-height: 98%;
   height: 100%;
 
@@ -35,7 +36,7 @@
     letter-spacing: -0.289412px;
     color: #FFFFFF;
   }
-  
+
   .history__item {
     padding: 0 26px 5px;
     height: 94px;
