@@ -1,0 +1,99 @@
+.confirm__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  place-items: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.confirm {
+  width: 500px;
+  border-radius: 10px;
+  background: #FFFFFF;
+  overflow: hidden;
+  color: #333333;
+
+  & > * {
+    display: flex;
+    align-items: center;
+    padding-inline: 25px 30px;
+  }
+
+  .confirm__head,
+  .confirm__foot {
+    position: relative;
+    height: 60px;
+    background: #FAFAFA;
+
+    &::after {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      content: '';
+      border: 1px solid #EDEDF0;
+    }
+  }
+
+  .confirm__head {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.385882px;
+
+    &::after {
+      bottom: 15px;
+    }
+  }
+
+  .confirm__body {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-block: 22px 27px;
+    font-size: 13px;
+    line-height: 18px;
+    letter-spacing: -0.313529px;
+
+    .confirm__warning {
+      margin-bottom: 24px;
+      font-weight: 600;
+      color: #F80000;
+    }
+
+    .confirm__info {
+      margin-bottom: 12px;
+    }
+
+    .confirm__dates {
+      
+      .item__type {
+        margin: 0;
+      }
+    }
+  }
+
+  .confirm__foot {
+    justify-content: flex-end;
+    gap: 5px;
+    padding-top: 15px;
+
+    .btn {
+      width: unset;
+      height: unset;
+      padding: 8.5px 15px;
+      border: 1px solid #CCCCCC;
+      border-radius: 3px;
+      font-size: 12px;
+      line-height: 17px;
+      letter-spacing: -0.289412px;
+    }
+
+    &::after {
+      top: 15px;
+    }
+  }
+}

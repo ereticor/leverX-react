@@ -28,6 +28,10 @@
       font-size: 13px;
       line-height: 20px;
       letter-spacing: 0.013em;
+
+      &.bold {
+        font-weight: 600;
+      }
     }
 
     &::before,

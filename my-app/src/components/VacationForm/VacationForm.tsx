@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
+// import {createPortal} from "react-dom";
 
 import Button from "../Button";
 import DateInput from "../DateInput";
 import PopExplanation from "../PopUps/PopExplanation";
+import PopConfirmation from "../PopUps/PopConfirmation";
 
 import { sickWarning } from "../../constants/warnings";
 import { daysCountExplanation } from "../../constants/explanations";
+import daysCount from "../../helpers/daysCount";
 
 import "./vacationForm.scss";
 
@@ -14,6 +17,11 @@ const VacationForm = () => {
   const [endDate, setEndDate] = useState(startDate);
   const [vacType, setVacType] = useState("vacation");
   const [comment, setComment] = useState("");
+  const [isShowModal, setIsShowModal] = useState(false);
+
+  const openModal = () => {
+    setIsShowModal(prev => !prev)
+  }
 
   useEffect(() => {
     if (startDate > endDate) {
@@ -63,14 +71,11 @@ const VacationForm = () => {
           {vacType === "vacation" ? (
             <div className="dates__wrapper">
               Day(s){" "}
-              {/* <span data-title={explanation} className="dates__explanation">
-                ?
-              </span> */}
               <span className="dates__explanation">
                 <PopExplanation content={daysCountExplanation}/>
               </span>
               <label className="dates__count">
-                <input type="number" disabled value={(Math.round( (+endDate - +startDate) / (1000 * 60 * 60 * 24) ) + 1)}/>
+                <input type="number" disabled value={daysCount({startDate, endDate})}/>
               </label>
             </div>
           ) : null}
@@ -80,7 +85,7 @@ const VacationForm = () => {
           <textarea className="comment__input" onChange={(e) => {setComment(e.target.value)}}></textarea>
         </div>
         <div className="form__submit">
-          <Button Itype="submit" text="Submit" />
+          <Button Itype="submit" text="Submit" clickHandler={openModal}/>
           <p className="submit__info">
             Have questions?{" "}
             <a className="submit__link" href="https://youtu.be/dQw4w9WgXcQ">
@@ -88,6 +93,7 @@ const VacationForm = () => {
             </a>
           </p>
         </div>
+        <PopConfirmation showModal={isShowModal} cancelBtnHandler={openModal} submitBtnHandler={openModal} />
       </form>
     </div>
   );

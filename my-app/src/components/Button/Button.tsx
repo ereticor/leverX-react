@@ -2,13 +2,13 @@ import "./button.scss";
 
 interface IButton {
   clickHandler?: React.MouseEventHandler<HTMLButtonElement>;
-  Itype: "button" | "submit" | "reset";
+  Itype: string;
   text: string;
 }
 
 const Button = ({ Itype, text, clickHandler }: IButton) => {
   return (
-    <button className={`btn form__btn ${Itype}__btn`} type={Itype} onClick={clickHandler ? clickHandler : undefined}>
+    <button className={`btn form__btn form__btn_${Itype}`} onClick={clickHandler ? clickHandler : undefined}>
       {text}
     </button>
   );

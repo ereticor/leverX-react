@@ -1,8 +1,10 @@
+import HistoryItem from '../HistoryItem'
+
 import "./leaveHistory.scss";
 
 const LeaveHistory = () => {
 
-  const arr = []
+  const arr = [2019,2018]
 
   if (!arr.length) {
     return (
@@ -21,48 +23,20 @@ const LeaveHistory = () => {
     <div className="history__wrapper wrapper">
       <h2 className="history__head heading">My Leave Requests</h2>
       <div className="list__wrapper">
-        <h3 className="list__head">2019 Year</h3>
-        <ul className="history__list">
-          <li className="history__item">
-            <div className="item__type own" />
-            <div className="item__content">
-              <div className="history__duration">
-                <h4 className="duration__head">
-                  Vacation: {`16 Sep 2018`} - {`16 Sep 2018`} (4 days)
-                </h4>
-                <span>&gt;</span>
-              </div>
-              <p className="duration__posted">Created: {`1 Sep 2018`}</p>
-              <p className="duration__status approve">Approved</p>
-            </div>
+        {/* <h3 className="list__head">2019 Year</h3> */}
+        {arr.map( (key, index) => (
+          <ul className="history__list" data-year={key} key={`history list: ${index}`}>
+          <li className="history__item__wrapper">
+            <HistoryItem type={'own'}/>
           </li>
-          <li className="history__item">
-            <div className="item__type vacation" />
-            <div className="item__content">
-              <div className="history__duration">
-                <h4 className="duration__head">
-                  Vacation: {`16 Sep 2018`} - {`16 Sep 2018`} (4 days)
-                </h4>
-                <span>&gt;</span>
-              </div>
-              <p className="duration__posted">Created: {`1 Sep 2018`}</p>
-              <p className="duration__status approve">Approved</p>
-            </div>
+          <li className="history__item__wrapper">
+            <HistoryItem type={'sick'}/>
           </li>
-          <li className="history__item">
-            <div className="item__type sick" />
-            <div className="item__content">
-              <div className="history__duration">
-                <h4 className="duration__head">
-                  Vacation: {`16 Sep 2018`} - {`16 Sep 2018`} (4 days)
-                </h4>
-                <span>&gt;</span>
-              </div>
-              <p className="duration__posted">Created: {`1 Sep 2018`}</p>
-              <p className="duration__status approve">Approved</p>
-            </div>
+          <li className="history__item__wrapper">
+            <HistoryItem type={'vacation'}/>
           </li>
-        </ul>
+          </ul>
+        ))}
       </div>
     </div>
   );

@@ -1,0 +1,71 @@
+.history__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.item__type {
+  display: block;
+  content: "";
+  width: 56px;
+  aspect-ratio: 1;
+  margin-bottom: 9px;
+  border-radius: 50%;
+
+  &.vacation {
+    background: #bab3ff no-repeat center / 70%;
+    background-image: url(../../assets/images/vacType/vacation.svg);
+  }
+  &.own {
+    background: #14ccb0 no-repeat center / 45%;
+    background-image: url(../../assets/images/vacType/own.svg);
+  }
+  &.sick {
+    background: #ffa200 no-repeat center / 50%;
+    background-image: url(../../assets/images/vacType/sick.svg);
+  }
+}
+
+.item__content {
+  width: 100%;
+
+  .history__duration {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+
+    span {
+      position: relative;
+      top: -3px;
+      transform: scaleY(1.4);
+      font-weight: 400;
+      color: #afb7bf;
+    }
+  }
+
+  .duration__posted,
+  .duration__status {
+    font-size: 12px;
+    line-height: 17px;
+  }
+
+  .duration__posted {
+    margin: 3px 0 5px 0;
+  }
+
+  .duration__status {
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+
+    &.approve {
+      color: #3fad44;
+    }
+    &.decline {
+      color: tomato;
+    }
+  }
+}

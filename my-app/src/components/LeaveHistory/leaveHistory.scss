@@ -20,85 +20,33 @@
   color: #FFFFFF;
 }
 
-.history__item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 0 26px 5px;
-  height: 94px;
-  cursor: pointer;
+.history__list {
 
-  &:nth-of-type(2n + 1) {
-    background: #F6F8FD;
+  &::before {
+    display: flex;
+    align-items: center;
+    height: 22px;
+    padding: 0 30px;
+    background: #5495FF;
+    content: attr(data-year) " Year";
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 17px;
+    letter-spacing: -0.289412px;
+    color: #FFFFFF;
   }
-
-
-  .item__type {
-    display: block;
-    content: "";
-    width: 56px;
-    aspect-ratio: 1;
-    margin-bottom: 9px;
-    border-radius: 50%;
-
-    &.vacation {
-      background: #BAB3FF no-repeat center / 70%;
-      background-image: url(../../assets/images/vacType/vacation.svg);
-    }
-    &.own {
-      background: #14CCB0 no-repeat center / 45%;
-      background-image: url(../../assets/images/vacType/own.svg);
-    }
-    &.sick {
-      background: #FFA200 no-repeat center / 50%;
-      background-image: url(../../assets/images/vacType/sick.svg);
-    }
-  }
-
-  .item__content {
-    width: 100%;
-
-    .history__duration {
-      display: flex;
-      justify-content: space-between;
-      font-weight: 600;
-      font-size: 15px;
-      line-height: 20px;
-      letter-spacing: 0.01em;
-
-      span {
-        position: relative;
-        top: -3px;
-        transform: scaleY(1.4);
-        font-weight: 400;
-        color: #AFB7BF;
-      }
-    }
-
-    .duration__posted,
-    .duration__status {
-      font-size: 12px;
-      line-height: 17px;
-    }
-
-    .duration__posted {
-      margin: 3px 0 5px 0;
-    }
-
-    .duration__status {
-      font-style: italic;
-      font-weight: 600;
-      letter-spacing: -0.04em;
-
-      &.approve {
-        color: #3FAD44;
-      }
-      &.decline {
-        color: tomato;
-      }
+  
+  .history__item {
+    padding: 0 26px 5px;
+    height: 94px;
+    cursor: pointer;
+  
+    &:nth-of-type(2n + 1) {
+      background: #F6F8FD;
     }
   }
 }
+
 
 .history__empty__wrapper {
   display: flex;
