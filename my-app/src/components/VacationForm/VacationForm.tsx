@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-// import {createPortal} from "react-dom";
 
 import Button from "../Button";
 import DateInput from "../DateInput";
 import PopExplanation from "../PopUps/PopExplanation";
 import PopConfirmation from "../PopUps/PopConfirmation";
 
+import daysCount from "../../helpers/daysCount";
+import dateToHuman from "../../helpers/dateToHuman";
+
 import { sickWarning } from "../../constants/warnings";
 import { daysCountExplanation } from "../../constants/explanations";
-import daysCount from "../../helpers/daysCount";
+import confirmationInfo from "../../constants/confirmationInfo";
 
 import "./vacationForm.scss";
 
@@ -17,6 +19,7 @@ const VacationForm = () => {
   const [endDate, setEndDate] = useState(startDate);
   const [vacType, setVacType] = useState("vacation");
   const [comment, setComment] = useState("");
+  const [warning, setWarning] = useState<keyof typeof confirmationInfo.warnings>('tooEarly');
   const [isShowModal, setIsShowModal] = useState(false);
 
   const openModal = () => {
@@ -24,28 +27,31 @@ const VacationForm = () => {
   };
 
   const getModalMessage = () => {
+    console.log(endDate.getDay())
     if (daysCount(startDate, endDate) > 14) {
-      return 'weekLimit'
+      return "weekLimit";
     }
-    if (daysCount(startDate, endDate) < 3 && startDate.getDay() > 5 && endDate.getDay() > 5) {
-      return 'onlyHolidays'
+    if (
+      daysCount(startDate, endDate) < 3 &&
+      startDate.getDay() > 5 &&
+      endDate.getDay() < 1
+    ) {
+      return "onlyHolidays";
     }
     if (!!Math.ceil(Math.random() - 0.5)) {
-      return 'alreadyCreated'
+      return "alreadyCreated";
     }
     if (daysCount(Date.now(), startDate) < 14) {
-      return 'tooEarly'
+      return "tooEarly";
     }
-    return 'noWarnings'
-  }
+    return "noWarnings";
+  };
 
   useEffect(() => {
     if (startDate > endDate) {
       setEndDate(startDate);
     }
-    if (daysCount(Date.now(), startDate) > 14) {
-      
-    }
+    setWarning(getModalMessage());
   }, [startDate, endDate]);
 
   return (
@@ -129,9 +135,13 @@ const VacationForm = () => {
         </div>
         <PopConfirmation
           showModal={isShowModal}
-          warning={getModalMessage()}
-          cancelBtnHandler={openModal}
-          submitBtnHandler={openModal}
+          warning={confirmationInfo.warnings[warning]}
+          info={confirmationInfo.info[warning]}
+          dates={`${dateToHuman(startDate)} - ${dateToHuman(endDate)} (${daysCount(startDate, endDate)} days)`}
+          cancelBtnText={confirmationInfo.buttons[warning].text[0]}
+          cancelBtnHandler={confirmationInfo.buttons[warning].order === 'reverse' ? () => console.log('cringe') : openModal}
+          submitBtnText={confirmationInfo.buttons[warning].text[1]}
+          submitBtnHandler={confirmationInfo.buttons[warning].order === 'reverse' ? openModal : () => console.log('kek')}
         />
       </form>
     </div>

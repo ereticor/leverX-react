@@ -37,14 +37,22 @@
     color: #FFFFFF;
   }
 
-  .history__item {
-    padding: 0 26px 5px;
-    height: 94px;
-    cursor: pointer;
-  
-    &:nth-of-type(2n + 1) {
+  &:nth-of-type(2n + 1) {
+    .history__item__wrapper:nth-of-type(2n + 1) {
       background: #F6F8FD;
     }
+  }
+
+  &:nth-of-type(2n) {
+    .history__item__wrapper:nth-of-type(2n) {
+      background: #F6F8FD;
+    }
+  }
+
+  .history__item {
+    height: 94px;
+    padding: 0 26px 5px;
+    cursor: pointer;
   }
 }
 
