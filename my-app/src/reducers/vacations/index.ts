@@ -1,8 +1,9 @@
 import * as selectors from "./selectors";
-import reducer, { getDays, tagsReqTypes } from "./slice";
+import reducer, { setVacation, decreaseDays } from "./slice";
 
 const ActionCreators = {
-  getDays,
+  decreaseDays,
+  setVacation
 };
 
-export { tagsReqTypes as ActionTypes, ActionCreators, reducer, selectors };
+export { ActionCreators, reducer, selectors };

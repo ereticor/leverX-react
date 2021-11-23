@@ -2,10 +2,29 @@ import HistoryItem from "../HistoryItem";
 
 import "./leaveHistory.scss";
 
-const LeaveHistory = () => {
-  const arr = [2019, 2018];
+import Vacation from "../../interfaces/vacation";
+import formatDates from "../../helpers/formatDates";
 
-  if (!arr.length) {
+interface Props {
+  vacations: Vacation[];
+}
+
+interface VacatoinsSorted {
+  [key: string]: Vacation[];
+}
+
+const LeaveHistory = ({ vacations }: Props) => {
+  const vacationSorted = vacations.reduce<VacatoinsSorted>((result, item) => {
+    const year = new Date(item.endDate).getFullYear();
+    if (result[`${year}`]) {
+      result[`${year}`].push(item);
+    } else {
+      result[`${year}`] = [item];
+    }
+    return result;
+  }, {});
+
+  if (!vacations.length) {
     return (
       <div className="history__wrapper wrapper">
         <h2 className="history__head heading">My Leave Requests</h2>
@@ -24,22 +43,22 @@ const LeaveHistory = () => {
     <div className="history__wrapper wrapper">
       <h2 className="history__head heading">My Leave Requests</h2>
       <div className="list__wrapper">
-        {/* <h3 className="list__head">2019 Year</h3> */}
-        {arr.map((key, index) => (
+        {Object.keys(vacationSorted).sort( (f, s) => +s - +f).map((key, index) => (
           <ul
             className="history__list"
             data-year={key}
-            key={`history list: ${index}`}
+            key={`history list: ${key}`}
           >
-            <li className="history__item__wrapper">
-              <HistoryItem type={"own"} />
-            </li>
-            <li className="history__item__wrapper">
-              <HistoryItem type={"sick"} />
-            </li>
-            <li className="history__item__wrapper">
-              <HistoryItem type={"vacation"} />
-            </li>
+            {vacationSorted[key]
+              .sort((f, s) => +f.creationDate - +s.creationDate)
+              .map((item, index) => {
+                const {startDate, endDate, creationDate, vacType} = item
+                return (
+                  <li className="history__item__wrapper" key={`history item: ${creationDate}, ${index}`}>
+                    <HistoryItem type={vacType} dates={formatDates({startDate, endDate})} creationDate={creationDate} />
+                  </li>
+                );
+              })}
           </ul>
         ))}
       </div>

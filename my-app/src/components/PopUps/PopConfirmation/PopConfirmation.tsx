@@ -50,13 +50,13 @@ const PopConfirmation = ({
       </div>
       <div className="confirm__foot">
         <Button
-          Itype={cancelBtnType || "cancel"}
+          IClass={cancelBtnType || "cancel"}
           text={cancelBtnText || "cancel"}
           clickHandler={cancelBtnHandler}
         />
         {submitBtnText ? (
           <Button
-            Itype={submitBtnType || "submit"}
+            IClass={submitBtnType || "submit"}
             text={submitBtnText || "confirm"}
             clickHandler={submitBtnHandler}
           />

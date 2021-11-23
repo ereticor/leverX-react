@@ -34,6 +34,17 @@ input[type="number"] {
   cursor: pointer;
 }
 
+a, button {
+  transition: 0.2s all ease-in-out;
+
+  &:hover {
+    transform: scale(0.9);
+  }
+  &:active {
+    transform: scale(1.1)
+  }
+}
+
 .main {
   display: grid;
   gap: 10px;

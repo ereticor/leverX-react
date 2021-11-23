@@ -1,13 +1,16 @@
 import "./historyItem.scss";
 
+import dateToHuman from "../../helpers/dateToHuman"
+
 interface IHistoryItem {
   isModal?: boolean;
   className?: string;
   type: string;
   dates?: string | null;
+  creationDate?: Date;
 }
 
-const HistoryItem = ({ isModal, className, type, dates }: IHistoryItem) => {
+const HistoryItem = ({ isModal, className, type, dates, creationDate }: IHistoryItem) => {
   return (
     <div className={`history__item ${className || ""}`}>
       <div className={`item__type ${type}`} />
@@ -22,7 +25,7 @@ const HistoryItem = ({ isModal, className, type, dates }: IHistoryItem) => {
         </div>
         {isModal ? null : (
           <>
-            <p className="duration__posted">Created: {`1 Sep 2018`}</p>
+            <p className="duration__posted">Created: {dateToHuman(creationDate || Date.now())}</p>
             <p className="duration__status approve">Approved</p>
           </>
         )}

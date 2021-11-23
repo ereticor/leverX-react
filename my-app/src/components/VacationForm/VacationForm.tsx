@@ -6,15 +6,27 @@ import PopExplanation from "../PopUps/PopExplanation";
 import PopConfirmation from "../PopUps/PopConfirmation";
 
 import daysCount from "../../helpers/daysCount";
-import dateToHuman from "../../helpers/dateToHuman";
+import formatDates from "../../helpers/formatDates";
+import { areIntervalsOverlapping } from "date-fns"
 
 import { sickWarning } from "../../constants/warnings";
 import { daysCountExplanation } from "../../constants/explanations";
 import confirmationInfo from "../../constants/confirmationInfo";
 
 import "./vacationForm.scss";
+import Vacation from "../../interfaces/vacation";
 
-const VacationForm = () => {
+interface Props {
+  decreaseDays: (arg: number) => void;
+  setVacation: (arg: Vacation) => void;
+  vacations: Vacation[];
+}
+
+const VacationForm = ({
+  decreaseDays,
+  setVacation,
+  vacations,
+}: Props) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(startDate);
   const [vacType, setVacType] = useState("vacation");
@@ -28,7 +40,12 @@ const VacationForm = () => {
   };
 
   const getModalMessage = () => {
-    console.log(endDate.getDay());
+    if (vacations.some( (el) => areIntervalsOverlapping(
+      { start: startDate, end: endDate},
+      { start: el.startDate, end: el.endDate}
+    ))) {
+      return "alreadyCreated";
+    }
     if (daysCount(startDate, endDate) > 14) {
       return "weekLimit";
     }
@@ -38,9 +55,6 @@ const VacationForm = () => {
       endDate.getDay() < 1
     ) {
       return "onlyHolidays";
-    }
-    if (!!Math.ceil(Math.random() - 0.5)) {
-      return "alreadyCreated";
     }
     if (daysCount(Date.now(), startDate) < 14) {
       return "tooEarly";
@@ -52,8 +66,26 @@ const VacationForm = () => {
     if (startDate > endDate) {
       setEndDate(startDate);
     }
-    setWarning(getModalMessage());
   }, [startDate, endDate]);
+
+  const [cancelBtnText, submitBtnText] = confirmationInfo.buttons[warning].text;
+
+  const Handlers = [
+    () => {
+      if (vacType === 'vacation') {
+        decreaseDays(daysCount(startDate, endDate));
+      }
+      openModal();
+      console.log(startDate, endDate, vacType, comment);
+      const creationDate = new Date();
+      setVacation({startDate, endDate, creationDate, comment, vacType})
+    },
+    openModal,
+  ]
+  const [cancelBtnHandler, submitBtnHandler] =
+    confirmationInfo.buttons[warning].order === "reverse"
+      ? Handlers
+      : Handlers.reverse();
 
   return (
     <div className="form__wrapper wrapper">
@@ -61,8 +93,10 @@ const VacationForm = () => {
       <form
         className="form"
         onSubmit={(e) => {
+          //@ts-ignore
+          console.log(e.target.elements)
           e.preventDefault();
-          console.log(startDate, endDate, vacType, comment);
+          // console.log(startDate, endDate, vacType, comment);
         }}
       >
         <h2 className="form__head heading">New Request</h2>
@@ -126,7 +160,10 @@ const VacationForm = () => {
           ></textarea>
         </div>
         <div className="form__submit">
-          <Button Itype="submit" text="Submit" clickHandler={openModal} />
+          <Button IClass="button" text="Submit" clickHandler={() => {
+            setWarning(getModalMessage());
+            openModal();
+            }} />
           <p className="submit__info">
             Have questions?{" "}
             <a className="submit__link" href="https://youtu.be/dQw4w9WgXcQ">
@@ -138,21 +175,11 @@ const VacationForm = () => {
           showModal={isShowModal}
           warning={confirmationInfo.warnings[warning]}
           info={confirmationInfo.info[warning]}
-          dates={`${dateToHuman(startDate)} - ${dateToHuman(
-            endDate
-          )} (${daysCount(startDate, endDate)} days)`}
-          cancelBtnText={confirmationInfo.buttons[warning].text[0]}
-          cancelBtnHandler={
-            confirmationInfo.buttons[warning].order === "reverse"
-              ? () => console.log("cringe")
-              : openModal
-          }
-          submitBtnText={confirmationInfo.buttons[warning].text[1]}
-          submitBtnHandler={
-            confirmationInfo.buttons[warning].order === "reverse"
-              ? openModal
-              : () => console.log("kek")
-          }
+          dates={formatDates({startDate, endDate})}
+          cancelBtnText={cancelBtnText}
+          cancelBtnHandler={cancelBtnHandler}
+          submitBtnText={submitBtnText}
+          submitBtnHandler={submitBtnHandler}
         />
       </form>
     </div>

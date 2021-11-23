@@ -8,9 +8,10 @@ import rootReducer from "../reducers";
 // import history from "./history";
 
 const preloadedState = {
-  app: {
-    days: 147,
-  },
+  // app: {
+  //   days: 147,
+  //   vacations: []
+  // },
 };
 
 // const sagaMiddleware = createSagaMiddleware();
@@ -21,7 +22,9 @@ const store = configureStore({
   devTools: process.env.NODE_ENV !== "production",
   preloadedState,
   reducer: rootReducer(),
-  // middleware,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false,
+  }),
 });
 
 // sagaMiddleware.run(rootSaga);

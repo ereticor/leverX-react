@@ -8,4 +8,4 @@ export const getApp = (state: ReduxStore) => {
 
 export const getDays = createSelector(getApp, (app) => app.days);
 
-// export const isLoadingTags = createSelector(getApp, (app) => app.isLoadingTags);
+export const getVacations = createSelector(getApp, (app) => app.vacations);
