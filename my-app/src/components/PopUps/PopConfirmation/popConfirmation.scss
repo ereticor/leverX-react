@@ -14,7 +14,7 @@
 .confirm {
   width: 500px;
   border-radius: 10px;
-  background: #FFFFFF;
+  background: #ffffff;
   overflow: hidden;
   color: #333333;
 
@@ -28,14 +28,14 @@
   .confirm__foot {
     position: relative;
     height: 60px;
-    background: #FAFAFA;
+    background: #fafafa;
 
     &::after {
       position: absolute;
       left: 0;
       width: 100%;
-      content: '';
-      border: 1px solid #EDEDF0;
+      content: "";
+      border: 1px solid #ededf0;
     }
   }
 
@@ -61,7 +61,7 @@
     .confirm__warning {
       margin-bottom: 24px;
       font-weight: 600;
-      color: #F80000;
+      color: #f80000;
     }
 
     .confirm__info {
@@ -69,7 +69,6 @@
     }
 
     .confirm__dates {
-      
       .item__type {
         margin: 0;
       }
@@ -85,7 +84,7 @@
       width: unset;
       height: unset;
       padding: 8.5px 15px;
-      border: 1px solid #CCCCCC;
+      border: 1px solid #cccccc;
       border-radius: 3px;
       font-size: 12px;
       line-height: 17px;

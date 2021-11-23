@@ -19,7 +19,8 @@ const VacationForm = () => {
   const [endDate, setEndDate] = useState(startDate);
   const [vacType, setVacType] = useState("vacation");
   const [comment, setComment] = useState("");
-  const [warning, setWarning] = useState<keyof typeof confirmationInfo.warnings>('tooEarly');
+  const [warning, setWarning] =
+    useState<keyof typeof confirmationInfo.warnings>("tooEarly");
   const [isShowModal, setIsShowModal] = useState(false);
 
   const openModal = () => {
@@ -27,7 +28,7 @@ const VacationForm = () => {
   };
 
   const getModalMessage = () => {
-    console.log(endDate.getDay())
+    console.log(endDate.getDay());
     if (daysCount(startDate, endDate) > 14) {
       return "weekLimit";
     }
@@ -137,11 +138,21 @@ const VacationForm = () => {
           showModal={isShowModal}
           warning={confirmationInfo.warnings[warning]}
           info={confirmationInfo.info[warning]}
-          dates={`${dateToHuman(startDate)} - ${dateToHuman(endDate)} (${daysCount(startDate, endDate)} days)`}
+          dates={`${dateToHuman(startDate)} - ${dateToHuman(
+            endDate
+          )} (${daysCount(startDate, endDate)} days)`}
           cancelBtnText={confirmationInfo.buttons[warning].text[0]}
-          cancelBtnHandler={confirmationInfo.buttons[warning].order === 'reverse' ? () => console.log('cringe') : openModal}
+          cancelBtnHandler={
+            confirmationInfo.buttons[warning].order === "reverse"
+              ? () => console.log("cringe")
+              : openModal
+          }
           submitBtnText={confirmationInfo.buttons[warning].text[1]}
-          submitBtnHandler={confirmationInfo.buttons[warning].order === 'reverse' ? openModal : () => console.log('kek')}
+          submitBtnHandler={
+            confirmationInfo.buttons[warning].order === "reverse"
+              ? openModal
+              : () => console.log("kek")
+          }
         />
       </form>
     </div>

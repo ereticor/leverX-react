@@ -7,16 +7,16 @@
     position: absolute;
     margin-left: 5px;
     font-weight: 400;
-    color: #B9C0C7;
+    color: #b9c0c7;
   }
-  
+
   label {
     display: flex;
     align-items: center;
     width: 100%;
     margin-top: 5px;
     cursor: pointer;
-    
+
     input {
       width: 100%;
       height: 100%;
@@ -31,7 +31,8 @@
       width: 17px;
       aspect-ratio: 1;
       content: "";
-      background: no-repeat center / contain url(../../assets/icons/date/calendar.svg);
+      background: no-repeat center / contain
+        url(../../assets/icons/date/calendar.svg);
     }
   }
 }

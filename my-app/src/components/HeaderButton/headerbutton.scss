@@ -2,13 +2,13 @@
   width: 32px;
   height: 32px;
   border-radius: 23px;
-  background: #1753B3 no-repeat center / contain;
+  background: #1753b3 no-repeat center / contain;
 
   &.post {
     background-image: url(../../assets/icons/profile/post.svg);
     background-size: 70%;
   }
-  
+
   &.logout {
     margin-left: 14px;
     background-image: url(../../assets/icons/profile/logout.svg);

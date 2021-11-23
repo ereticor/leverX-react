@@ -1,3 +1,3 @@
-import VacationForm from './VacationForm'
+import VacationForm from "./VacationForm";
 
-export default VacationForm
+export default VacationForm;

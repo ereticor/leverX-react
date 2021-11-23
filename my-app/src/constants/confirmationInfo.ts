@@ -20,24 +20,24 @@ const confirmationInfo = {
   },
   buttons: {
     tooEarly: {
-     text: ["confirm anyway", "change dates"],
-     order: 'reverse'
+      text: ["confirm anyway", "change dates"],
+      order: "reverse",
     },
     onlyHolidays: {
       text: ["confirm anyway", "change dates"],
-      order: 'reverse'
+      order: "reverse",
     },
     alreadyCreated: {
       text: ["ok, got it", null],
-      order: 'normal'
+      order: "normal",
     },
     weekLimit: {
       text: ["confirm anyway", "change dates"],
-      order: 'reverse'
+      order: "reverse",
     },
     noWarnings: {
       text: ["cancel", "confirm"],
-      order: 'normal'
+      order: "normal",
     },
   },
 };

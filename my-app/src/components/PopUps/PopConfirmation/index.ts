@@ -1,3 +1,3 @@
-import PopConfirmation from './PopConfirmation';
+import PopConfirmation from "./PopConfirmation";
 
 export default PopConfirmation;

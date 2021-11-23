@@ -11,16 +11,23 @@ interface IDateInput {
   text: string;
 }
 
-const DateInput = ({setDate, date, minDate, text}: IDateInput) => {
+const DateInput = ({ setDate, date, minDate, text }: IDateInput) => {
   return (
     <div className="dates__wrapper">
       {text} <span>(inclusive)</span>
       <label>
-        {/* @ts-ignore */}
-        <DatePicker minDate={minDate} selected={date} onChange={(date) => {setDate(date)}} dateFormat="dd MMM yyyy"/>
+        <DatePicker
+          minDate={minDate}
+          selected={date}
+          onChange={(date) => {
+            {/* @ts-ignore */}
+            setDate(date);
+          }}
+          dateFormat="dd MMM yyyy"
+        />
       </label>
     </div>
-  )
-}
+  );
+};
 
-export default DateInput
+export default DateInput;

@@ -8,7 +8,10 @@ interface IButton {
 
 const Button = ({ Itype, text, clickHandler }: IButton) => {
   return (
-    <button className={`btn form__btn btn_${Itype}`} onClick={clickHandler ? clickHandler : undefined}>
+    <button
+      className={`btn form__btn btn_${Itype}`}
+      onClick={clickHandler ? clickHandler : undefined}
+    >
       {text}
     </button>
   );

@@ -1,3 +1,3 @@
-import LeaveHistory from './LeaveHistory'
+import LeaveHistory from "./LeaveHistory";
 
-export default LeaveHistory
+export default LeaveHistory;

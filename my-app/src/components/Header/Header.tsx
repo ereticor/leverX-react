@@ -11,8 +11,12 @@ const Header = () => {
           <p>employee services</p>
         </a>
         <nav className="head__nav">
-          <a href="/" className="nav__link">Address Book</a>
-          <a href="/" className="nav__link current">Leave Requests</a>
+          <a href="/" className="nav__link">
+            Address Book
+          </a>
+          <a href="/" className="nav__link current">
+            Leave Requests
+          </a>
         </nav>
         <ProfileBlock />
       </header>
