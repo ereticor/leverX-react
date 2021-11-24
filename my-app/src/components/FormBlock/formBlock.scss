@@ -1,0 +1,19 @@
+.form__wrapper {
+  grid-area: 2 /1 / 2 / 2;
+
+  .form__back {
+    // width: 100%;
+    height: 170px;
+    border-radius: inherit inherit 0 0;
+
+    &.vacation {
+      background: url(../../assets/images/formImg/vacation.svg);
+    }
+    &.own {
+      background: url(../../assets/images/formImg/own.svg);
+    }
+    &.sick {
+      background: url(../../assets/images/formImg/sick.svg);
+    }
+  }
+}

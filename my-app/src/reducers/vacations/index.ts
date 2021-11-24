@@ -1,9 +1,10 @@
 import * as selectors from "./selectors";
-import reducer, { setVacation, decreaseDays } from "./slice";
+import reducer, { setVacation, decreaseDays, deleteVacation } from "./slice";
 
 const ActionCreators = {
   decreaseDays,
-  setVacation
+  setVacation,
+  deleteVacation,
 };
 
 export { ActionCreators, reducer, selectors };

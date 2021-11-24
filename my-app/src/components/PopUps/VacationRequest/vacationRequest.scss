@@ -1,5 +1,18 @@
 .pop__vacation__wrapper {
 
+  .vacation__head {
+
+    &::after {
+      display: block;
+      content: "";
+      width: 24px;
+      aspect-ratio: 1;
+      margin-left: 10px;
+      background: url(../../../assets/icons/history/copy.svg);
+      cursor: copy;
+    }
+  }
+
   .vacation__body {
     padding-block: 18px 37px;
   

@@ -23,6 +23,9 @@ const LeaveHistory = ({ vacations }: Props) => {
   // const [vacType, setVacType] = useState("vacation");
 
   const openModal = () => {
+    if (isShowModal === true) {
+      setCurrentVacation(null);
+    }
     setIsShowModal((prev) => !prev);
   };
 
@@ -49,13 +52,6 @@ const LeaveHistory = ({ vacations }: Props) => {
         </div>
       </div>
     );
-  }
-
-  const cancelBtnHandler = () => {
-    openModal()
-  }
-  const changeBtnHandler = () => {
-    openModal()
   }
 
   return (
@@ -96,13 +92,9 @@ const LeaveHistory = ({ vacations }: Props) => {
         {currentVacation ? (
           <VacationRequest
             showModal={isShowModal}
-            dates={formatDates({
-              startDate: currentVacation.startDate,
-              endDate: currentVacation.endDate,
-            })}
-            vacType={currentVacation.vacType}
-            cancelBtnHandler={cancelBtnHandler}
-            changeBtnHandler={changeBtnHandler}
+            currentVacation={currentVacation}
+            setCurrentVacation={setCurrentVacation}
+            openModal={openModal}
           />
         ) : null}
       </div>

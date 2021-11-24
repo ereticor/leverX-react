@@ -2,7 +2,7 @@ import "./App.scss";
 
 import Header from "./components/Header";
 import VacationDays from "./components/VacationDays";
-import VacationForm from "./components/VacationForm";
+import FormBlock from "./components/FormBlock";
 import LeaveHistory from "./components/LeaveHistory";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       <div className="main__wrapper wrapper">
         <main className="main">
           <VacationDays />
-          <VacationForm />
+          <FormBlock />
           <LeaveHistory />
         </main>
       </div>

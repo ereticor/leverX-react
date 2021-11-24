@@ -1,138 +1,123 @@
-.form__wrapper {
-  grid-area: 2 /1 / 2 / 2;
+.form {
+  max-width: 360px;
+  margin: 31px 79px 24px 30px;
 
-  .form__back {
-    // width: 100%;
-    height: 170px;
-    border-radius: inherit inherit 0 0;
+  *:not(.form__head) {
+    font-size: 13px;
+    line-height: 18px;
+  }
 
-    &.vacation {
-      background: url(../../assets/images/formImg/vacation.svg);
-    }
-    &.own {
-      background: url(../../assets/images/formImg/own.svg);
-    }
-    &.sick {
-      background: url(../../assets/images/formImg/sick.svg);
+  label,
+  .form__select__wrapper,
+  textarea {
+    height: 36px;
+    padding-inline: 8px 12px;
+    background: inherit;
+    border: 1px solid #dae1e8;
+    border-radius: 4px;
+    letter-spacing: -0.006em;
+
+    &:focus-within {
+      border-color: #5495ff;
     }
   }
 
-  .form {
-    max-width: 360px;
-    margin: 31px 79px 24px 30px;
+  .form__select__wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 36px;
+    padding: 0;
+    margin: 12px 0 13px;
 
-    *:not(.form__head) {
-      font-size: 13px;
-      line-height: 18px;
-    }
-
-    label,
-    .form__select__wrapper,
-    textarea {
-      height: 36px;
-      padding-inline: 8px 12px;
+    
+    .form__select {
+      width: 100%;
+      height: 100%;
+      padding-inline: 5px 12px;
+      border: none;
       background: inherit;
-      border: 1px solid #dae1e8;
-      border-radius: 4px;
-      letter-spacing: -0.006em;
-
-      &:focus-within {
-        border-color: #5495ff;
-      }
-    }
-
-    .form__select__wrapper {
-      display: flex;
-      align-items: center;
-      position: relative;
-      height: 36px;
-      padding: 0;
-      margin: 12px 0 13px;
-
-      .form__select {
-        width: 100%;
-        height: 100%;
-        padding-inline: 5px 12px;
-        border: none;
-        background: inherit;
-
-        -moz-appearance: none;
-        -webkit-appearance: none;
-        &::-ms-expand {
-          display: none;
-        }
-      }
-
-      &::after {
-        position: absolute;
-        right: 14px;
-        content: "";
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 5px 4px 0 4px;
-        border-color: #333d47 transparent transparent transparent;
-      }
-    }
-
-    .form__warning {
-      margin-bottom: 24px;
-
-      span {
-        font-weight: 600;
-      }
-    }
-
-    .form__dates {
-      display: flex;
-      gap: 2.5%;
-    }
-
-    .dates__wrapper {
-      position: relative;
-
-      .dates__explanation {
-        position: absolute;
-        top: 1px;
-        right: 0;
-      }
-    }
-
-    .dates__count {
-      width: 60px;
-      background: #f6f8fd;
-
-      &::after {
+      
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      &::-ms-expand {
         display: none;
       }
-
-      input {
-        height: 100%;
-        border: none;
-        background: inherit;
+      
+      &:disabled {
+        background: #F1F2F7;
       }
     }
 
-    .form__comment__wrapper {
-      margin: 18px 0 17px;
+    &::after {
+      position: absolute;
+      right: 14px;
+      content: "";
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 5px 4px 0 4px;
+      border-color: #333d47 transparent transparent transparent;
+    }
+  }
 
-      .comment__input {
-        width: 100%;
-        height: 80px;
-        margin-top: 5px;
-        resize: none;
-      }
+  .form__warning {
+    margin-bottom: 24px;
+
+    span {
+      font-weight: 600;
+    }
+  }
+
+  .form__dates {
+    display: flex;
+    gap: 2.5%;
+  }
+
+  .dates__wrapper {
+    position: relative;
+
+    .dates__explanation {
+      position: absolute;
+      top: 1px;
+      right: 0;
+    }
+  }
+
+  .dates__count {
+    width: 60px;
+    background: #f6f8fd;
+
+    &::after {
+      display: none;
     }
 
-    .form__submit {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 30px;
+    input {
+      height: 100%;
+      border: none;
+      background: inherit;
+    }
+  }
 
-      .submit__link {
-        letter-spacing: -0.02em;
-      }
+  .form__comment__wrapper {
+    margin: 18px 0 17px;
+
+    .comment__input {
+      width: 100%;
+      height: 80px;
+      margin-top: 5px;
+      resize: none;
+    }
+  }
+
+  .form__submit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+
+    .submit__link {
+      letter-spacing: -0.02em;
     }
   }
 }
