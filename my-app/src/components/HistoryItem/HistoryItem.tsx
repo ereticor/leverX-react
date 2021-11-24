@@ -1,6 +1,6 @@
-import "./historyItem.scss";
+import dateToHuman from "../../helpers/dateToHuman";
 
-import dateToHuman from "../../helpers/dateToHuman"
+import "./historyItem.scss";
 
 interface IHistoryItem {
   isModal?: boolean;
@@ -12,9 +12,21 @@ interface IHistoryItem {
   className?: string;
 }
 
-const HistoryItem = ({ isModal, isHistory, className, type, dates, creationDate, reason }: IHistoryItem) => {
+const HistoryItem = ({
+  isModal,
+  isHistory,
+  className,
+  type,
+  dates,
+  creationDate,
+  reason,
+}: IHistoryItem) => {
   return (
-    <div className={`history__item ${className || ""} ${isModal || isHistory ? '' : 'animation'}` }>
+    <div
+      className={`history__item ${className || ""} ${
+        isModal || isHistory ? "" : "animation"
+      }`}
+    >
       <div className={`item__type ${type}`} />
       <div className="item__content">
         <div className="history__duration">
@@ -27,8 +39,12 @@ const HistoryItem = ({ isModal, isHistory, className, type, dates, creationDate,
         </div>
         {isModal ? null : (
           <>
-            <p className="duration__posted">Created: {dateToHuman(creationDate || Date.now())}</p>
-            {reason ? <p className="duration__posted">Reason: {reason}</p> : null}
+            <p className="duration__posted">
+              Created: {dateToHuman(creationDate || Date.now())}
+            </p>
+            {reason ? (
+              <p className="duration__posted">Reason: {reason}</p>
+            ) : null}
             <p className="duration__status approve">Approved</p>
           </>
         )}

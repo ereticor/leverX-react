@@ -1,13 +1,14 @@
-import dateToHuman from "./dateToHuman"
-import daysCount from "./daysCount"
+import daysCount from "./daysCount";
+import dateToHuman from "./dateToHuman";
 
 interface IFormatDates {
   startDate: Date;
   endDate: Date;
 }
 
-export default function formatDates({startDate, endDate}: IFormatDates) {
-  return `${dateToHuman(startDate)} - ${dateToHuman(
+export default function formatDates({ startDate, endDate }: IFormatDates) {
+  return `${dateToHuman(startDate)} - ${dateToHuman(endDate)} (${daysCount(
+    startDate,
     endDate
-  )} (${daysCount(startDate, endDate)} days)`
+  )} days)`;
 }

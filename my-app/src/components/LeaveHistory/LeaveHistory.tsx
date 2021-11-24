@@ -1,12 +1,13 @@
-import HistoryItem from "../HistoryItem";
-
-import "./leaveHistory.scss";
-
-import Vacation from "../../interfaces/vacation";
-import formatDates from "../../helpers/formatDates";
 import { useState } from "react";
+
+import HistoryItem from "../HistoryItem";
 import VacationRequest from "../PopUps/VacationRequest";
 
+import formatDates from "../../helpers/formatDates";
+
+import Vacation from "../../interfaces/vacation";
+
+import "./leaveHistory.scss";
 interface Props {
   vacations: Vacation[];
 }
@@ -18,9 +19,6 @@ interface VacationsSorted {
 const LeaveHistory = ({ vacations }: Props) => {
   const [isShowModal, setIsShowModal] = useState(false);
   const [currentVacation, setCurrentVacation] = useState<Vacation | null>(null);
-  // const [startDate, setStartDate] = useState(new Date());
-  // const [endDate, setEndDate] = useState(startDate);
-  // const [vacType, setVacType] = useState("vacation");
 
   const openModal = () => {
     if (isShowModal === true) {

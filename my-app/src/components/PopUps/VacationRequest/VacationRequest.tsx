@@ -1,18 +1,20 @@
-import HistoryItem from "../../HistoryItem";
+import { useEffect, useState } from "react";
 import Modal from "react-modal";
+
 import Button from "../../Button";
+import HistoryItem from "../../HistoryItem";
+import Vacation from "../../../interfaces/vacation";
+import VacationForm from "../../VacationForm";
+
+import formatDates from "../../../helpers/formatDates";
+
+import ApproversTemplate from "../../../constants/ApproversTemplate";
 
 import "../popUps.scss";
 import "./vacationRequest.scss";
-import ApproversTemplate from "../../../constants/ApproversTemplate";
-import { useEffect, useState } from "react";
-import VacationForm from "../../VacationForm";
-import Vacation from "../../../interfaces/vacation";
-import formatDates from "../../../helpers/formatDates";
 
 interface IVacationRequest {
   vacations: Vacation[];
-  // changeVacation: ({oldItem, newItem}: {oldItem: Vacation, newItem: Vacation}) => void;
   setVacation: (vacation: Vacation) => void;
   deleteVacation: (vacation: Vacation) => void;
   showModal: boolean;
@@ -27,7 +29,6 @@ interface IVacationRequest {
 
 const VacationRequest = ({
   vacations,
-  // changeVacation,
   setVacation,
   deleteVacation,
   showModal,
@@ -42,41 +43,45 @@ const VacationRequest = ({
   const [isShowForm, setIsShowForm] = useState(false);
   const [startDate, setStartDate] = useState(currentVacation.startDate);
   const [endDate, setEndDate] = useState(currentVacation.endDate);
-  // const [vacType, setVacType] = useState(currentVacation.vacType);
   const [comment, setComment] = useState(currentVacation.comment);
 
   const { vacType, id } = currentVacation;
 
   const changeVacation = (oldItem: Vacation) => {
     deleteVacation(oldItem);
-    return function(newItem: Vacation) {
-      setVacation(newItem)
-    }
-  }
+    return function (newItem: Vacation) {
+      setVacation(newItem);
+    };
+  };
 
   const deleteBtnHandler = () => {
-    deleteVacation(currentVacation)
+    deleteVacation(currentVacation);
     setCurrentVacation(null);
-    openModal()
-  }
+    openModal();
+  };
 
   const cancelBtnHandler = () => {
     openModal();
   };
   const changeBtnHandler = () => {
-    openForm()
+    openForm();
   };
 
   const saveBtnHandler = () => {
-    changeVacation(currentVacation)({startDate, endDate, creationDate: new Date(), comment, vacType: vacType, id: id})
+    changeVacation(currentVacation)({
+      startDate,
+      endDate,
+      creationDate: new Date(),
+      comment,
+      vacType: vacType,
+      id: id,
+    });
     openForm();
-  }
+  };
 
   const openForm = () => {
     setIsShowForm((prev) => !prev);
   };
-
-
 
   useEffect(() => {
     if (startDate > endDate) {
@@ -118,52 +123,46 @@ const VacationRequest = ({
           />
         ) : (
           <div className="vacation__approvers__wrapper">
-            {/* {assigned.map((el, index) => {
-            return (
-              <ul data-assignStep={el.assignStep}>
-                {el.map((person, index) => {
-                  <li>
-                    <img src="" alt="avatar"></img>
-                    <p>{person.name}</p>
-                  </li>;
-                })}
-              </ul>
-            );
-          })} */}
             <ApproversTemplate type={vacType} />
           </div>
         )}
       </div>
       <div className="popUp__foot vacation__foot">
-        {isShowForm
-          ? <>
-                    <Button
-            IClass={changeBtnType || "cancel"}
-            text={changeBtnText || "cancel"}
-            clickHandler={openForm}
-          />
-          <Button
-            IClass={cancelBtnType || "submit"}
-            text={cancelBtnText || "save"}
-            clickHandler={saveBtnHandler}
-          /></>
-          : <>        {vacType !== "vacation" ? (
+        {isShowForm ? (
+          <>
             <Button
-              IClass={"cancel"}
-              text={vacType === "sick" ? "cancel request" : "decline request"}
-              clickHandler={deleteBtnHandler}
+              IClass={changeBtnType || "cancel"}
+              text={changeBtnText || "cancel"}
+              clickHandler={openForm}
             />
-          ) : null}
-          <Button
-            IClass={changeBtnType || "cancel"}
-            text={changeBtnText || "change"}
-            clickHandler={changeBtnHandler}
-          />
-          <Button
-            IClass={cancelBtnType || "submit"}
-            text={cancelBtnText || "close"}
-            clickHandler={cancelBtnHandler}
-          /></>}
+            <Button
+              IClass={cancelBtnType || "submit"}
+              text={cancelBtnText || "save"}
+              clickHandler={saveBtnHandler}
+            />
+          </>
+        ) : (
+          <>
+            {" "}
+            {vacType !== "vacation" ? (
+              <Button
+                IClass={"cancel"}
+                text={vacType === "sick" ? "cancel request" : "decline request"}
+                clickHandler={deleteBtnHandler}
+              />
+            ) : null}
+            <Button
+              IClass={changeBtnType || "cancel"}
+              text={changeBtnText || "change"}
+              clickHandler={changeBtnHandler}
+            />
+            <Button
+              IClass={cancelBtnType || "submit"}
+              text={cancelBtnText || "close"}
+              clickHandler={cancelBtnHandler}
+            />
+          </>
+        )}
       </div>
     </Modal>
   );

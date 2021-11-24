@@ -1,21 +1,17 @@
 import { useEffect, useState } from "react";
 
-// import Button from "../Button";
-// import DateInput from "../DateInput";
-// import PopExplanation from "../PopUps/PopExplanation";
-import PopConfirmation from "../PopUps/PopConfirmation";
 import VacationForm from "../VacationForm";
+import PopConfirmation from "../PopUps/PopConfirmation";
 
 import daysCount from "../../helpers/daysCount";
 import formatDates from "../../helpers/formatDates";
 import { areIntervalsOverlapping } from "date-fns";
 
-// import { sickWarning } from "../../constants/warnings";
-// import { daysCountExplanation } from "../../constants/explanations";
 import confirmationInfo from "../../constants/confirmationInfo";
 
-import "./formBlock.scss";
 import Vacation from "../../interfaces/vacation";
+
+import "./formBlock.scss";
 
 interface Props {
   decreaseDays: (arg: number) => void;

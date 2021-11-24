@@ -28,8 +28,10 @@ const ApproversTemplate = ({ type }: IApprovers) => {
         </ul>
       ) : (
         <>
-          {" "}
-          <ul data-assign-step={"already approved"} className="vacation__approvers">
+          <ul
+            data-assign-step={"already approved"}
+            className="vacation__approvers"
+          >
             <li className="approvers__user">
               <img className="user__avatar" src={noAvatar} alt="avatar"></img>
               <div>
@@ -45,13 +47,19 @@ const ApproversTemplate = ({ type }: IApprovers) => {
               </div>
             </li>
           </ul>
-          <ul data-assign-step={"current approver(s)"} className="vacation__approvers">
+          <ul
+            data-assign-step={"current approver(s)"}
+            className="vacation__approvers"
+          >
             <li className="approvers__user">
               <img className="user__avatar" src={man1} alt="avatar"></img>
               <p className="user__name">John Smith</p>
             </li>
           </ul>
-          <ul data-assign-step={"next approver(s)"} className="vacation__approvers">
+          <ul
+            data-assign-step={"next approver(s)"}
+            className="vacation__approvers"
+          >
             <li className="approvers__user">
               <img className="user__avatar" src={man2} alt="avatar"></img>
               <p className="user__name">John Smith</p>
@@ -63,7 +71,10 @@ const ApproversTemplate = ({ type }: IApprovers) => {
           </ul>
         </>
       )}
-      <ul data-assign-step={"Documents registration (final step)"} className="vacation__approvers">
+      <ul
+        data-assign-step={"Documents registration (final step)"}
+        className="vacation__approvers"
+      >
         <li className="approvers__user">
           <img className="user__avatar" src={woman} alt="avatar"></img>
           <p className="user__name">Katrin Brown</p>

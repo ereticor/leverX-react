@@ -1,5 +1,3 @@
-import "./App.scss";
-
 import Header from "./components/Header";
 import VacationDays from "./components/VacationDays";
 import FormBlock from "./components/FormBlock";

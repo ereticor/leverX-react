@@ -1,8 +1,9 @@
-import HistoryItem from "../../HistoryItem";
 import Modal from "react-modal";
+
+import HistoryItem from "../../HistoryItem";
 import Button from "../../Button";
 
-import "../popUps.scss"
+import "../popUps.scss";
 import "./popConfirmation.scss";
 
 interface IPopConfirmation {

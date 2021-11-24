@@ -34,14 +34,15 @@ input[type="number"] {
   cursor: pointer;
 }
 
-a, button {
+a,
+button {
   transition: 0.2s all ease-in-out;
 
   &:hover {
     transform: scale(0.9);
   }
   &:active {
-    transform: scale(1.1)
+    transform: scale(1.1);
   }
 }
 
@@ -54,7 +55,6 @@ a, button {
   color: #333d47;
 
   .wrapper {
-    // overflow: hidden;
     border-radius: 5px;
     background: #ffffff;
     box-shadow: 0px 1px 3px rgba(32, 75, 146, 0.15);

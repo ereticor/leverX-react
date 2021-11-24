@@ -4,5 +4,5 @@ export default interface Vacation {
   creationDate: Date;
   comment: string;
   vacType: string;
-  id? : number;
+  id?: number;
 }
