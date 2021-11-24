@@ -2,6 +2,26 @@
   display: flex;
   align-items: center;
   gap: 14px;
+
+  &.animation {
+    transition: 0.2s all ease-in-out;
+
+    &:hover {
+      box-shadow: 0px 0px 3px #1753b3;
+
+      .history__duration span {
+        color: #1753b3;
+      }
+    }
+    &:active {
+      box-shadow: none;
+      transform: scale(0.9);
+
+      .history__duration span {
+        transform: rotate(90deg);
+      }
+    }
+  }
 }
 
 .item__type {

@@ -42,7 +42,8 @@ const VacationForm = ({
   const getModalMessage = () => {
     if (vacations.some( (el) => areIntervalsOverlapping(
       { start: startDate, end: endDate},
-      { start: el.startDate, end: el.endDate}
+      { start: el.startDate, end: el.endDate},
+      { inclusive: true }
     ))) {
       return "alreadyCreated";
     }
@@ -176,6 +177,7 @@ const VacationForm = ({
           warning={confirmationInfo.warnings[warning]}
           info={confirmationInfo.info[warning]}
           dates={formatDates({startDate, endDate})}
+          type={vacType}
           cancelBtnText={cancelBtnText}
           cancelBtnHandler={cancelBtnHandler}
           submitBtnText={submitBtnText}

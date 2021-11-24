@@ -4,17 +4,29 @@ import "./leaveHistory.scss";
 
 import Vacation from "../../interfaces/vacation";
 import formatDates from "../../helpers/formatDates";
+import { useState } from "react";
+import VacationRequest from "../PopUps/VacationRequest";
 
 interface Props {
   vacations: Vacation[];
 }
 
-interface VacatoinsSorted {
+interface VacationsSorted {
   [key: string]: Vacation[];
 }
 
 const LeaveHistory = ({ vacations }: Props) => {
-  const vacationSorted = vacations.reduce<VacatoinsSorted>((result, item) => {
+  const [isShowModal, setIsShowModal] = useState(false);
+  const [currentVacation, setCurrentVacation] = useState<Vacation | null>(null);
+  // const [startDate, setStartDate] = useState(new Date());
+  // const [endDate, setEndDate] = useState(startDate);
+  // const [vacType, setVacType] = useState("vacation");
+
+  const openModal = () => {
+    setIsShowModal((prev) => !prev);
+  };
+
+  const vacationSorted = vacations.reduce<VacationsSorted>((result, item) => {
     const year = new Date(item.endDate).getFullYear();
     if (result[`${year}`]) {
       result[`${year}`].push(item);
@@ -39,28 +51,60 @@ const LeaveHistory = ({ vacations }: Props) => {
     );
   }
 
+  const cancelBtnHandler = () => {
+    openModal()
+  }
+  const changeBtnHandler = () => {
+    openModal()
+  }
+
   return (
     <div className="history__wrapper wrapper">
       <h2 className="history__head heading">My Leave Requests</h2>
       <div className="list__wrapper">
-        {Object.keys(vacationSorted).sort( (f, s) => +s - +f).map((key, index) => (
-          <ul
-            className="history__list"
-            data-year={key}
-            key={`history list: ${key}`}
-          >
-            {vacationSorted[key]
-              .sort((f, s) => +f.creationDate - +s.creationDate)
-              .map((item, index) => {
-                const {startDate, endDate, creationDate, vacType} = item
-                return (
-                  <li className="history__item__wrapper" key={`history item: ${creationDate}, ${index}`}>
-                    <HistoryItem type={vacType} dates={formatDates({startDate, endDate})} creationDate={creationDate} />
-                  </li>
-                );
-              })}
-          </ul>
-        ))}
+        {Object.keys(vacationSorted)
+          .sort((f, s) => +s - +f)
+          .map((key, index) => (
+            <ul
+              className="history__list"
+              data-year={key}
+              key={`history list: ${key}`}
+            >
+              {vacationSorted[key]
+                .sort((f, s) => +f.creationDate - +s.creationDate)
+                .map((item, index) => {
+                  const { startDate, endDate, creationDate, vacType } = item;
+                  return (
+                    <li
+                      className="history__item__wrapper"
+                      key={`history item: ${creationDate}, ${index}`}
+                      onClick={() => {
+                        setCurrentVacation(item);
+                        openModal();
+                      }}
+                    >
+                      <HistoryItem
+                        type={vacType}
+                        dates={formatDates({ startDate, endDate })}
+                        creationDate={creationDate}
+                      />
+                    </li>
+                  );
+                })}
+            </ul>
+          ))}
+        {currentVacation ? (
+          <VacationRequest
+            showModal={isShowModal}
+            dates={formatDates({
+              startDate: currentVacation.startDate,
+              endDate: currentVacation.endDate,
+            })}
+            vacType={currentVacation.vacType}
+            cancelBtnHandler={cancelBtnHandler}
+            changeBtnHandler={changeBtnHandler}
+          />
+        ) : null}
       </div>
     </div>
   );

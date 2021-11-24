@@ -1,0 +1,81 @@
+.pop__vacation__wrapper {
+
+  .vacation__body {
+    padding-block: 18px 37px;
+  
+    .vacation__days {
+      position: relative;
+      padding-bottom: 34px;
+  
+      &::after {
+        position: absolute;
+        left: -20%;
+        bottom: 0;
+        width: 100vw;
+        content: "";
+        border-bottom: 1px solid #f1f2f7;
+      }
+    }
+  
+    .vacation__approvers__wrapper {
+      display: grid;
+      gap: 30px;
+      padding-top: 19px;
+  
+      .vacation__approvers {
+        display: grid;
+        gap: 10px;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 17px;
+        letter-spacing: -0.289412px;
+        color: #333D47;
+  
+        &::before {
+          display: block;
+          content: attr(data-assign-step);
+          text-transform: uppercase;
+          color: #afb7bf;
+          margin-bottom: 12px;
+        }
+  
+        .approvers__user {
+          display: flex;
+          gap: 15px;
+          align-items: center;
+  
+          .user__avatar {
+            width: 32px;
+            aspect-ratio: 1;
+            cursor: pointer;
+          }
+  
+          .user__name {
+            font-size: 13px;
+            line-height: 18px;
+            letter-spacing: -0.313529px;
+            text-decoration-line: underline;
+            transition: 0.2s all ease-in-out;
+            cursor: pointer;
+
+            &:hover {
+              color: #5495ff;
+            }
+          }
+  
+          .user__comment {
+            font-weight: 400;
+            font-style: italic;
+          }
+        }
+      }
+    }
+  }
+  
+  .vacation__foot.popUp__foot {
+  
+    .btn {
+      width: 90px;
+    }
+  }
+}

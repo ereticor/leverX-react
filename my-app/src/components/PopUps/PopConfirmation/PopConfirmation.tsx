@@ -2,6 +2,7 @@ import HistoryItem from "../../HistoryItem";
 import Modal from "react-modal";
 import Button from "../../Button";
 
+import "../popUps.scss"
 import "./popConfirmation.scss";
 
 interface IPopConfirmation {
@@ -9,6 +10,7 @@ interface IPopConfirmation {
   warning: string | null;
   info: string | null;
   dates: string;
+  type: string;
   cancelBtnType?: string;
   cancelBtnText?: string | null;
   cancelBtnHandler: () => void;
@@ -22,6 +24,7 @@ const PopConfirmation = ({
   warning,
   info,
   dates,
+  type,
   cancelBtnType,
   cancelBtnText,
   cancelBtnHandler,
@@ -34,21 +37,21 @@ const PopConfirmation = ({
       isOpen={showModal}
       contentLabel={"confirm modal"}
       appElement={document.getElementsByClassName("App")}
-      className="confirm"
-      overlayClassName="confirm__wrapper"
+      className="pop__confirm popUp"
+      overlayClassName="pop__confirm__wrapper popUp__wrapper"
     >
-      <h4 className="confirm__head">Request a confirmation</h4>
-      <div className="confirm__body">
+      <h4 className="popUp__head confirm__head">Request a confirmation</h4>
+      <div className="popUp__body confirm__body">
         {warning ? <p className="confirm__warning">{warning}</p> : null}
         {info ? <p className="confirm__info">{info}</p> : null}
         <HistoryItem
           isModal={true}
-          type={"own"}
+          type={type}
           dates={dates}
           className="confirm__dates"
         />
       </div>
-      <div className="confirm__foot">
+      <div className="popUp__foot confirm__foot">
         <Button
           IClass={cancelBtnType || "cancel"}
           text={cancelBtnText || "cancel"}
